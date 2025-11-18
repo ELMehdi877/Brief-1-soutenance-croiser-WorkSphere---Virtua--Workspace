@@ -52,6 +52,7 @@ add_experience.addEventListener('click', () => {
 
 
 let Unassigned_Staff = document.querySelector("#Unassigned_Staff")
+let exps = []
 form_cont.addEventListener('submit', (e) => {
     e.preventDefault()
     //regex name
@@ -73,7 +74,6 @@ form_cont.addEventListener('submit', (e) => {
     }
     // let exp = document.getElementById('exp').value.trim()
     let exps_inputs = document.querySelectorAll('.exp')
-    let exps = []
     exps_inputs.forEach(e => {
         exps.push(e.value.trim())
     })
@@ -377,7 +377,7 @@ function add_conference(id) {
     list_conference.forEach(el => {
         if (el.id === id) {
             cont_Salle_conference.innerHTML += `
-            <img id="${el.id}" src="${el.photo}" alt="photo" class="w-5 lg:w-10 lg:h-10 relative h-5 bg-blue-500 rounded-full">
+            <img id="${el.id}" onclick="affiche_info('${el.name}','${el.photo}','${el.email}','${el.role}','${el.numero}','${el.experiences}')" src="${el.photo}" alt="photo" class="w-5 lg:w-10 lg:h-10 relative h-5 bg-blue-500 rounded-full">
             `
         }
     })
@@ -388,7 +388,7 @@ function add_reception(id) {
     list_Receptionnistes.forEach(el => {
         if (el.id === id) {
             cont_Salle_Reception.innerHTML += `
-            <img id="${el.id}" src="${el.photo}" alt="photo" class="w-5 lg:w-10 lg:h-10 relative h-5 bg-blue-500 rounded-full">
+            <img id="${el.id}" onclick="affiche_info('${el.name}','${el.photo}','${el.email}','${el.role}','${el.numero}','${el.experiences}')" src="${el.photo}" alt="photo" class="w-5 lg:w-10 lg:h-10 relative h-5 bg-blue-500 rounded-full">
             `
         }
     })
@@ -400,7 +400,7 @@ function add_serveur(id) {
     list_serveurs.forEach(el => {
         if (el.id === id) {
             cont_Salle_serveurs.innerHTML += `
-            <img id="${el.id}" src="${el.photo}" alt="photo" class="w-5 lg:w-10 lg:h-10 relative h-5 bg-blue-500 rounded-full">
+            <img id="${el.id}" onclick="affiche_info('${el.name}','${el.photo}','${el.email}','${el.role}','${el.numero}','${el.experiences}')" src="${el.photo}" alt="photo" class="w-5 lg:w-10 lg:h-10 relative h-5 bg-blue-500 rounded-full">
             `
         }
     })
@@ -412,7 +412,7 @@ function add_securite(id) {
     list_securite.forEach(el => {
         if (el.id === id) {
             cont_Salle_scurite.innerHTML += `
-            <img id="${el.id}" src="${el.photo}" alt="photo" class="w-5 lg:w-10 lg:h-10 relative h-5 bg-blue-500 rounded-full">
+            <img id="${el.id}" onclick="affiche_info('${el.name}','${el.photo}','${el.email}','${el.role}','${el.numero}','${el.experiences}')" src="${el.photo}" alt="photo" class="w-5 lg:w-10 lg:h-10 relative h-5 bg-blue-500 rounded-full">
             `
         }
     })
@@ -425,7 +425,7 @@ function add_perssone(id) {
     list_personnel.forEach(el => {
         if (el.id === id) {
             cont_Salle_personnel.innerHTML += `
-            <img id="${el.id}" src="${el.photo}" alt="photo" class="w-5 lg:w-10 lg:h-10 relative h-5 bg-blue-500 rounded-full">
+            <img id="${el.id}" onclick="affiche_info('${el.name}','${el.photo}','${el.email}','${el.role}','${el.numero}','${el.experiences}')" src="${el.photo}" alt="photo" class="w-5 lg:w-10 lg:h-10 relative h-5 bg-blue-500 rounded-full">
             `
         }
     })
@@ -438,7 +438,7 @@ function add_archive(id) {
     list_archive.forEach(el => {
         if (el.id === id) {
             cont_Salle_archives.innerHTML += `
-            <img id="${el.id}" onclick="affiche_info('${el.name}','${el.photo}','${el.email}','${el.numero}','${el.experiences[0]}')"  src="${el.photo}" alt="photo" class="w-5 lg:w-10 lg:h-10 relative h-5 bg-blue-500 rounded-full">
+            <img id="${el.id}" onclick="affiche_info('${el.name}','${el.photo}','${el.email}','${el.role}','${el.numero}',${el.experiences})"  src="${el.photo}" alt="photo" class="w-5 lg:w-10 lg:h-10 relative h-5 bg-blue-500 rounded-full">
             `
         }
     })
@@ -446,32 +446,52 @@ function add_archive(id) {
 }
 
 const section_info = document.getElementById('section_info')
-function affiche_info(name, photo, email, numero,exp) {
+function affiche_info(name, photo, email, role, numero, experiences) {
     section_info.classList.remove("hidden")
-
     section_info.innerHTML = `
     <div class="relative w-95 flex flex-col p-5 gap-2 lg:w-160 bg-gray-400 rounded-[10px] font-[400]">
     <h2 class="font-[700]">${name}</h2>
     <div class="flex gap-4 items-start">
     <img src="${photo}" alt="photo" class="w-[40%] lg:w-[20%]">
     <div class="flex flex-col gap-2">
-    <h3 class="font-[700]">Manager</h3>
+    <h3 class="font-[700]">${role}</h3>
     <p>${email}</p>
     <p>${numero}</p>
     <h3 class="font-[700]">Expériences</h3>
-    <ul class="list-disc ml-10">
-    <li>${exp}</li>
-    <li>exp2</li>
+    <ul id="list_experience" class="ml-10">
     </ul>
-                    <p>localisation actuelle : reception</p>
-                    </div>
-                    </div>
-                    <button id="close_info" class=" rounded-[5px] w-8 bg-red-800 text-white absolute lg:left-145 left-80">X</button>
-                    </div> 
-                    
-                    `
+    <p>localisation actuelle : reception</p>
+    </div>
+    </div>
+    <button id="close_info" class="rounded-[5px] w-8 bg-red-800 text-white absolute lg:left-145 left-80">X</button>
+    </div> 
+    
+    `
+
+    
     let close_info = document.getElementById("close_info")
     close_info.addEventListener('click', () => {
         section_info.classList.add("hidden")
     })
+    
+    console.log('true');
+    // console.log(exps);
+    // // console.log(exps);
+
+
+    let list_experience = document.getElementById("list_experience")
+    experiences.forEach(el => {
+        let li = document.createElement('li')
+        li.textContent = el
+        console.log(li);
+        list_experience.appendChild(li)
+
+    })
+
+
+
 }
+
+
+
+
