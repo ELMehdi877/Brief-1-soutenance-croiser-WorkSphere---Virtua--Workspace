@@ -374,76 +374,94 @@ close_list.addEventListener("click", () => {
 
 function add_conference(id) {
     let cont_Salle_conference = document.getElementById("cont_Salle_conference")
-    list_conference.forEach(el => {
-        if (el.id === id) {
-            cont_Salle_conference.innerHTML += `
+    if (cont_Salle_conference.children.length < 10) {
+        list_conference.forEach(el => {
+            if (el.id === id) {
+                cont_Salle_conference.innerHTML += `
             <img id="${el.id}" onclick='affiche_info(${JSON.stringify(el)})' src="${el.photo}" alt="photo" class="w-5 lg:w-10 lg:h-10 relative h-5 bg-blue-500 rounded-full">
             `
-        }
-    })
+            }
+        })
+    }
 }
 
 function add_reception(id) {
     let cont_Salle_Reception = document.getElementById("cont_Salle_Reception")
-    list_Receptionnistes.forEach(el => {
-        if (el.id === id) {
-            cont_Salle_Reception.innerHTML += `
+    if (cont_Salle_Reception.children.length < 10) {
+        list_Receptionnistes.forEach(el => {
+            if (el.id === id) {
+                cont_Salle_Reception.innerHTML += `
             <img id="${el.id}" onclick='affiche_info(${JSON.stringify(el)})' src="${el.photo}" alt="photo" class="w-5 lg:w-10 lg:h-10 relative h-5 bg-blue-500 rounded-full">
             `
-        }
-    })
+            }
+        })
+
+    }
+    console.log(cont_Salle_Reception.children.length);
 
 }
 
 function add_serveur(id) {
     let cont_Salle_serveurs = document.getElementById("cont_Salle_serveurs")
-    list_serveurs.forEach(el => {
-        if (el.id === id) {
-            cont_Salle_serveurs.innerHTML += `
+    if (cont_Salle_serveurs.children.length < 6) {
+
+        list_serveurs.forEach(el => {
+            if (el.id === id) {
+                cont_Salle_serveurs.innerHTML += `
             <img id="${el.id}" onclick='affiche_info(${JSON.stringify(el)})' src="${el.photo}" alt="photo" class="w-5 lg:w-10 lg:h-10 relative h-5 bg-blue-500 rounded-full">
             `
-        }
-    })
+            }
+        })
+    }
 
 }
 
 function add_securite(id) {
     let cont_Salle_scurite = document.getElementById("cont_Salle_scurite")
-    list_securite.forEach(el => {
-        if (el.id === id) {
-            cont_Salle_scurite.innerHTML += `
+    if (cont_Salle_scurite.children.length < 6) {
+
+        list_securite.forEach(el => {
+            if (el.id === id) {
+                cont_Salle_scurite.innerHTML += `
             <img id="${el.id}" onclick='affiche_info(${JSON.stringify(el)})' src="${el.photo}" alt="photo" class="w-5 lg:w-10 lg:h-10 relative h-5 bg-blue-500 rounded-full">
             `
-        }
-    })
+            }
+        })
+    }
 
 
 }
 
 function add_perssone(id) {
     let cont_Salle_personnel = document.getElementById("cont_Salle_personnel")
-    list_personnel.forEach(el => {
-        if (el.id === id) {
-            cont_Salle_personnel.innerHTML += `
+    if (cont_Salle_personnel.children.length < 4) {
+
+        list_personnel.forEach(el => {
+            if (el.id === id) {
+                cont_Salle_personnel.innerHTML += `
             <img id="${el.id}" onclick='affiche_info(${JSON.stringify(el)})' src="${el.photo}" alt="photo" class="w-5 lg:w-10 lg:h-10 relative h-5 bg-blue-500 rounded-full">
             `
-        }
-    })
+            }
+        })
+    }
 
 
 }
 
 function add_archive(id) {
     let cont_Salle_archives = document.getElementById("cont_Salle_archives")
-    list_archive.forEach(el => {
-        if (el.id === id) {
-            cont_Salle_archives.innerHTML += `
+    if (cont_Salle_archives.children.length < 5) {
+
+        list_archive.forEach(el => {
+            if (el.id === id) {
+                cont_Salle_archives.innerHTML += `
             <img id="${el.id}" onclick='affiche_info(${JSON.stringify(el)})'  src="${el.photo}" alt="photo" class="w-5 lg:w-10 lg:h-10 relative h-5 bg-blue-500 rounded-full">
             `
-        }
-        console.log(el.experiences);
-    })
-    
+            }
+            console.log(el.experiences);
+        })
+    }
+
 }
 
 const section_info = document.getElementById('section_info')
@@ -469,12 +487,12 @@ function affiche_info(worker) {
     
     `
 
-    
+
     let close_info = document.getElementById("close_info")
     close_info.addEventListener('click', () => {
         section_info.classList.add("hidden")
     })
-    
+
     console.log('true');
     // console.log(exps);
     // // console.log(exps);
@@ -488,9 +506,6 @@ function affiche_info(worker) {
         list_experience.appendChild(li)
 
     })
-
-
-
 }
 
 
