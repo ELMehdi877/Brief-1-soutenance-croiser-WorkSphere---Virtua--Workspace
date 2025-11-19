@@ -495,49 +495,6 @@ function affiche_info(worker) {
 
 
 
-// function affiche_info(worker) {
-
-//     section_info.classList.remove("hidden");
-
-//     section_info.innerHTML = `
-//     <div class="relative w-95 flex flex-col p-5 gap-2 lg:w-160 bg-gray-400 rounded-[10px] font-[400]">
-//         <h2 class="font-[700]">${worker.name}</h2>
-//         <div class="flex gap-4 items-start">
-
-//             <img src="${worker.photo}" alt="photo" class="w-[40%] lg:w-[20%]">
-
-//             <div class="flex flex-col gap-2">
-//                 <h3 class="font-[700]">${worker.role}</h3>
-//                 <p>${worker.email}</p>
-//                 <p>${worker.numero}</p>
-
-//                 <h3 class="font-[700]">التجارب</h3>
-//                 <ul id="list_experience" class="ml-10"></ul>
-
-//                 <p>الموقع الحالي : الاستقبال</p>
-//             </div>
-//         </div>
-
-//         <button id="close_info" class="rounded-[5px] w-8 bg-red-800 text-white absolute lg:left-145 left-80">X</button>
-//     </div>
-//     `;
-
-//     // زر الإغلاق
-//     document.getElementById("close_info").addEventListener("click", () => {
-//         section_info.classList.add("hidden");
-//     });
-
-//     // عرض التجارب
-//     let list_experience = document.getElementById("list_experience");
-
-//     worker.experiences.forEach(exp => {
-//         let li = document.createElement("li");
-//         li.textContent = exp;
-//         list_experience.appendChild(li);
-//     });
-// }
-
-
 
 
 
