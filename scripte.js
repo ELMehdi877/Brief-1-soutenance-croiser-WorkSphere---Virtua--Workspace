@@ -790,7 +790,7 @@ function supprime_archive(id) {
     employent_dans_archive = employent_dans_archive.filter(el => el.id !== id)
     cont_Salle_archives.innerHTML = ''
     employent_dans_archive.forEach(el => {
-        contcont_Salle_archives_Salle_conference.innerHTML += `
+        cont_Salle_archives.innerHTML += `
                 <div class="relative rounded-[5px] flex bg-gray-400  p-1  gap-1 w-35 ">
         <img id="${el.id}" onclick='affiche_info(${JSON.stringify(el)})' src="${el.photo}" alt="photo"
             class="w-5 lg:w-10 lg:h-10 relative h-5 bg-blue-500 rounded-full">
@@ -806,7 +806,8 @@ function supprime_archive(id) {
     })
 }
 
-function affiche_one_zone(el) {
+function affiche_conference() {
+    employent_dans_conference.forEach(el => {
     cont_Salle_conference.innerHTML += `
                 <div class="relative rounded-[5px] flex bg-gray-400  p-1  gap-1 w-35 ">
         <img id="${el.id}" onclick='affiche_info(${JSON.stringify(el)})' src="${el.photo}" alt="photo"
@@ -820,11 +821,108 @@ function affiche_one_zone(el) {
         </div>
     </div>
             `
-}
-function affiche_tous_zones() {
-    employent_dans_conference.forEach(el => {
-        affiche_one_zone(el)
     })
 }
-affiche_tous_zones()
+
+function affiche_reception() {
+    employent_dans_reception.forEach(el => {
+    cont_Salle_Reception.innerHTML += `
+                <div class="relative rounded-[5px] flex bg-gray-400  p-1  gap-1 w-35 ">
+        <img id="${el.id}" onclick='affiche_info(${JSON.stringify(el)})' src="${el.photo}" alt="photo"
+            class="w-5 lg:w-10 lg:h-10 relative h-5 bg-blue-500 rounded-full">
+        <div class="flex flex-col items-start text-white text-[9px] font-[600]">
+            <p>${el.name}</p>
+            <p>${el.role}</p>
+        </div>
+        <div class="flex items-start">
+            <button onclick='retour_reception_Staff(${JSON.stringify(el)})' class="rounded-[4px] w-3 text-[8px] bg-red-800 text-white ">X</button>
+        </div>
+    </div>
+            `
+    })
+}
+
+
+function affiche_serveur() {
+    employent_dans_serveur.forEach(el => {
+    cont_Salle_serveurs.innerHTML += `
+                <div class="relative rounded-[5px] flex bg-gray-400  p-1  gap-1 w-35 ">
+        <img id="${el.id}" onclick='affiche_info(${JSON.stringify(el)})' src="${el.photo}" alt="photo"
+            class="w-5 lg:w-10 lg:h-10 relative h-5 bg-blue-500 rounded-full">
+        <div class="flex flex-col items-start text-white text-[9px] font-[600]">
+            <p>${el.name}</p>
+            <p>${el.role}</p>
+        </div>
+        <div class="flex items-start">
+            <button onclick='retour_serveur_Staff(${JSON.stringify(el)})' class="rounded-[4px] w-3 text-[8px] bg-red-800 text-white ">X</button>
+        </div>
+    </div>
+            `
+    })
+}
+
+
+function affiche_securite() {
+    employent_dans_securite.forEach(el => {
+    cont_Salle_scurite.innerHTML += `
+                <div class="relative rounded-[5px] flex bg-gray-400  p-1  gap-1 w-35 ">
+        <img id="${el.id}" onclick='affiche_info(${JSON.stringify(el)})' src="${el.photo}" alt="photo"
+            class="w-5 lg:w-10 lg:h-10 relative h-5 bg-blue-500 rounded-full">
+        <div class="flex flex-col items-start text-white text-[9px] font-[600]">
+            <p>${el.name}</p>
+            <p>${el.role}</p>
+        </div>
+        <div class="flex items-start">
+            <button onclick='retour_securite_Staff(${JSON.stringify(el)})' class="rounded-[4px] w-3 text-[8px] bg-red-800 text-white ">X</button>
+        </div>
+    </div>
+            `
+    })
+}
+
+
+function affiche_perssone() {
+    employent_dans_perssone.forEach(el => {
+    cont_Salle_personnel.innerHTML += `
+                <div class="relative rounded-[5px] flex bg-gray-400  p-1  gap-1 w-35 ">
+        <img id="${el.id}" onclick='affiche_info(${JSON.stringify(el)})' src="${el.photo}" alt="photo"
+            class="w-5 lg:w-10 lg:h-10 relative h-5 bg-blue-500 rounded-full">
+        <div class="flex flex-col items-start text-white text-[9px] font-[600]">
+            <p>${el.name}</p>
+            <p>${el.role}</p>
+        </div>
+        <div class="flex items-start">
+            <button onclick='retour_conference_Staff(${JSON.stringify(el)})' class="rounded-[4px] w-3 text-[8px] bg-red-800 text-white ">X</button>
+        </div>
+    </div>
+            `
+    })
+}
+
+
+function affiche_archive() {
+    employent_dans_archive.forEach(el => {
+    cont_Salle_archives.innerHTML += `
+                <div class="relative rounded-[5px] flex bg-gray-400  p-1  gap-1 w-35 ">
+        <img id="${el.id}" onclick='affiche_info(${JSON.stringify(el)})' src="${el.photo}" alt="photo"
+            class="w-5 lg:w-10 lg:h-10 relative h-5 bg-blue-500 rounded-full">
+        <div class="flex flex-col items-start text-white text-[9px] font-[600]">
+            <p>${el.name}</p>
+            <p>${el.role}</p>
+        </div>
+        <div class="flex items-start">
+            <button onclick='retour_archive_Staff(${JSON.stringify(el)})' class="rounded-[4px] w-3 text-[8px] bg-red-800 text-white ">X</button>
+        </div>
+    </div>
+            `
+    })
+}
+
+affiche_conference()
+affiche_reception()
+affiche_Salle_serveurs()
+affiche_Salle_securite()
+affiche_perssone()
+affiche_archive()
+
 
