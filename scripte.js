@@ -92,8 +92,8 @@ form_cont.addEventListener('submit', (e) => {
             experiences: exps,
         }
         localStorage.setItem("id", i)
-        console.log('valid')
-        console.log(staf)
+        // console.log('valid')
+        // console.log(staf)
         list_staf.push(staf)
         // console.log(list_staf);
         localStorage.setItem("list_staf_local", JSON.stringify(list_staf))
@@ -143,8 +143,8 @@ form_cont.addEventListener('submit', (e) => {
 
 
     }
-    else
-        console.log('false');
+    // else
+        // console.log('false');
 
 
 })
@@ -372,59 +372,113 @@ close_list.addEventListener("click", () => {
 })
 
 
+let cont_Salle_conference = document.getElementById("cont_Salle_conference")
 function add_conference(id) {
-    let cont_Salle_conference = document.getElementById("cont_Salle_conference")
     if (cont_Salle_conference.children.length < 10) {
         list_conference.forEach(el => {
             if (el.id === id) {
                 cont_Salle_conference.innerHTML += `
-            <img id="${el.id}" onclick='affiche_info(${JSON.stringify(el)})' src="${el.photo}" alt="photo" class="w-5 lg:w-10 lg:h-10 relative h-5 bg-blue-500 rounded-full">
+                <div id="${el.id}" class="relative rounded-[5px] flex bg-gray-400  p-1  gap-1 w-35 ">
+        <img  onclick='affiche_info(${JSON.stringify(el)})' src="${el.photo}" alt="photo"
+            class="w-5 lg:w-10 lg:h-10 relative h-5 bg-blue-500 rounded-full">
+        <div class="flex flex-col items-start text-white text-[9px] font-[600]">
+            <p>${el.name}</p>
+            <p>${el.role}</p>
+        </div>
+        <div class="flex items-start">
+            <button  onclick='supprime_conference(${el.id})' class="rounded-[4px] w-3 text-[8px] bg-red-800 text-white ">X</button>
+        </div>
+    </div>
             `
+                list_staf = list_staf.filter(el => el.id !== id)
+                localStorage.setItem("list_staf_local", JSON.stringify(list_staf))
+                affiche_tous_Unassigned_Staff()
+
             }
         })
     }
 }
 
+let cont_Salle_Reception = document.getElementById("cont_Salle_Reception")
 function add_reception(id) {
-    let cont_Salle_Reception = document.getElementById("cont_Salle_Reception")
     if (cont_Salle_Reception.children.length < 10) {
         list_Receptionnistes.forEach(el => {
             if (el.id === id) {
                 cont_Salle_Reception.innerHTML += `
-            <img id="${el.id}" onclick='affiche_info(${JSON.stringify(el)})' src="${el.photo}" alt="photo" class="w-5 lg:w-10 lg:h-10 relative h-5 bg-blue-500 rounded-full">
+                <div class="relative rounded-[5px] flex bg-gray-400  p-1  gap-1 w-35 ">
+        <img id="${el.id}" onclick='affiche_info(${JSON.stringify(el)})' src="${el.photo}" alt="photo"
+            class="w-5 lg:w-10 lg:h-10 relative h-5 bg-blue-500 rounded-full">
+        <div class="flex flex-col items-start text-white text-[9px] font-[600]">
+            <p>${el.name}</p>
+            <p>${el.role}</p>
+        </div>
+        <div class="flex items-start">
+            <button id="${el.id}"  class="rounded-[4px] w-3 text-[8px] bg-red-800 text-white ">X</button>
+        </div>
+    </div>
             `
+                list_staf = list_staf.filter(el => el.id !== id)
+                localStorage.setItem("list_staf_local", JSON.stringify(list_staf))
+                affiche_tous_Unassigned_Staff()
+
             }
         })
 
     }
-    console.log(cont_Salle_Reception.children.length);
+    // console.log(cont_Salle_Reception.children.length);
 
 }
 
+let cont_Salle_serveurs = document.getElementById("cont_Salle_serveurs")
 function add_serveur(id) {
-    let cont_Salle_serveurs = document.getElementById("cont_Salle_serveurs")
     if (cont_Salle_serveurs.children.length < 6) {
 
         list_serveurs.forEach(el => {
             if (el.id === id) {
                 cont_Salle_serveurs.innerHTML += `
-            <img id="${el.id}" onclick='affiche_info(${JSON.stringify(el)})' src="${el.photo}" alt="photo" class="w-5 lg:w-10 lg:h-10 relative h-5 bg-blue-500 rounded-full">
+                <div class="relative rounded-[5px] flex bg-gray-400  p-1  gap-1 w-35 ">
+        <img id="${el.id}" onclick='affiche_info(${JSON.stringify(el)})' src="${el.photo}" alt="photo"
+            class="w-5 lg:w-10 lg:h-10 relative h-5 bg-blue-500 rounded-full">
+        <div class="flex flex-col items-start text-white text-[9px] font-[600]">
+            <p>${el.name}</p>
+            <p>${el.role}</p>
+        </div>
+        <div class="flex items-start">
+            <button  class="rounded-[4px] w-3 text-[8px] bg-red-800 text-white ">X</button>
+        </div>
+    </div>
             `
+                list_staf = list_staf.filter(el => el.id !== id)
+                localStorage.setItem("list_staf_local", JSON.stringify(list_staf))
+                affiche_tous_Unassigned_Staff()
             }
         })
     }
 
 }
 
+let cont_Salle_scurite = document.getElementById("cont_Salle_scurite")
 function add_securite(id) {
-    let cont_Salle_scurite = document.getElementById("cont_Salle_scurite")
     if (cont_Salle_scurite.children.length < 6) {
 
         list_securite.forEach(el => {
             if (el.id === id) {
                 cont_Salle_scurite.innerHTML += `
-            <img id="${el.id}" onclick='affiche_info(${JSON.stringify(el)})' src="${el.photo}" alt="photo" class="w-5 lg:w-10 lg:h-10 relative h-5 bg-blue-500 rounded-full">
+                <div class="relative rounded-[5px] flex bg-gray-400  p-1  gap-1 w-35 ">
+        <img id="${el.id}" onclick='affiche_info(${JSON.stringify(el)})' src="${el.photo}" alt="photo"
+            class="w-5 lg:w-10 lg:h-10 relative h-5 bg-blue-500 rounded-full">
+        <div class="flex flex-col items-start text-white text-[9px] font-[600]">
+            <p>${el.name}</p>
+            <p>${el.role}</p>
+        </div>
+        <div class="flex items-start">
+            <button  class="rounded-[4px] w-3 text-[8px] bg-red-800 text-white ">X</button>
+        </div>
+    </div>
             `
+                list_staf = list_staf.filter(el => el.id !== id)
+                localStorage.setItem("list_staf_local", JSON.stringify(list_staf))
+                affiche_tous_Unassigned_Staff()
             }
         })
     }
@@ -432,15 +486,28 @@ function add_securite(id) {
 
 }
 
+let cont_Salle_personnel = document.getElementById("cont_Salle_personnel")
 function add_perssone(id) {
-    let cont_Salle_personnel = document.getElementById("cont_Salle_personnel")
     if (cont_Salle_personnel.children.length < 4) {
 
         list_personnel.forEach(el => {
             if (el.id === id) {
                 cont_Salle_personnel.innerHTML += `
-            <img id="${el.id}" onclick='affiche_info(${JSON.stringify(el)})' src="${el.photo}" alt="photo" class="w-5 lg:w-10 lg:h-10 relative h-5 bg-blue-500 rounded-full">
+                <div class="relative rounded-[5px] flex bg-gray-400  p-1  gap-1 w-35 ">
+        <img id="${el.id}" onclick='affiche_info(${JSON.stringify(el)})' src="${el.photo}" alt="photo"
+            class="w-5 lg:w-10 lg:h-10 relative h-5 bg-blue-500 rounded-full">
+        <div class="flex flex-col items-start text-white text-[9px] font-[600]">
+            <p>${el.name}</p>
+            <p>${el.role}</p>
+        </div>
+        <div class="flex items-start">
+            <button  class="rounded-[4px] w-3 text-[8px] bg-red-800 text-white ">X</button>
+        </div>
+    </div>
             `
+                list_staf = list_staf.filter(el => el.id !== id)
+                localStorage.setItem("list_staf_local", JSON.stringify(list_staf))
+                affiche_tous_Unassigned_Staff()
             }
         })
     }
@@ -448,17 +515,30 @@ function add_perssone(id) {
 
 }
 
+let cont_Salle_archives = document.getElementById("cont_Salle_archives")
 function add_archive(id) {
-    let cont_Salle_archives = document.getElementById("cont_Salle_archives")
     if (cont_Salle_archives.children.length < 5) {
 
         list_archive.forEach(el => {
             if (el.id === id) {
                 cont_Salle_archives.innerHTML += `
-            <img id="${el.id}" onclick='affiche_info(${JSON.stringify(el)})'  src="${el.photo}" alt="photo" class="w-5 lg:w-10 lg:h-10 relative h-5 bg-blue-500 rounded-full">
+                <div class="relative rounded-[5px] flex bg-gray-400  p-1  gap-1 w-35 ">
+        <img id="${el.id}" onclick='affiche_info(${JSON.stringify(el)})' src="${el.photo}" alt="photo"
+            class="w-5 lg:w-10 lg:h-10 relative h-5 bg-blue-500 rounded-full">
+        <div class="flex flex-col items-start text-white text-[9px] font-[600]">
+            <p>${el.name}</p>
+            <p>${el.role}</p>
+        </div>
+        <div class="flex items-start">
+            <button  class="rounded-[4px] w-3 text-[8px] bg-red-800 text-white ">X</button>
+        </div>
+    </div>
             `
+                list_staf = list_staf.filter(el => el.id !== id)
+                localStorage.setItem("list_staf_local", JSON.stringify(list_staf))
+                affiche_tous_Unassigned_Staff()
             }
-            console.log(el.experiences);
+            // console.log(el.experiences);
         })
     }
 
@@ -493,7 +573,7 @@ function affiche_info(worker) {
         section_info.classList.add("hidden")
     })
 
-    console.log('true');
+    // console.log('true');
     // console.log(exps);
     // // console.log(exps);
 
@@ -502,16 +582,17 @@ function affiche_info(worker) {
     worker.experiences.forEach(el => {
         let li = document.createElement('li')
         li.textContent = el
-        console.log(li);
+        // console.log(li);
         list_experience.appendChild(li)
 
     })
 }
 
-
-
-
-
-
-
-
+function supprime_conference(id){
+    console.log("true");
+    console.log(el);
+    list_staf.push(el)
+    localStorage.setItem("list_staf_local" , JSON.stringify(list_staf))
+    affiche_tous_Unassigned_Staff()
+    console.log(list_staf);
+}

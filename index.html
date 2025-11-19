@@ -23,8 +23,11 @@
         <div
             class="font-[700] bg-gray-300 relative rounded-[10px] flex flex-col items-center gap-2 p-2 lg:w-[27%] w-[100%]">
             <h1 id="type_role" class="font-[700] text-[25px]  text-gray-800 underline">Reception</h1>
-            <button id="close_list" class="rounded-[5px] w-8 bg-red-800 text-white absolute lg:left-90 mt-2 left-85">X</button>
-            <div id="Worker" class="bg-white p-2 gap-2 flex w-full flex-col rounded-[10px] "></div>
+            <button id="close_list"
+                class="rounded-[5px] w-8 bg-red-800 text-white absolute lg:left-90 mt-2 left-85">X</button>
+            <div id="Worker"
+                class="bg-white p-2 gap-2 flex w-full h-120 overflow-y-scroll [scrollbar-width:none] flex-col rounded-[10px] ">
+            </div>
         </div>
     </section>
 
@@ -33,7 +36,8 @@
         class="font-[700] order-last lg:order-first bg-gray-300 rounded-[10px] flex flex-col gap-2 p-4 lg:w-[27%] w-[100%]">
         <h2>Unassigned Staff</h2>
         <button id="add_new_worker" class="font-[400] bg-blue-500 text-white p-2 rounded-[10px]">Add New Worker</button>
-        <div id="Unassigned_Staff" class="bg-white p-2 gap-2 flex flex-col rounded-[10px]">
+        <div id="Unassigned_Staff"
+            class="bg-white p-3 gap-2 lg:h-150 h-80 overflow-y-scroll [scrollbar-width:none] flex flex-col rounded-[10px]">
             <!-- <div class="flex p-2 items-center bg-blue-300 rounded-[10px]">
                 <div class="flex gap-5 items-center">
                     <img src="image/mehdi.png" width="18%" alt="Photo">
@@ -155,7 +159,8 @@
             <div class="flex relative">
                 <h2 class="font-[700] text-[25px]  text-gray-800 underline">Add New Worker</h2>
                 <!-- <button id="close" class="font-[700] lg:left-[50%] relative left-[20%] text-[25px] ">X</button> -->
-                <button id="close" class="rounded-[5px] w-8 bg-red-800 text-white absolute lg:left-80 mt-2 left-58">X</button>
+                <button id="close"
+                    class="rounded-[5px] w-8 bg-red-800 text-white absolute lg:left-80 mt-2 left-58">X</button>
             </div>
             <div class=" w-[100%] lg:h-160 h-150 overflow-y-scroll [scrollbar-width:none]">
                 <form id="form" class="flex flex-col  text-black  gap-1 w-[100%] ">
@@ -199,7 +204,7 @@
     </section>
 
     <section id="section_info" class="absolute hidden flex justify-center items-center bg-black/50 h-screen w-full">
-         <!-- <div class="relative w-95 flex flex-col p-5 gap-2 lg:w-160 bg-gray-400 rounded-[10px] font-[400]">
+        <!-- <div class="relative w-95 flex flex-col p-5 gap-2 lg:w-160 bg-gray-400 rounded-[10px] font-[400]">
             <h2 class="font-[700]">EL Mehdi lahrach</h2>
             <div class="flex gap-4 items-start">
                 <img src="image/mehdi.png" alt="photo" class="w-[40%] lg:w-[20%]">
@@ -218,6 +223,10 @@
             <button id="close_info" class=" rounded-[5px] w-8 bg-red-800 text-white absolute lg:left-145 left-80">X</button>
         </div>  -->
     </section>
+
+    
+
+
     <script src="scripte.js"></script>
 </body>
 
