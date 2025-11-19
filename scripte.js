@@ -371,12 +371,20 @@ close_list.addEventListener("click", () => {
     open_worker.classList.add("hidden")
 })
 
-let employent_dans_conference = []
+let employent_dans_conference = JSON.parse(localStorage.getItem("conference")) || []
+// let employent_dans_reception = JSON.parse(localStorage.getItem("reception")) || []
+// let employent_dans_serveur = JSON.parse(localStorage.getItem("serveur")) || []
+// let employent_dans_securite = JSON.parse(localStorage.getItem("securite")) || []
+// let employent_dans_perssone = JSON.parse(localStorage.getItem("perssone")) || []
+// let employent_dans_archive = JSON.parse(localStorage.getItem("archive")) || []
+// let employent_dans_conference = []
 let employent_dans_reception = []
 let employent_dans_serveur = []
 let employent_dans_securite = []
 let employent_dans_perssone = []
 let employent_dans_archive = []
+
+console.log(employent_dans_conference);
 
 
 
@@ -386,6 +394,7 @@ function add_conference(id) {
         list_conference.forEach(el => {
             if (el.id === id) {
                 employent_dans_conference.push(el)
+                localStorage.setItem("conference", JSON.stringify(employent_dans_conference))
                 console.log(employent_dans_conference);
 
                 cont_Salle_conference.innerHTML += `
@@ -397,7 +406,7 @@ function add_conference(id) {
             <p>${el.role}</p>
         </div>
         <div class="flex items-start">
-            <button  onclick='retour_employent_Staff(${JSON.stringify(el)})' class="rounded-[4px] w-3 text-[8px] bg-red-800 text-white ">X</button>
+            <button  onclick='retour_conference_Staff(${JSON.stringify(el)})' class="rounded-[4px] w-3 text-[8px] bg-red-800 text-white ">X</button>
         </div>
     </div>
             `
@@ -416,6 +425,7 @@ function add_reception(id) {
         list_Receptionnistes.forEach(el => {
             if (el.id === id) {
                 employent_dans_reception.push(el)
+                // localStorage.setItem("reception" , JSON.stringify(employent_dans_reception))
                 cont_Salle_Reception.innerHTML += `
                 <div class="relative rounded-[5px] flex bg-gray-400  p-1  gap-1 w-35 ">
         <img id="${el.id}" onclick='affiche_info(${JSON.stringify(el)})' src="${el.photo}" alt="photo"
@@ -425,7 +435,7 @@ function add_reception(id) {
             <p>${el.role}</p>
         </div>
         <div class="flex items-start">
-            <button id="${el.id}" onclick='retour_employent_Staff(${JSON.stringify(el)})' class="rounded-[4px] w-3 text-[8px] bg-red-800 text-white ">X</button>
+            <button id="${el.id}" onclick='retour_reception_Staff(${JSON.stringify(el)})' class="rounded-[4px] w-3 text-[8px] bg-red-800 text-white ">X</button>
         </div>
     </div>
             `
@@ -448,6 +458,7 @@ function add_serveur(id) {
         list_serveurs.forEach(el => {
             if (el.id === id) {
                 employent_dans_serveur.push(el)
+                // localStorage.setItem("serveur" , JSON.stringify(employent_dans_serveur))
                 cont_Salle_serveurs.innerHTML += `
                 <div class="relative rounded-[5px] flex bg-gray-400  p-1  gap-1 w-35 ">
         <img id="${el.id}" onclick='affiche_info(${JSON.stringify(el)})' src="${el.photo}" alt="photo"
@@ -457,7 +468,7 @@ function add_serveur(id) {
             <p>${el.role}</p>
         </div>
         <div class="flex items-start">
-            <button onclick='retour_employent_Staff(${JSON.stringify(el)})' class="rounded-[4px] w-3 text-[8px] bg-red-800 text-white ">X</button>
+            <button onclick='retour_serveur_Staff(${JSON.stringify(el)})' class="rounded-[4px] w-3 text-[8px] bg-red-800 text-white ">X</button>
         </div>
     </div>
             `
@@ -473,10 +484,10 @@ function add_serveur(id) {
 let cont_Salle_scurite = document.getElementById("cont_Salle_scurite")
 function add_securite(id) {
     if (cont_Salle_scurite.children.length < 6) {
-
         list_securite.forEach(el => {
             if (el.id === id) {
                 employent_dans_securite.push(el)
+                // localStorage.setItem("securite" , JSON.stringify(employent_dans_securite))
                 cont_Salle_scurite.innerHTML += `
                 <div class="relative rounded-[5px] flex bg-gray-400  p-1  gap-1 w-35 ">
         <img id="${el.id}" onclick='affiche_info(${JSON.stringify(el)})' src="${el.photo}" alt="photo"
@@ -486,7 +497,7 @@ function add_securite(id) {
             <p>${el.role}</p>
         </div>
         <div class="flex items-start">
-            <button onclick='retour_employent_Staff(${JSON.stringify(el)})' class="rounded-[4px] w-3 text-[8px] bg-red-800 text-white ">X</button>
+            <button onclick='retour_securite_Staff(${JSON.stringify(el)})' class="rounded-[4px] w-3 text-[8px] bg-red-800 text-white ">X</button>
         </div>
     </div>
             `
@@ -507,6 +518,7 @@ function add_perssone(id) {
         list_personnel.forEach(el => {
             if (el.id === id) {
                 employent_dans_perssone.push(el)
+                // localStorage.setItem("perssone" , JSON.stringify(employent_dans_perssone))
                 cont_Salle_personnel.innerHTML += `
                 <div class="relative rounded-[5px] flex bg-gray-400  p-1  gap-1 w-35 ">
         <img id="${el.id}" onclick='affiche_info(${JSON.stringify(el)})' src="${el.photo}" alt="photo"
@@ -516,7 +528,7 @@ function add_perssone(id) {
             <p>${el.role}</p>
         </div>
         <div class="flex items-start">
-            <button onclick='retour_employent_Staff(${JSON.stringify(el)})' class="rounded-[4px] w-3 text-[8px] bg-red-800 text-white ">X</button>
+            <button onclick='retour_perssone_Staff(${JSON.stringify(el)})' class="rounded-[4px] w-3 text-[8px] bg-red-800 text-white ">X</button>
         </div>
     </div>
             `
@@ -537,6 +549,7 @@ function add_archive(id) {
         list_archive.forEach(el => {
             if (el.id === id) {
                 employent_dans_archive.push(el)
+                // localStorage.setItem("archive" , JSON.stringify(employent_dans_archive))
                 cont_Salle_archives.innerHTML += `
                 <div class="relative rounded-[5px] flex bg-gray-400  p-1  gap-1 w-35 ">
         <img id="${el.id}" onclick='affiche_info(${JSON.stringify(el)})' src="${el.photo}" alt="photo"
@@ -546,7 +559,7 @@ function add_archive(id) {
             <p>${el.role}</p>
         </div>
         <div class="flex items-start">
-            <button onclick='retour_employent_Staff(${JSON.stringify(el)})' class="rounded-[4px] w-3 text-[8px] bg-red-800 text-white ">X</button>
+            <button onclick='retour_archive_Staff(${JSON.stringify(el)})' class="rounded-[4px] w-3 text-[8px] bg-red-800 text-white ">X</button>
         </div>
     </div>
             `
@@ -604,7 +617,7 @@ function affiche_info(worker) {
     })
 }
 
-function retour_employent_Staff(el) {
+function retour_conference_Staff(el) {
 
     // console.log(el);
     list_staf.push(el)
@@ -617,6 +630,7 @@ function retour_employent_Staff(el) {
 
 function supprime_conference(id) {
     employent_dans_conference = employent_dans_conference.filter(el => el.id !== id)
+    localStorage.setItem("conference", JSON.stringify(employent_dans_conference))
     cont_Salle_conference.innerHTML = ''
     employent_dans_conference.forEach(el => {
         cont_Salle_conference.innerHTML += `
@@ -628,9 +642,189 @@ function supprime_conference(id) {
             <p>${el.role}</p>
         </div>
         <div class="flex items-start">
-            <button onclick='retour_employent_Staff(${JSON.stringify(el)})' class="rounded-[4px] w-3 text-[8px] bg-red-800 text-white ">X</button>
+            <button onclick='retour_conference_Staff(${JSON.stringify(el)})' class="rounded-[4px] w-3 text-[8px] bg-red-800 text-white ">X</button>
         </div>
     </div>
             `
     })
 }
+
+
+function retour_reception_Staff(el) {
+
+    // console.log(el);
+    list_staf.push(el)
+    localStorage.setItem("list_staf_local", JSON.stringify(list_staf))
+    affiche_tous_Unassigned_Staff()
+    supprime_reception(el.id)
+    console.log("true");
+    // console.log(list_staf);
+}
+
+function supprime_reception(id) {
+    employent_dans_reception = employent_dans_reception.filter(el => el.id !== id)
+    cont_Salle_Reception.innerHTML = ''
+    employent_dans_reception.forEach(el => {
+        cont_Salle_Reception.innerHTML += `
+                <div class="relative rounded-[5px] flex bg-gray-400  p-1  gap-1 w-35 ">
+        <img id="${el.id}" onclick='affiche_info(${JSON.stringify(el)})' src="${el.photo}" alt="photo"
+            class="w-5 lg:w-10 lg:h-10 relative h-5 bg-blue-500 rounded-full">
+        <div class="flex flex-col items-start text-white text-[9px] font-[600]">
+            <p>${el.name}</p>
+            <p>${el.role}</p>
+        </div>
+        <div class="flex items-start">
+            <button onclick='retour_reception_Staff(${JSON.stringify(el)})' class="rounded-[4px] w-3 text-[8px] bg-red-800 text-white ">X</button>
+        </div>
+    </div>
+            `
+    })
+}
+
+
+function retour_serveur_Staff(el) {
+
+    // console.log(el);
+    list_staf.push(el)
+    localStorage.setItem("list_staf_local", JSON.stringify(list_staf))
+    affiche_tous_Unassigned_Staff()
+    supprime_serveur(el.id)
+    console.log("true");
+    // console.log(list_staf);
+}
+
+function supprime_serveur(id) {
+    employent_dans_serveur = employent_dans_serveur.filter(el => el.id !== id)
+    cont_Salle_serveurs.innerHTML = ''
+    employent_dans_serveur.forEach(el => {
+        cont_Salle_serveurs.innerHTML += `
+                <div class="relative rounded-[5px] flex bg-gray-400  p-1  gap-1 w-35 ">
+        <img id="${el.id}" onclick='affiche_info(${JSON.stringify(el)})' src="${el.photo}" alt="photo"
+            class="w-5 lg:w-10 lg:h-10 relative h-5 bg-blue-500 rounded-full">
+        <div class="flex flex-col items-start text-white text-[9px] font-[600]">
+            <p>${el.name}</p>
+            <p>${el.role}</p>
+        </div>
+        <div class="flex items-start">
+            <button onclick='retour_serveur_Staff(${JSON.stringify(el)})' class="rounded-[4px] w-3 text-[8px] bg-red-800 text-white ">X</button>
+        </div>
+    </div>
+            `
+    })
+}
+
+function retour_securite_Staff(el) {
+
+    // console.log(el);
+    list_staf.push(el)
+    localStorage.setItem("list_staf_local", JSON.stringify(list_staf))
+    affiche_tous_Unassigned_Staff()
+    supprime_securite(el.id)
+    console.log("true");
+    // console.log(list_staf);
+}
+
+function supprime_securite(id) {
+    employent_dans_securite = employent_dans_securite.filter(el => el.id !== id)
+    cont_Salle_scurite.innerHTML = ''
+    employent_dans_securite.forEach(el => {
+        cont_Salle_scurite.innerHTML += `
+                <div class="relative rounded-[5px] flex bg-gray-400  p-1  gap-1 w-35 ">
+        <img id="${el.id}" onclick='affiche_info(${JSON.stringify(el)})' src="${el.photo}" alt="photo"
+            class="w-5 lg:w-10 lg:h-10 relative h-5 bg-blue-500 rounded-full">
+        <div class="flex flex-col items-start text-white text-[9px] font-[600]">
+            <p>${el.name}</p>
+            <p>${el.role}</p>
+        </div>
+        <div class="flex items-start">
+            <button onclick='retour_securite_Staff(${JSON.stringify(el)})' class="rounded-[4px] w-3 text-[8px] bg-red-800 text-white ">X</button>
+        </div>
+    </div>
+            `
+    })
+}
+
+function retour_perssone_Staff(el) {
+
+    // console.log(el);
+    list_staf.push(el)
+    localStorage.setItem("list_staf_local", JSON.stringify(list_staf))
+    affiche_tous_Unassigned_Staff()
+    supprime_perssone(el.id)
+    console.log("true");
+    // console.log(list_staf);
+}
+
+function supprime_perssone(id) {
+    employent_dans_perssone = employent_dans_perssone.filter(el => el.id !== id)
+    cont_Salle_personnel.innerHTML = ''
+    employent_dans_perssone.forEach(el => {
+        cont_Salle_personnel.innerHTML += `
+                <div class="relative rounded-[5px] flex bg-gray-400  p-1  gap-1 w-35 ">
+        <img id="${el.id}" onclick='affiche_info(${JSON.stringify(el)})' src="${el.photo}" alt="photo"
+            class="w-5 lg:w-10 lg:h-10 relative h-5 bg-blue-500 rounded-full">
+        <div class="flex flex-col items-start text-white text-[9px] font-[600]">
+            <p>${el.name}</p>
+            <p>${el.role}</p>
+        </div>
+        <div class="flex items-start">
+            <button onclick='retour_perssone_Staff(${JSON.stringify(el)})' class="rounded-[4px] w-3 text-[8px] bg-red-800 text-white ">X</button>
+        </div>
+    </div>
+            `
+    })
+}
+
+function retour_archive_Staff(el) {
+
+    // console.log(el);
+    list_staf.push(el)
+    localStorage.setItem("list_staf_local", JSON.stringify(list_staf))
+    affiche_tous_Unassigned_Staff()
+    supprime_archive(el.id)
+    console.log("true");
+    // console.log(list_staf);
+}
+
+function supprime_archive(id) {
+    employent_dans_archive = employent_dans_archive.filter(el => el.id !== id)
+    cont_Salle_archives.innerHTML = ''
+    employent_dans_archive.forEach(el => {
+        contcont_Salle_archives_Salle_conference.innerHTML += `
+                <div class="relative rounded-[5px] flex bg-gray-400  p-1  gap-1 w-35 ">
+        <img id="${el.id}" onclick='affiche_info(${JSON.stringify(el)})' src="${el.photo}" alt="photo"
+            class="w-5 lg:w-10 lg:h-10 relative h-5 bg-blue-500 rounded-full">
+        <div class="flex flex-col items-start text-white text-[9px] font-[600]">
+            <p>${el.name}</p>
+            <p>${el.role}</p>
+        </div>
+        <div class="flex items-start">
+            <button onclick='retour_archive_Staff(${JSON.stringify(el)})' class="rounded-[4px] w-3 text-[8px] bg-red-800 text-white ">X</button>
+        </div>
+    </div>
+            `
+    })
+}
+
+function affiche_one_zone(el) {
+    cont_Salle_conference.innerHTML += `
+                <div class="relative rounded-[5px] flex bg-gray-400  p-1  gap-1 w-35 ">
+        <img id="${el.id}" onclick='affiche_info(${JSON.stringify(el)})' src="${el.photo}" alt="photo"
+            class="w-5 lg:w-10 lg:h-10 relative h-5 bg-blue-500 rounded-full">
+        <div class="flex flex-col items-start text-white text-[9px] font-[600]">
+            <p>${el.name}</p>
+            <p>${el.role}</p>
+        </div>
+        <div class="flex items-start">
+            <button onclick='retour_conference_Staff(${JSON.stringify(el)})' class="rounded-[4px] w-3 text-[8px] bg-red-800 text-white ">X</button>
+        </div>
+    </div>
+            `
+}
+function affiche_tous_zones() {
+    employent_dans_conference.forEach(el => {
+        affiche_one_zone(el)
+    })
+}
+affiche_tous_zones()
+
