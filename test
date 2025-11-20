@@ -25,8 +25,17 @@ let staf = {
     experiences: [],
 }
 
+let exp_entreprise = {
+    nom: '',
+    post: '',
+    date_debut: '',
+    date_fin: '',
+}
+
+let exps = []
 const experience = document.getElementById('experience')
 const add_experience = document.getElementById('add_experience')
+let confirme = false
 add_experience.addEventListener('click', (e) => {
 
     e.preventDefault()
@@ -44,16 +53,16 @@ add_experience.addEventListener('click', (e) => {
     //     <button type="button" class="font-[500] w-full rounded-[10px] text-red-500 text-[12px] p-1 h-8 border-2">remove</button>
     // </div> 
     // `
-    const div = document.createElement("div")
-    div.className = "flex flex-wrap bg-black/60 rounded-[10px] m-1 p-1 w-full items-center gap-1"
+    const div1 = document.createElement("div")
+    div1.className = "flex flex-wrap bg-black/60 rounded-[10px] m-1 p-1 w-full items-center gap-1"
 
     let input_nom_entreprise = document.createElement("input")
-    input_nom_entreprise.className = "exp bg-white/80 border-1 h-10 border-black w-[100%] rounded-[5px]"
+    input_nom_entreprise.className = "exp nom_entreprise bg-white/80 border-1 h-10 border-black w-[100%] rounded-[5px]"
     input_nom_entreprise.type = "text"
     input_nom_entreprise.placeholder = "le Nom de l'entreprise"
 
     let input_nom_poste = document.createElement("input")
-    input_nom_poste.className = "exp bg-white/80 border-1 h-10 border-black w-[100%] rounded-[5px]"
+    input_nom_poste.className = "exp nom_poste bg-white/80 border-1 h-10 border-black w-[100%] rounded-[5px]"
     input_nom_poste.type = "text"
     input_nom_poste.placeholder = "le Nom de poste"
 
@@ -69,27 +78,55 @@ add_experience.addEventListener('click', (e) => {
     input_date_fin.type = "date"
     input_date_fin.placeholder = "la date de fin"
 
+    const div2 = document.createElement("div")
+    div2.className = "flex gap-2 w-full"
 
-    const button = document.createElement("button")
-    button.className = "font-[500] w-full rounded-[10px] text-red-500 text-[12px] p-1 h-8 border-2"
-    button.textContent = "remove"
+    const button_remove = document.createElement("button")
+    button_remove.className = "font-[500] w-full rounded-[10px] text-red-500 text-[12px] p-1 h-8 border-2"
+    button_remove.textContent = "remove"
+    button_remove.type = "button"
 
-    button.addEventListener("click", () => {
-        div.remove()
+    const button_confirme = document.createElement("button")
+    button_confirme.className = "font-[500] w-full rounded-[10px] text-green-500 text-[12px] p-1 h-8 border-2"
+    button_confirme.textContent = "confirme"
+    button_confirme.type = "button"
+
+
+    button_confirme.addEventListener("click", () => {
+
+        exp_entreprise = {
+            nom: input_nom_entreprise.value,
+            post: input_nom_poste.value,
+            date_debut: input_date_debut.value,
+            date_fin: input_date_fin.value,
+        }
+        exps.push(exp_entreprise)
+        button_remove.remove()
+        button_confirme.remove()
+        console.log(exps);
+
+
     })
 
-    div.appendChild(input_nom_entreprise)
-    div.appendChild(input_nom_poste)
-    div.appendChild(input_date_debut)
-    div.appendChild(input_date_fin)
-    div.appendChild(button)
-    experience.appendChild(div)
+    button_remove.addEventListener("click", () => {
+        div1.remove()
+    })
+
+    div2.appendChild(button_confirme)
+    div2.appendChild(button_remove)
+    div1.appendChild(input_nom_entreprise)
+    div1.appendChild(input_nom_poste)
+    div1.appendChild(input_date_debut)
+    div1.appendChild(input_date_fin)
+    div1.appendChild(div2)
+    experience.appendChild(div1)
 
 })
 
+console.log(exps);
+
 
 let Unassigned_Staff = document.querySelector("#Unassigned_Staff")
-let exps = []
 form_cont.addEventListener('submit', (e) => {
     e.preventDefault()
 
@@ -110,29 +147,29 @@ form_cont.addEventListener('submit', (e) => {
     if (url === "") {
         url = "https://www.shutterstock.com/shutterstock/photos/1131880403/display_1500/stock-vector-user-profile-avatar-1131880403.jpg"
     }
-    let exps_inputs = document.querySelectorAll('.exp')
+    // let exps_inputs = document.querySelectorAll('.exp')
     // console.log(exps_inputs);
 
-    exps_inputs.forEach(e => {
-        exps.push(e.value.trim())
-    })
+    // exps_inputs.forEach(e => {
+    //     exps.push(e.value.trim())
+    // })
 
-    // console.log(exps);
+    console.log(exps);
 
     i = Number(localStorage.getItem("id"))
     let dates_debut = document.querySelectorAll(".date_debut")
     let dates_fin = document.querySelectorAll(".date_fin")
-    let date_valid=true
+    let date_valid = true
     for (let index = 0; index < dates_debut.length; index++) {
-        if (dates_debut[index].value>dates_fin[index].value) {
+        if (dates_debut[index].value > dates_fin[index].value) {
             console.log(dates_debut);
-            date_valid=false
-            exps=[]
+            date_valid = false
+            exps = []
             return
         }
     }
-    
-    if (regex_name.test(name) && regex_email.test(email) && regex_numero.test(numero) && date_valid===true ) {
+
+    if (regex_name.test(name) && regex_email.test(email) && regex_numero.test(numero) && date_valid === true) {
         staf = {
             id: ++i,
             name: name,
@@ -546,11 +583,6 @@ function affiche_info(el) {
         section_info.classList.add("hidden")
     })
 
-    // console.log('true');
-    // console.log(exps);
-    // // console.log(exps);
-
-
     let list_experience = document.getElementById("list_experience")
     el.experiences.forEach(item => {
         let li = document.createElement('li')
@@ -559,6 +591,7 @@ function affiche_info(el) {
         list_experience.appendChild(li)
 
     })
+
 }
 
 function retour_conference_Staff(el) {
