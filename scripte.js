@@ -30,27 +30,33 @@ const experience = document.getElementById('experience')
 const add_experience = document.getElementById('add_experience')
 add_experience.addEventListener('click', () => {
     const div = document.createElement("div")
-    div.className = "flex flex-wrap w-full items-center gap-1"
+    div.className = "flex flex-wrap bg-black/60 rounded-[10px] m-1 p-1 w-full items-center gap-1"
 
     let input_nom_entreprise = document.createElement("input")
-    input_nom_entreprise.className = "exp bg-white/30 border-1 h-10 border-black w-[100%] rounded-[5px]"
+    input_nom_entreprise.className = "exp bg-white/80 border-1 h-10 border-black w-[100%] rounded-[5px]"
     input_nom_entreprise.type = "text"
     input_nom_entreprise.placeholder="le Nom de l'entreprise"
 
     let input_nom_poste = document.createElement("input")
-    input_nom_poste.className = "exp bg-white/30 border-1 h-10 border-black w-[100%] rounded-[5px]"
+    input_nom_poste.className = "exp bg-white/80 border-1 h-10 border-black w-[100%] rounded-[5px]"
     input_nom_poste.type = "text"
+    input_nom_poste.placeholder="le Nom de poste"
+
 
     let input_date_debut = document.createElement("input")
-    input_date_debut.className = "exp bg-white/30 border-1 h-10 border-black w-[100%] rounded-[5px]"
+    input_date_debut.className = "exp bg-white/80 border-1 h-10 border-black w-[100%] rounded-[5px]"
     input_date_debut.type = "date"
+    input_date_debut.placeholder="la date de debut"
+
 
     let input_date_fin = document.createElement("input")
-    input_date_fin.className = "exp bg-white/30 border-1 h-10 border-black w-[100%] rounded-[5px]"
+    input_date_fin.className = "exp bg-white/80 border-1 h-10 border-black w-[100%] rounded-[5px]"
     input_date_fin.type = "date"
+    input_date_fin.placeholder="la date de fin"
+
 
     const button = document.createElement("button")
-    button.className = "font-[500]  rounded-[10px] text-red-500 text-[12px] p-1 h-8 border-2"
+    button.className = "font-[500] w-full rounded-[10px] text-red-500 text-[12px] p-1 h-8 border-2"
     button.textContent = "remove"
 
     button.addEventListener("click", () => {
@@ -412,20 +418,7 @@ function add_conference(id) {
                 employent_dans_conference.push(el)
                 localStorage.setItem("conference", JSON.stringify(employent_dans_conference))
                 console.log(employent_dans_conference);
-
-                cont_Salle_conference.innerHTML += `
-                <div id="${el.id}" class="relative rounded-[5px] flex bg-gray-400  p-1  gap-1 w-35 ">
-        <img  onclick='affiche_info(${JSON.stringify(el)})' src="${el.photo}" alt="photo"
-            class="w-5 lg:w-10 lg:h-10 relative h-5 bg-blue-500 rounded-full">
-        <div class="flex flex-col items-start text-white text-[9px] font-[600]">
-            <p>${el.name}</p>
-            <p>${el.role}</p>
-        </div>
-        <div class="flex items-start">
-            <button  onclick='retour_conference_Staff(${JSON.stringify(el)})' class="rounded-[4px] w-3 text-[8px] bg-red-800 text-white ">X</button>
-        </div>
-    </div>
-            `
+                affiche_conference()
                 list_staf = list_staf.filter(el => el.id !== id)
                 localStorage.setItem("list_staf_local", JSON.stringify(list_staf))
                 affiche_tous_Unassigned_Staff()
@@ -442,19 +435,7 @@ function add_reception(id) {
             if (el.id === id) {
                 employent_dans_reception.push(el)
                 localStorage.setItem("reception", JSON.stringify(employent_dans_reception))
-                cont_Salle_Reception.innerHTML += `
-                <div class="relative rounded-[5px] flex bg-gray-400  p-1  gap-1 w-35 ">
-        <img id="${el.id}" onclick='affiche_info(${JSON.stringify(el)})' src="${el.photo}" alt="photo"
-            class="w-5 lg:w-10 lg:h-10 relative h-5 bg-blue-500 rounded-full">
-        <div class="flex flex-col items-start text-white text-[9px] font-[600]">
-            <p>${el.name}</p>
-            <p>${el.role}</p>
-        </div>
-        <div class="flex items-start">
-            <button id="${el.id}" onclick='retour_reception_Staff(${JSON.stringify(el)})' class="rounded-[4px] w-3 text-[8px] bg-red-800 text-white ">X</button>
-        </div>
-    </div>
-            `
+                affiche_reception()
                 list_staf = list_staf.filter(el => el.id !== id)
                 localStorage.setItem("list_staf_local", JSON.stringify(list_staf))
                 affiche_tous_Unassigned_Staff()
@@ -475,19 +456,7 @@ function add_serveur(id) {
             if (el.id === id) {
                 employent_dans_serveur.push(el)
                 localStorage.setItem("serveur", JSON.stringify(employent_dans_serveur))
-                cont_Salle_serveurs.innerHTML += `
-                <div class="relative rounded-[5px] flex bg-gray-400  p-1  gap-1 w-35 ">
-        <img id="${el.id}" onclick='affiche_info(${JSON.stringify(el)})' src="${el.photo}" alt="photo"
-            class="w-5 lg:w-10 lg:h-10 relative h-5 bg-blue-500 rounded-full">
-        <div class="flex flex-col items-start text-white text-[9px] font-[600]">
-            <p>${el.name}</p>
-            <p>${el.role}</p>
-        </div>
-        <div class="flex items-start">
-            <button onclick='retour_serveur_Staff(${JSON.stringify(el)})' class="rounded-[4px] w-3 text-[8px] bg-red-800 text-white ">X</button>
-        </div>
-    </div>
-            `
+                affiche_serveur()
                 list_staf = list_staf.filter(el => el.id !== id)
                 localStorage.setItem("list_staf_local", JSON.stringify(list_staf))
                 affiche_tous_Unassigned_Staff()
@@ -504,19 +473,7 @@ function add_securite(id) {
             if (el.id === id) {
                 employent_dans_securite.push(el)
                 localStorage.setItem("securite", JSON.stringify(employent_dans_securite))
-                cont_Salle_scurite.innerHTML += `
-                <div class="relative rounded-[5px] flex bg-gray-400  p-1  gap-1 w-35 ">
-        <img id="${el.id}" onclick='affiche_info(${JSON.stringify(el)})' src="${el.photo}" alt="photo"
-            class="w-5 lg:w-10 lg:h-10 relative h-5 bg-blue-500 rounded-full">
-        <div class="flex flex-col items-start text-white text-[9px] font-[600]">
-            <p>${el.name}</p>
-            <p>${el.role}</p>
-        </div>
-        <div class="flex items-start">
-            <button onclick='retour_securite_Staff(${JSON.stringify(el)})' class="rounded-[4px] w-3 text-[8px] bg-red-800 text-white ">X</button>
-        </div>
-    </div>
-            `
+                affiche_securite()
                 list_staf = list_staf.filter(el => el.id !== id)
                 localStorage.setItem("list_staf_local", JSON.stringify(list_staf))
                 affiche_tous_Unassigned_Staff()
@@ -535,19 +492,7 @@ function add_perssone(id) {
             if (el.id === id) {
                 employent_dans_perssone.push(el)
                 localStorage.setItem("perssone", JSON.stringify(employent_dans_perssone))
-                cont_Salle_personnel.innerHTML += `
-                <div class="relative rounded-[5px] flex bg-gray-400  p-1  gap-1 w-35 ">
-        <img id="${el.id}" onclick='affiche_info(${JSON.stringify(el)})' src="${el.photo}" alt="photo"
-            class="w-5 lg:w-10 lg:h-10 relative h-5 bg-blue-500 rounded-full">
-        <div class="flex flex-col items-start text-white text-[9px] font-[600]">
-            <p>${el.name}</p>
-            <p>${el.role}</p>
-        </div>
-        <div class="flex items-start">
-            <button onclick='retour_perssone_Staff(${JSON.stringify(el)})' class="rounded-[4px] w-3 text-[8px] bg-red-800 text-white ">X</button>
-        </div>
-    </div>
-            `
+                affiche_perssone()
                 list_staf = list_staf.filter(el => el.id !== id)
                 localStorage.setItem("list_staf_local", JSON.stringify(list_staf))
                 affiche_tous_Unassigned_Staff()
@@ -566,19 +511,7 @@ function add_archive(id) {
             if (el.id === id) {
                 employent_dans_archive.push(el)
                 localStorage.setItem("archive", JSON.stringify(employent_dans_archive))
-                cont_Salle_archives.innerHTML += `
-                <div class="relative rounded-[5px] flex bg-gray-400  p-1  gap-1 w-35 ">
-        <img id="${el.id}" onclick='affiche_info(${JSON.stringify(el)})' src="${el.photo}" alt="photo"
-            class="w-5 lg:w-10 lg:h-10 relative h-5 bg-blue-500 rounded-full">
-        <div class="flex flex-col items-start text-white text-[9px] font-[600]">
-            <p>${el.name}</p>
-            <p>${el.role}</p>
-        </div>
-        <div class="flex items-start">
-            <button onclick='retour_archive_Staff(${JSON.stringify(el)})' class="rounded-[4px] w-3 text-[8px] bg-red-800 text-white ">X</button>
-        </div>
-    </div>
-            `
+                affiche_archive()
                 list_staf = list_staf.filter(el => el.id !== id)
                 localStorage.setItem("list_staf_local", JSON.stringify(list_staf))
                 affiche_tous_Unassigned_Staff()
@@ -590,17 +523,17 @@ function add_archive(id) {
 }
 
 const section_info = document.getElementById('section_info')
-function affiche_info(worker) {
+function affiche_info(el) {
     section_info.classList.remove("hidden")
     section_info.innerHTML = `
     <div class="relative w-95 flex flex-col p-5 gap-2 lg:w-160 bg-gray-400 rounded-[10px] font-[400]">
-    <h2 class="font-[700]">${worker.name}</h2>
+    <h2 class="font-[700]">${el.name}</h2>
     <div class="flex gap-4 items-start">
-    <img src="${worker.photo}" alt="photo" class="w-[40%] lg:w-[20%]">
+    <img src="${el.photo}" alt="photo" class="w-[40%] lg:w-[20%]">
     <div class="flex flex-col gap-2">
-    <h3 class="font-[700]">${worker.role}</h3>
-    <p>${worker.email}</p>
-    <p>${worker.numero}</p>
+    <h3 class="font-[700]">${el.role}</h3>
+    <p>${el.email}</p>
+    <p>${el.numero}</p>
     <h3 class="font-[700]">Expériences</h3>
     <ul id="list_experience" class="list-disc ml-10">
     </ul>
@@ -624,9 +557,9 @@ function affiche_info(worker) {
 
 
     let list_experience = document.getElementById("list_experience")
-    worker.experiences.forEach(el => {
+    el.experiences.forEach(item => {
         let li = document.createElement('li')
-        li.textContent = el
+        li.textContent = item
         // console.log(li);
         list_experience.appendChild(li)
 
@@ -830,6 +763,7 @@ function supprime_archive(id) {
 }
 
 function affiche_conference() {
+    cont_Salle_conference.innerHTML=""
     employent_dans_conference.forEach(el => {
         cont_Salle_conference.innerHTML += `
                 <div class="relative rounded-[5px] flex bg-gray-400  p-1  gap-1 w-35 ">
@@ -848,6 +782,7 @@ function affiche_conference() {
 }
 
 function affiche_reception() {
+    cont_Salle_Reception.innerHTML=""
     employent_dans_reception.forEach(el => {
         cont_Salle_Reception.innerHTML += `
                 <div class="relative rounded-[5px] flex bg-gray-400  p-1  gap-1 w-35 ">
@@ -867,6 +802,7 @@ function affiche_reception() {
 
 
 function affiche_serveur() {
+    cont_Salle_serveurs.innerHTML=""
     employent_dans_serveur.forEach(el => {
         cont_Salle_serveurs.innerHTML += `
                 <div class="relative rounded-[5px] flex bg-gray-400  p-1  gap-1 w-35 ">
@@ -886,6 +822,7 @@ function affiche_serveur() {
 
 
 function affiche_securite() {
+    cont_Salle_scurite.innerHTML=""
     employent_dans_securite.forEach(el => {
         cont_Salle_scurite.innerHTML += `
                 <div class="relative rounded-[5px] flex bg-gray-400  p-1  gap-1 w-35 ">
@@ -905,6 +842,7 @@ function affiche_securite() {
 
 
 function affiche_perssone() {
+    cont_Salle_personnel.innerHTML=""
     employent_dans_perssone.forEach(el => {
         cont_Salle_personnel.innerHTML += `
                 <div class="relative rounded-[5px] flex bg-gray-400  p-1  gap-1 w-35 ">
@@ -924,6 +862,7 @@ function affiche_perssone() {
 
 
 function affiche_archive() {
+    cont_Salle_archives.innerHTML=""
     employent_dans_archive.forEach(el => {
         cont_Salle_archives.innerHTML += `
                 <div class="relative rounded-[5px] flex bg-gray-400  p-1  gap-1 w-35 ">
