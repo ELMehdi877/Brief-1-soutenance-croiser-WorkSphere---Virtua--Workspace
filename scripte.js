@@ -30,11 +30,24 @@ const experience = document.getElementById('experience')
 const add_experience = document.getElementById('add_experience')
 add_experience.addEventListener('click', () => {
     const div = document.createElement("div")
-    div.className = "flex w-full items-center gap-1"
+    div.className = "flex flex-wrap w-full items-center gap-1"
 
-    let input = document.createElement("input")
-    input.className = "exp bg-white/30 border-1 h-10 border-black w-[100%] rounded-[5px]"
-    input.type = "text"
+    let input_nom_entreprise = document.createElement("input")
+    input_nom_entreprise.className = "exp bg-white/30 border-1 h-10 border-black w-[100%] rounded-[5px]"
+    input_nom_entreprise.type = "text"
+    input_nom_entreprise.placeholder="le Nom de l'entreprise"
+
+    let input_nom_poste = document.createElement("input")
+    input_nom_poste.className = "exp bg-white/30 border-1 h-10 border-black w-[100%] rounded-[5px]"
+    input_nom_poste.type = "text"
+
+    let input_date_debut = document.createElement("input")
+    input_date_debut.className = "exp bg-white/30 border-1 h-10 border-black w-[100%] rounded-[5px]"
+    input_date_debut.type = "date"
+
+    let input_date_fin = document.createElement("input")
+    input_date_fin.className = "exp bg-white/30 border-1 h-10 border-black w-[100%] rounded-[5px]"
+    input_date_fin.type = "date"
 
     const button = document.createElement("button")
     button.className = "font-[500]  rounded-[10px] text-red-500 text-[12px] p-1 h-8 border-2"
@@ -44,7 +57,10 @@ add_experience.addEventListener('click', () => {
         div.remove()
     })
 
-    div.appendChild(input)
+    div.appendChild(input_nom_entreprise)
+    div.appendChild(input_nom_poste)
+    div.appendChild(input_date_debut)
+    div.appendChild(input_date_fin)
     div.appendChild(button)
     experience.appendChild(div)
 
@@ -173,7 +189,7 @@ function affiche_tous_Unassigned_Staff() {
         Unassigned_Staff.innerHTML += `
             <div class="flex p-2 items-center bg-blue-300 rounded-[10px]">
                     <div class="flex gap-5 items-center">
-                        <img src="${el.photo}" width="18%" alt="Photo">
+                        <img src="${el.photo}" onclick='affiche_info(${JSON.stringify(el)})' width="18%" alt="Photo">
                         <div>
                             <p class="">${el.name}</p>
                             <p class="font-[400]">${el.role}</p>
