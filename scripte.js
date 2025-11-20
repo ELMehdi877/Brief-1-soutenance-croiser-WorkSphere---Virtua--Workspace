@@ -35,24 +35,24 @@ add_experience.addEventListener('click', () => {
     let input_nom_entreprise = document.createElement("input")
     input_nom_entreprise.className = "exp bg-white/80 border-1 h-10 border-black w-[100%] rounded-[5px]"
     input_nom_entreprise.type = "text"
-    input_nom_entreprise.placeholder="le Nom de l'entreprise"
+    input_nom_entreprise.placeholder = "le Nom de l'entreprise"
 
     let input_nom_poste = document.createElement("input")
     input_nom_poste.className = "exp bg-white/80 border-1 h-10 border-black w-[100%] rounded-[5px]"
     input_nom_poste.type = "text"
-    input_nom_poste.placeholder="le Nom de poste"
+    input_nom_poste.placeholder = "le Nom de poste"
 
 
     let input_date_debut = document.createElement("input")
     input_date_debut.className = "exp bg-white/80 border-1 h-10 border-black w-[100%] rounded-[5px]"
     input_date_debut.type = "date"
-    input_date_debut.placeholder="la date de debut"
+    input_date_debut.placeholder = "la date de debut"
 
 
     let input_date_fin = document.createElement("input")
     input_date_fin.className = "exp bg-white/80 border-1 h-10 border-black w-[100%] rounded-[5px]"
     input_date_fin.type = "date"
-    input_date_fin.placeholder="la date de fin"
+    input_date_fin.placeholder = "la date de fin"
 
 
     const button = document.createElement("button")
@@ -727,7 +727,7 @@ function supprime_perssone(id) {
             `
     })
     console.log("supprime");
-    
+
 }
 
 function retour_archive_Staff(el) {
@@ -763,119 +763,107 @@ function supprime_archive(id) {
 }
 
 function affiche_conference() {
-    cont_Salle_conference.innerHTML=""
+    cont_Salle_conference.innerHTML = ""
     employent_dans_conference.forEach(el => {
         cont_Salle_conference.innerHTML += `
-                <div class="relative rounded-[5px] flex bg-gray-400  p-1  gap-1 w-35 ">
-        <img id="${el.id}" onclick='affiche_info(${JSON.stringify(el)})' src="${el.photo}" alt="photo"
-            class="w-5 lg:w-10 lg:h-10 relative h-5 bg-blue-500 rounded-full">
-        <div class="flex flex-col items-start text-white text-[9px] font-[600]">
-            <p>${el.name}</p>
-            <p>${el.role}</p>
+        <div class="relative rounded-[5px] flex bg-gray-400  p-[1px]">
+            <div class="flex flex-col items-center text-black lg:text-[9px] text-[6px] font-[700]">
+                <img id="${el.id}" onclick='affiche_info(${JSON.stringify(el)})' src="${el.photo}" alt="photo" class="w-4 lg:w-10 lg:h-10 relative h-4 bg-blue-500 rounded-full">
+                <p>${el.name}</p> 
+            </div>
+            <div class="flex items-start">
+                <button onclick='retour_conference_Staff(${JSON.stringify(el)})' class="rounded-full lg:w-3 lg:text-[8px] text-[5px] bg-red-800 text-white w-2">X</button>
+             </div>
         </div>
-        <div class="flex items-start">
-            <button onclick='retour_conference_Staff(${JSON.stringify(el)})' class="rounded-[4px] w-3 text-[8px] bg-red-800 text-white ">X</button>
-        </div>
-    </div>
             `
     })
 }
 
 function affiche_reception() {
-    cont_Salle_Reception.innerHTML=""
+    cont_Salle_Reception.innerHTML = ""
     employent_dans_reception.forEach(el => {
         cont_Salle_Reception.innerHTML += `
-                <div class="relative rounded-[5px] flex bg-gray-400  p-1  gap-1 w-35 ">
-        <img id="${el.id}" onclick='affiche_info(${JSON.stringify(el)})' src="${el.photo}" alt="photo"
-            class="w-5 lg:w-10 lg:h-10 relative h-5 bg-blue-500 rounded-full">
-        <div class="flex flex-col items-start text-white text-[9px] font-[600]">
-            <p>${el.name}</p>
-            <p>${el.role}</p>
+        <div class="relative rounded-[5px] flex bg-gray-400  p-[1px]">
+            <div class="flex flex-col items-center text-black lg:text-[9px] text-[6px] font-[700]">
+                <img id="${el.id}" onclick='affiche_info(${JSON.stringify(el)})' src="${el.photo}" alt="photo" class="w-4 lg:w-10 lg:h-10 relative h-4 bg-blue-500 rounded-full">
+                <p>${el.name}</p> 
+            </div>
+            <div class="flex items-start">
+                <button onclick='retour_reception_Staff(${JSON.stringify(el)})' class="rounded-full lg:w-3 lg:text-[8px] text-[5px] bg-red-800 text-white w-2">X</button>
+            </div>
         </div>
-        <div class="flex items-start">
-            <button onclick='retour_reception_Staff(${JSON.stringify(el)})' class="rounded-[4px] w-3 text-[8px] bg-red-800 text-white ">X</button>
-        </div>
-    </div>
             `
     })
 }
 
 
 function affiche_serveur() {
-    cont_Salle_serveurs.innerHTML=""
+    cont_Salle_serveurs.innerHTML = ""
     employent_dans_serveur.forEach(el => {
         cont_Salle_serveurs.innerHTML += `
-                <div class="relative rounded-[5px] flex bg-gray-400  p-1  gap-1 w-35 ">
-        <img id="${el.id}" onclick='affiche_info(${JSON.stringify(el)})' src="${el.photo}" alt="photo"
-            class="w-5 lg:w-10 lg:h-10 relative h-5 bg-blue-500 rounded-full">
-        <div class="flex flex-col items-start text-white text-[9px] font-[600]">
-            <p>${el.name}</p>
-            <p>${el.role}</p>
+        <div class="relative rounded-[5px] flex bg-gray-400  p-[1px]">
+            <div class="flex flex-col items-center text-black lg:text-[9px] text-[6px] font-[700]">
+                <img id="${el.id}" onclick='affiche_info(${JSON.stringify(el)})' src="${el.photo}" alt="photo" class="w-4 lg:w-10 lg:h-10 relative h-4 bg-blue-500 rounded-full">
+                <p>${el.name}</p> 
+            </div>
+            <div class="flex items-start">
+                <button onclick='retour_serveur_Staff(${JSON.stringify(el)})' class="rounded-full lg:w-3 lg:text-[8px] text-[5px] bg-red-800 text-white w-2">X</button>
+            </div>
         </div>
-        <div class="flex items-start">
-            <button onclick='retour_serveur_Staff(${JSON.stringify(el)})' class="rounded-[4px] w-3 text-[8px] bg-red-800 text-white ">X</button>
-        </div>
-    </div>
             `
     })
 }
 
 
 function affiche_securite() {
-    cont_Salle_scurite.innerHTML=""
+    cont_Salle_scurite.innerHTML = ""
     employent_dans_securite.forEach(el => {
         cont_Salle_scurite.innerHTML += `
-                <div class="relative rounded-[5px] flex bg-gray-400  p-1  gap-1 w-35 ">
-        <img id="${el.id}" onclick='affiche_info(${JSON.stringify(el)})' src="${el.photo}" alt="photo"
-            class="w-5 lg:w-10 lg:h-10 relative h-5 bg-blue-500 rounded-full">
-        <div class="flex flex-col items-start text-white text-[9px] font-[600]">
-            <p>${el.name}</p>
-            <p>${el.role}</p>
+        <div class="relative rounded-[5px] flex bg-gray-400  p-[1px]">
+            <div class="flex flex-col items-center text-black lg:text-[9px] text-[6px] font-[700]">
+                <img id="${el.id}" onclick='affiche_info(${JSON.stringify(el)})' src="${el.photo}" alt="photo" class="w-4 lg:w-10 lg:h-10 relative h-4 bg-blue-500 rounded-full">
+                <p>${el.name}</p> 
+            </div>
+            <div class="flex items-start">
+                <button onclick='retour_securite_Staff(${JSON.stringify(el)})' class="rounded-full lg:w-3 lg:text-[8px] text-[5px] bg-red-800 text-white w-2">X</button>
+            </div>
         </div>
-        <div class="flex items-start">
-            <button onclick='retour_securite_Staff(${JSON.stringify(el)})' class="rounded-[4px] w-3 text-[8px] bg-red-800 text-white ">X</button>
-        </div>
-    </div>
             `
     })
 }
 
 
 function affiche_perssone() {
-    cont_Salle_personnel.innerHTML=""
+    cont_Salle_personnel.innerHTML = ""
     employent_dans_perssone.forEach(el => {
         cont_Salle_personnel.innerHTML += `
-                <div class="relative rounded-[5px] flex bg-gray-400  p-1  gap-1 w-35 ">
-        <img id="${el.id}" onclick='affiche_info(${JSON.stringify(el)})' src="${el.photo}" alt="photo"
-            class="w-5 lg:w-10 lg:h-10 relative h-5 bg-blue-500 rounded-full">
-        <div class="flex flex-col items-start text-white text-[9px] font-[600]">
-            <p>${el.name}</p>
-            <p>${el.role}</p>
+        <div class="relative rounded-[5px] flex bg-gray-400  p-[1px]">
+            <div class="flex flex-col items-center text-black lg:text-[9px] text-[6px] font-[700]">
+                <img id="${el.id}" onclick='affiche_info(${JSON.stringify(el)})' src="${el.photo}" alt="photo" class="w-4 lg:w-10 lg:h-10 relative h-4 bg-blue-500 rounded-full">
+                <p>${el.name}</p> 
+            </div>
+            <div class="flex items-start">
+                <button onclick='retour_perssone_Staff(${JSON.stringify(el)})' class="rounded-full lg:w-3 lg:text-[8px] text-[5px] bg-red-800 text-white w-2">X</button>
+            </div>
         </div>
-        <div class="flex items-start">
-            <button onclick='retour_perssone_Staff(${JSON.stringify(el)})' class="rounded-[4px] w-3 text-[8px] bg-red-800 text-white ">X</button>
-        </div>
-    </div>
             `
     })
 }
 
 
 function affiche_archive() {
-    cont_Salle_archives.innerHTML=""
+    cont_Salle_archives.innerHTML = ""
     employent_dans_archive.forEach(el => {
         cont_Salle_archives.innerHTML += `
-                <div class="relative rounded-[5px] flex bg-gray-400  p-1  gap-1 w-35 ">
-        <img id="${el.id}" onclick='affiche_info(${JSON.stringify(el)})' src="${el.photo}" alt="photo"
-            class="w-5 lg:w-10 lg:h-10 relative h-5 bg-blue-500 rounded-full">
-        <div class="flex flex-col items-start text-white text-[9px] font-[600]">
-            <p>${el.name}</p>
-            <p>${el.role}</p>
+        <div class="relative rounded-[5px] flex bg-gray-400  p-[1px]">
+            <div class="flex flex-col items-center text-black lg:text-[9px] text-[6px] font-[700]">
+                <img id="${el.id}" onclick='affiche_info(${JSON.stringify(el)})' src="${el.photo}" alt="photo" class="w-4 lg:w-10 lg:h-10 relative h-4 bg-blue-500 rounded-full">
+                <p>${el.name}</p> 
+            </div>
+            <div class="flex items-start">
+                <button onclick='retour_archive_Staff(${JSON.stringify(el)})' class="rounded-full lg:w-3 lg:text-[8px] text-[5px] bg-red-800 text-white w-2">X</button>
+            </div>
         </div>
-        <div class="flex items-start">
-            <button onclick='retour_archive_Staff(${JSON.stringify(el)})' class="rounded-[4px] w-3 text-[8px] bg-red-800 text-white ">X</button>
-        </div>
-    </div>
             `
     })
 }
