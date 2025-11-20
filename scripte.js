@@ -777,6 +777,8 @@ function supprime_perssone(id) {
     </div>
             `
     })
+    console.log("supprime");
+    
 }
 
 function retour_archive_Staff(el) {
@@ -897,7 +899,7 @@ function affiche_perssone() {
             <p>${el.role}</p>
         </div>
         <div class="flex items-start">
-            <button onclick='retour_conference_Staff(${JSON.stringify(el)})' class="rounded-[4px] w-3 text-[8px] bg-red-800 text-white ">X</button>
+            <button onclick='retour_perssone_Staff(${JSON.stringify(el)})' class="rounded-[4px] w-3 text-[8px] bg-red-800 text-white ">X</button>
         </div>
     </div>
             `
