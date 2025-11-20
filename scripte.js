@@ -766,13 +766,13 @@ function affiche_conference() {
     cont_Salle_conference.innerHTML = ""
     employent_dans_conference.forEach(el => {
         cont_Salle_conference.innerHTML += `
-        <div class="relative rounded-[5px] flex bg-gray-400  p-[1px]">
-            <div class="flex flex-col items-center text-black lg:text-[9px] text-[6px] font-[700]">
+        <div class="relative rounded-[5px] flex bg-gray-400  p-[4px]">
+            <div class="flex relative flex-col items-center text-black lg:text-[9px] text-[5px] font-[700]">
                 <img id="${el.id}" onclick='affiche_info(${JSON.stringify(el)})' src="${el.photo}" alt="photo" class="w-4 lg:w-10 lg:h-10 relative h-4 bg-blue-500 rounded-full">
-                <p>${el.name}</p> 
+                <p class="absolute bg-black px-1 py-[1px] top-4 rounded-full">${el.name}</p> 
             </div>
             <div class="flex items-start">
-                <button onclick='retour_conference_Staff(${JSON.stringify(el)})' class="rounded-full lg:w-3 lg:text-[8px] text-[5px] bg-red-800 text-white w-2">X</button>
+                <button onclick='retour_conference_Staff(${JSON.stringify(el)})' class="absolute right-[0px] bottom-4 rounded-full lg:w-3 lg:text-[8px] text-[5px] bg-red-800 text-white w-2">X</button>
              </div>
         </div>
             `
@@ -783,13 +783,13 @@ function affiche_reception() {
     cont_Salle_Reception.innerHTML = ""
     employent_dans_reception.forEach(el => {
         cont_Salle_Reception.innerHTML += `
-        <div class="relative rounded-[5px] flex bg-gray-400  p-[1px]">
-            <div class="flex flex-col items-center text-black lg:text-[9px] text-[6px] font-[700]">
+        <div class="relative rounded-[5px] flex bg-gray-400  p-[4px]">
+            <div class="flex relative flex-col items-center text-black lg:text-[9px] text-[5px] font-[700]">
                 <img id="${el.id}" onclick='affiche_info(${JSON.stringify(el)})' src="${el.photo}" alt="photo" class="w-4 lg:w-10 lg:h-10 relative h-4 bg-blue-500 rounded-full">
-                <p>${el.name}</p> 
+                <p class="absolute bg-black px-1 py-[1px] top-4 rounded-full">${el.name}</p> 
             </div>
             <div class="flex items-start">
-                <button onclick='retour_reception_Staff(${JSON.stringify(el)})' class="rounded-full lg:w-3 lg:text-[8px] text-[5px] bg-red-800 text-white w-2">X</button>
+                <button onclick='retour_reception_Staff(${JSON.stringify(el)})' class="absolute right-[0px] bottom-4 rounded-full lg:w-3 lg:text-[8px] text-[5px] bg-red-800 text-white w-2">X</button>
             </div>
         </div>
             `
@@ -801,13 +801,13 @@ function affiche_serveur() {
     cont_Salle_serveurs.innerHTML = ""
     employent_dans_serveur.forEach(el => {
         cont_Salle_serveurs.innerHTML += `
-        <div class="relative rounded-[5px] flex bg-gray-400  p-[1px]">
-            <div class="flex flex-col items-center text-black lg:text-[9px] text-[6px] font-[700]">
+        <div class="relative rounded-[5px] flex bg-gray-400  p-[4px]">
+            <div class="flex relative flex-col items-center text-black lg:text-[9px] text-[5px] font-[700]">
                 <img id="${el.id}" onclick='affiche_info(${JSON.stringify(el)})' src="${el.photo}" alt="photo" class="w-4 lg:w-10 lg:h-10 relative h-4 bg-blue-500 rounded-full">
-                <p>${el.name}</p> 
+                <p class="absolute bg-black px-1 py-[1px] top-4 rounded-full">${el.name}</p> 
             </div>
             <div class="flex items-start">
-                <button onclick='retour_serveur_Staff(${JSON.stringify(el)})' class="rounded-full lg:w-3 lg:text-[8px] text-[5px] bg-red-800 text-white w-2">X</button>
+                <button onclick='retour_serveur_Staff(${JSON.stringify(el)})' class="absolute right-[0px] bottom-4 rounded-full lg:w-3 lg:text-[8px] text-[5px] bg-red-800 text-white w-2">X</button>
             </div>
         </div>
             `
@@ -819,13 +819,13 @@ function affiche_securite() {
     cont_Salle_scurite.innerHTML = ""
     employent_dans_securite.forEach(el => {
         cont_Salle_scurite.innerHTML += `
-        <div class="relative rounded-[5px] flex bg-gray-400  p-[1px]">
-            <div class="flex flex-col items-center text-black lg:text-[9px] text-[6px] font-[700]">
+        <div class="relative rounded-[5px] flex bg-gray-400  p-[4px]">
+            <div class="flex relative flex-col items-center text-black lg:text-[9px] text-[5px] font-[700]">
                 <img id="${el.id}" onclick='affiche_info(${JSON.stringify(el)})' src="${el.photo}" alt="photo" class="w-4 lg:w-10 lg:h-10 relative h-4 bg-blue-500 rounded-full">
-                <p>${el.name}</p> 
+                <p class="absolute bg-black px-1 py-[1px] top-4 rounded-full">${el.name}</p> 
             </div>
             <div class="flex items-start">
-                <button onclick='retour_securite_Staff(${JSON.stringify(el)})' class="rounded-full lg:w-3 lg:text-[8px] text-[5px] bg-red-800 text-white w-2">X</button>
+                <button onclick='retour_securite_Staff(${JSON.stringify(el)})' class="absolute right-[0px] bottom-4 rounded-full lg:w-3 lg:text-[8px] text-[5px] bg-red-800 text-white w-2">X</button>
             </div>
         </div>
             `
@@ -837,13 +837,13 @@ function affiche_perssone() {
     cont_Salle_personnel.innerHTML = ""
     employent_dans_perssone.forEach(el => {
         cont_Salle_personnel.innerHTML += `
-        <div class="relative rounded-[5px] flex bg-gray-400  p-[1px]">
-            <div class="flex flex-col items-center text-black lg:text-[9px] text-[6px] font-[700]">
+        <div class="relative rounded-[5px] flex bg-gray-400  p-[4px]">
+            <div class="flex relative flex-col items-center text-black lg:text-[9px] text-[5px] font-[700]">
                 <img id="${el.id}" onclick='affiche_info(${JSON.stringify(el)})' src="${el.photo}" alt="photo" class="w-4 lg:w-10 lg:h-10 relative h-4 bg-blue-500 rounded-full">
-                <p>${el.name}</p> 
+                <p class="absolute bg-black px-1 py-[1px] top-4 rounded-full">${el.name}</p> 
             </div>
             <div class="flex items-start">
-                <button onclick='retour_perssone_Staff(${JSON.stringify(el)})' class="rounded-full lg:w-3 lg:text-[8px] text-[5px] bg-red-800 text-white w-2">X</button>
+                <button onclick='retour_perssone_Staff(${JSON.stringify(el)})' class="absolute right-[0px] bottom-4 rounded-full lg:w-3 lg:text-[8px] text-[5px] bg-red-800 text-white w-2">X</button>
             </div>
         </div>
             `
@@ -855,13 +855,13 @@ function affiche_archive() {
     cont_Salle_archives.innerHTML = ""
     employent_dans_archive.forEach(el => {
         cont_Salle_archives.innerHTML += `
-        <div class="relative rounded-[5px] flex bg-gray-400  p-[1px]">
-            <div class="flex flex-col items-center text-black lg:text-[9px] text-[6px] font-[700]">
+        <div class="relative rounded-[5px] flex bg-gray-400  p-[4px]">
+            <div class="flex relative flex-col items-center text-black lg:text-[9px] text-[5px] font-[700]">
                 <img id="${el.id}" onclick='affiche_info(${JSON.stringify(el)})' src="${el.photo}" alt="photo" class="w-4 lg:w-10 lg:h-10 relative h-4 bg-blue-500 rounded-full">
-                <p>${el.name}</p> 
+                <p class="absolute bg-black px-1 py-[1px] top-4 rounded-full">${el.name}</p> 
             </div>
             <div class="flex items-start">
-                <button onclick='retour_archive_Staff(${JSON.stringify(el)})' class="rounded-full lg:w-3 lg:text-[8px] text-[5px] bg-red-800 text-white w-2">X</button>
+                <button onclick='retour_archive_Staff(${JSON.stringify(el)})' class="absolute right-[0px] bottom-4 rounded-full lg:w-3 lg:text-[8px] text-[5px] bg-red-800 text-white w-2">X</button>
             </div>
         </div>
             `
