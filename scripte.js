@@ -372,17 +372,17 @@ close_list.addEventListener("click", () => {
 })
 
 let employent_dans_conference = JSON.parse(localStorage.getItem("conference")) || []
-// let employent_dans_reception = JSON.parse(localStorage.getItem("reception")) || []
-// let employent_dans_serveur = JSON.parse(localStorage.getItem("serveur")) || []
-// let employent_dans_securite = JSON.parse(localStorage.getItem("securite")) || []
-// let employent_dans_perssone = JSON.parse(localStorage.getItem("perssone")) || []
-// let employent_dans_archive = JSON.parse(localStorage.getItem("archive")) || []
+let employent_dans_reception = JSON.parse(localStorage.getItem("reception")) || []
+let employent_dans_serveur = JSON.parse(localStorage.getItem("serveur")) || []
+let employent_dans_securite = JSON.parse(localStorage.getItem("securite")) || []
+let employent_dans_perssone = JSON.parse(localStorage.getItem("perssone")) || []
+let employent_dans_archive = JSON.parse(localStorage.getItem("archive")) || []
 // let employent_dans_conference = []
-let employent_dans_reception = []
-let employent_dans_serveur = []
-let employent_dans_securite = []
-let employent_dans_perssone = []
-let employent_dans_archive = []
+// let employent_dans_reception = []
+// let employent_dans_serveur = []
+// let employent_dans_securite = []
+// let employent_dans_perssone = []
+// let employent_dans_archive = []
 
 console.log(employent_dans_conference);
 
@@ -425,7 +425,7 @@ function add_reception(id) {
         list_Receptionnistes.forEach(el => {
             if (el.id === id) {
                 employent_dans_reception.push(el)
-                // localStorage.setItem("reception" , JSON.stringify(employent_dans_reception))
+                localStorage.setItem("reception", JSON.stringify(employent_dans_reception))
                 cont_Salle_Reception.innerHTML += `
                 <div class="relative rounded-[5px] flex bg-gray-400  p-1  gap-1 w-35 ">
         <img id="${el.id}" onclick='affiche_info(${JSON.stringify(el)})' src="${el.photo}" alt="photo"
@@ -458,7 +458,7 @@ function add_serveur(id) {
         list_serveurs.forEach(el => {
             if (el.id === id) {
                 employent_dans_serveur.push(el)
-                // localStorage.setItem("serveur" , JSON.stringify(employent_dans_serveur))
+                localStorage.setItem("serveur", JSON.stringify(employent_dans_serveur))
                 cont_Salle_serveurs.innerHTML += `
                 <div class="relative rounded-[5px] flex bg-gray-400  p-1  gap-1 w-35 ">
         <img id="${el.id}" onclick='affiche_info(${JSON.stringify(el)})' src="${el.photo}" alt="photo"
@@ -487,7 +487,7 @@ function add_securite(id) {
         list_securite.forEach(el => {
             if (el.id === id) {
                 employent_dans_securite.push(el)
-                // localStorage.setItem("securite" , JSON.stringify(employent_dans_securite))
+                localStorage.setItem("securite", JSON.stringify(employent_dans_securite))
                 cont_Salle_scurite.innerHTML += `
                 <div class="relative rounded-[5px] flex bg-gray-400  p-1  gap-1 w-35 ">
         <img id="${el.id}" onclick='affiche_info(${JSON.stringify(el)})' src="${el.photo}" alt="photo"
@@ -518,7 +518,7 @@ function add_perssone(id) {
         list_personnel.forEach(el => {
             if (el.id === id) {
                 employent_dans_perssone.push(el)
-                // localStorage.setItem("perssone" , JSON.stringify(employent_dans_perssone))
+                localStorage.setItem("perssone", JSON.stringify(employent_dans_perssone))
                 cont_Salle_personnel.innerHTML += `
                 <div class="relative rounded-[5px] flex bg-gray-400  p-1  gap-1 w-35 ">
         <img id="${el.id}" onclick='affiche_info(${JSON.stringify(el)})' src="${el.photo}" alt="photo"
@@ -549,7 +549,7 @@ function add_archive(id) {
         list_archive.forEach(el => {
             if (el.id === id) {
                 employent_dans_archive.push(el)
-                // localStorage.setItem("archive" , JSON.stringify(employent_dans_archive))
+                localStorage.setItem("archive", JSON.stringify(employent_dans_archive))
                 cont_Salle_archives.innerHTML += `
                 <div class="relative rounded-[5px] flex bg-gray-400  p-1  gap-1 w-35 ">
         <img id="${el.id}" onclick='affiche_info(${JSON.stringify(el)})' src="${el.photo}" alt="photo"
@@ -663,6 +663,7 @@ function retour_reception_Staff(el) {
 
 function supprime_reception(id) {
     employent_dans_reception = employent_dans_reception.filter(el => el.id !== id)
+    localStorage.setItem("reception", JSON.stringify(employent_dans_reception))
     cont_Salle_Reception.innerHTML = ''
     employent_dans_reception.forEach(el => {
         cont_Salle_Reception.innerHTML += `
@@ -695,6 +696,7 @@ function retour_serveur_Staff(el) {
 
 function supprime_serveur(id) {
     employent_dans_serveur = employent_dans_serveur.filter(el => el.id !== id)
+    localStorage.setItem("serveur", JSON.stringify(employent_dans_serveur))
     cont_Salle_serveurs.innerHTML = ''
     employent_dans_serveur.forEach(el => {
         cont_Salle_serveurs.innerHTML += `
@@ -726,6 +728,7 @@ function retour_securite_Staff(el) {
 
 function supprime_securite(id) {
     employent_dans_securite = employent_dans_securite.filter(el => el.id !== id)
+    localStorage.setItem("securite", JSON.stringify(employent_dans_securite))
     cont_Salle_scurite.innerHTML = ''
     employent_dans_securite.forEach(el => {
         cont_Salle_scurite.innerHTML += `
@@ -757,6 +760,7 @@ function retour_perssone_Staff(el) {
 
 function supprime_perssone(id) {
     employent_dans_perssone = employent_dans_perssone.filter(el => el.id !== id)
+    localStorage.setItem("perssone", JSON.stringify(employent_dans_perssone))
     cont_Salle_personnel.innerHTML = ''
     employent_dans_perssone.forEach(el => {
         cont_Salle_personnel.innerHTML += `
@@ -788,6 +792,7 @@ function retour_archive_Staff(el) {
 
 function supprime_archive(id) {
     employent_dans_archive = employent_dans_archive.filter(el => el.id !== id)
+    localStorage.setItem("archive", JSON.stringify(employent_dans_archive))
     cont_Salle_archives.innerHTML = ''
     employent_dans_archive.forEach(el => {
         cont_Salle_archives.innerHTML += `
@@ -808,7 +813,7 @@ function supprime_archive(id) {
 
 function affiche_conference() {
     employent_dans_conference.forEach(el => {
-    cont_Salle_conference.innerHTML += `
+        cont_Salle_conference.innerHTML += `
                 <div class="relative rounded-[5px] flex bg-gray-400  p-1  gap-1 w-35 ">
         <img id="${el.id}" onclick='affiche_info(${JSON.stringify(el)})' src="${el.photo}" alt="photo"
             class="w-5 lg:w-10 lg:h-10 relative h-5 bg-blue-500 rounded-full">
@@ -826,7 +831,7 @@ function affiche_conference() {
 
 function affiche_reception() {
     employent_dans_reception.forEach(el => {
-    cont_Salle_Reception.innerHTML += `
+        cont_Salle_Reception.innerHTML += `
                 <div class="relative rounded-[5px] flex bg-gray-400  p-1  gap-1 w-35 ">
         <img id="${el.id}" onclick='affiche_info(${JSON.stringify(el)})' src="${el.photo}" alt="photo"
             class="w-5 lg:w-10 lg:h-10 relative h-5 bg-blue-500 rounded-full">
@@ -845,7 +850,7 @@ function affiche_reception() {
 
 function affiche_serveur() {
     employent_dans_serveur.forEach(el => {
-    cont_Salle_serveurs.innerHTML += `
+        cont_Salle_serveurs.innerHTML += `
                 <div class="relative rounded-[5px] flex bg-gray-400  p-1  gap-1 w-35 ">
         <img id="${el.id}" onclick='affiche_info(${JSON.stringify(el)})' src="${el.photo}" alt="photo"
             class="w-5 lg:w-10 lg:h-10 relative h-5 bg-blue-500 rounded-full">
@@ -864,7 +869,7 @@ function affiche_serveur() {
 
 function affiche_securite() {
     employent_dans_securite.forEach(el => {
-    cont_Salle_scurite.innerHTML += `
+        cont_Salle_scurite.innerHTML += `
                 <div class="relative rounded-[5px] flex bg-gray-400  p-1  gap-1 w-35 ">
         <img id="${el.id}" onclick='affiche_info(${JSON.stringify(el)})' src="${el.photo}" alt="photo"
             class="w-5 lg:w-10 lg:h-10 relative h-5 bg-blue-500 rounded-full">
@@ -883,7 +888,7 @@ function affiche_securite() {
 
 function affiche_perssone() {
     employent_dans_perssone.forEach(el => {
-    cont_Salle_personnel.innerHTML += `
+        cont_Salle_personnel.innerHTML += `
                 <div class="relative rounded-[5px] flex bg-gray-400  p-1  gap-1 w-35 ">
         <img id="${el.id}" onclick='affiche_info(${JSON.stringify(el)})' src="${el.photo}" alt="photo"
             class="w-5 lg:w-10 lg:h-10 relative h-5 bg-blue-500 rounded-full">
@@ -902,7 +907,7 @@ function affiche_perssone() {
 
 function affiche_archive() {
     employent_dans_archive.forEach(el => {
-    cont_Salle_archives.innerHTML += `
+        cont_Salle_archives.innerHTML += `
                 <div class="relative rounded-[5px] flex bg-gray-400  p-1  gap-1 w-35 ">
         <img id="${el.id}" onclick='affiche_info(${JSON.stringify(el)})' src="${el.photo}" alt="photo"
             class="w-5 lg:w-10 lg:h-10 relative h-5 bg-blue-500 rounded-full">
@@ -920,8 +925,8 @@ function affiche_archive() {
 
 affiche_conference()
 affiche_reception()
-affiche_Salle_serveurs()
-affiche_Salle_securite()
+affiche_serveur()
+affiche_securite()
 affiche_perssone()
 affiche_archive()
 
