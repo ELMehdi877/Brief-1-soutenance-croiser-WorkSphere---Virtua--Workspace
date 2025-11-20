@@ -925,9 +925,6 @@ function affiche_archive() {
 
 affiche_conference()
 affiche_reception()
-affiche_serveur()
-affiche_securite()
-affiche_perssone()
-affiche_archive()
+
 
 
