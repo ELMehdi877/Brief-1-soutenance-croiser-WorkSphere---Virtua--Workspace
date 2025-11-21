@@ -10,6 +10,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
 
     <!-- <link
         href="https://fonts.googleapis.com/css2?family=Belgrano&family=Leckerli+One&family=Lexend:wght@100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Volkhov:ital,wght@0,400;0,700;1,400;1,700&display=swap"
@@ -85,8 +86,8 @@
 
     <section
         class="grid lg:h-160 lg:w-[74%] h-55 w-[100%] text-center  lg:rotate-[0deg] lg:p-2 p-[2px] grid-cols-26 grid-rows-3 bg-[url(image/bg-desktop.jpg)] bg-no-repeat lg:gap-2  bg-cover  bg-center text-[6px] lg:text-[12px]">
-        <div
-            class="flex justify-center flex-wrap items-center border-3 row-span-1 col-span-10 bg-blue-800/40 p-1 lg:p-2">
+        <div id="zone_conference"
+            class="flex justify-center flex-wrap items-center border-3 row-span-1 col-span-10 p-1 lg:p-2">
             <p class="fixed ">Salle de conférence</p>
             <div class=" flex flex-wrap justify-center gap-1 items-center ">
                 <div id="cont_Salle_conference" class="flex flex-wrap justify-center gap-1 items-center ">
@@ -96,8 +97,8 @@
                     class="w-3 lg:w-6 lg:h-6 relative h-3 bg-blue-800 text-white rounded-full font-[700] text-[9px] lg:text-[18px] ">+</button>
             </div>
         </div>
-        <div class="flex justify-center items-center border-3 row-span-3 col-span-4 bg-red-800/40">space</div>
-        <div class="flex justify-center items-center border-3 row-span-1 col-span-6 bg-pink-800/40 p-1">
+        <div class="flex justify-center items-center border-3 row-span-3 col-span-4">space</div>
+        <div id="zone_serveurs" class="flex justify-center items-center border-3 row-span-1 col-span-6 p-1">
             <p class="fixed">Salle des serveurs</p>
             <div class=" flex flex-wrap justify-center gap-1 items-center ">
                 <div id="cont_Salle_serveurs" class="flex flex-wrap justify-center gap-1 items-center ">
@@ -108,7 +109,7 @@
 
             </div>
         </div>
-        <div class="flex justify-center items-center border-3 row-span-1 col-span-6 bg-yellow-800/40 p-1">
+        <div id="zone_securite" class="flex justify-center items-center border-3 row-span-1 col-span-6 p-1">
             <p class="fixed">Salle de sécurité</p>
             <div class=" flex flex-wrap justify-center gap-1 items-center ">
                 <div id="cont_Salle_scurite" class="flex flex-wrap justify-center gap-1 items-center ">
@@ -118,7 +119,7 @@
                     class="w-3 lg:w-6 lg:h-6 relative h-3 bg-blue-800 text-white rounded-full text-[9px] font-[700] lg:text-[18px] ">+</button>
             </div>
         </div>
-        <div class="flex justify-center items-center border-3 row-span-2 col-span-10 bg-green-500/40 p-1">
+        <div class="flex justify-center items-center border-3 row-span-2 col-span-10 p-1">
             <p class="fixed">Réception</p>
             <div class=" flex flex-wrap justify-center gap-1 items-center ">
                 <div id="cont_Salle_Reception" class="flex flex-wrap justify-center gap-1 items-center ">
@@ -129,8 +130,8 @@
 
             </div>
         </div>
-        <div class="flex justify-center items-center border-3 row-span-1 col-span-12 bg-gray-800/40">space</div>
-        <div class="flex  justify-center items-center border-3 row-span-1 col-span-6 bg-purple-800/40 p-1">
+        <div class="flex justify-center items-center border-3 row-span-1 col-span-12">space</div>
+        <div class="flex  justify-center items-center border-3 row-span-1 col-span-6 p-1">
             <p class="fixed">Salle du personnel</p>
             <div class=" flex flex-wrap justify-center gap-1 items-center ">
                 <div id="cont_Salle_personnel" class="flex flex-wrap justify-center gap-1 items-center ">
@@ -141,7 +142,7 @@
 
             </div>
         </div>
-        <div class="flex justify-center items-center border-3 row-span-1 col-span-6 bg-white/40 p-1">
+        <div id="zone_archive" class="flex justify-center items-center border-3 row-span-1 col-span-6 p-1">
             <p class="fixed">Salle d’archives</p>
             <div class=" flex flex-wrap justify-center gap-1 items-center ">
                 <div id="cont_Salle_archives" class="flex flex-wrap justify-center gap-1 items-center ">
@@ -154,8 +155,8 @@
         </div>
     </section>
 
-    <section class="form  absolute w-full h-screen flex justify-center items-center bg-black/50">
-        <div class="bg-gray-400 relative items-center flex flex-col rounded-[10px] py-2 px-2 lg:w-[35%] w-90">
+    <section class="form hidden absolute w-full h-screen flex justify-center items-center backdrop-blur bg-black/30">
+        <div class="bg-white relative items-center flex flex-col rounded-[10px] py-2 px-10 lg:w-[35%] w-90">
             <div class="flex relative">
                 <h2 class="font-[700] text-[25px]  text-gray-800 underline">Add New Worker</h2>
                 <!-- <button id="close" class="font-[700] lg:left-[50%] relative left-[20%] text-[25px] ">X</button> -->
@@ -164,12 +165,12 @@
             </div>
             <div class=" w-[100%] lg:h-160 h-150 overflow-y-scroll [scrollbar-width:none]">
                 <form id="form" class="flex flex-col  text-black  gap-1 w-[100%] ">
-                    <label for="" class="font-[500]">name</label>
-                    <input type="text" required id="name"
-                        class="bg-white/80 border-2 mb-2 h-10 border-black rounded-[5px]">
+                    <label for="name" class="font-[500]">name</label>
+                    <input name="name" type="text" required id="name"
+                        class="bg-white border-2 p-2 mb-2 h-10 border-black rounded-[5px]">
                     <label for="" class="font-[500]">Rôle</label>
                     <select name="" required id="role"
-                        class="bg-white/80 border-1 mb-2 h-10 border-black rounded-[5px]">
+                        class="bg-white/80 border-2 p-2 mb-2 h-10 border-black rounded-[5px]">
                         <option value="Réceptionnistes">Réceptionnistes</option>
                         <option value="Techniciens IT">Techniciens IT</option>
                         <option value="Sécurité">sécurité</option>
@@ -177,16 +178,17 @@
                         <option value="Nettoyage">Nettoyage</option>
                         <option value="Autres rôles">Autres rôles</option>
                     </select>
-                    <label for="" class="font-[500]">Photo (URL)</label>
-                    <input type="url" id="url" class="bg-white/80 border-2 mb-2 h-10 border-black rounded-[5px]">
-                    <img id="photo" src="" class="bg-white/50 lg:w-30 lg:h-30 w-20 h-20 ml-[35%] rounded-full"></img>
-                    <label for="" class="font-[500]">email</label>
-                    <input id="email" required type="email"
+                    <label for="URL" class="font-[500]">Photo (URL)</label>
+                    <input name="URL" type="url" id="url"
                         class="bg-white/80 border-2 p-2 mb-2 h-10 border-black rounded-[5px]">
-                    <label for="" class="font-[500]">numero</label>
-                    <input type="text" id="numero" required id="numero"
+                    <img id="photo" src="" class="bg-gray-400 lg:w-30 lg:h-30 w-20 h-20 ml-[35%] rounded-full"></img>
+                    <label for="email" class="font-[500]">email</label>
+                    <input name="email" id="email" required type="email"
                         class="bg-white/80 border-2 p-2 mb-2 h-10 border-black rounded-[5px]">
-                    <label for="" class="font-[500]">Expériences professionnelles</label>
+                    <label for="numero" class="font-[500]">numero</label>
+                    <input name="numero" type="text" id="numero" required id="numero"
+                        class="bg-white/80 border-2 p-2 mb-2 h-10 border-black rounded-[5px]">
+                    <label class="font-[500]">Expériences professionnelles</label>
                     <div id="experience" class="flex flex-col items-center gap-1">
                         <!-- <div class="flex flex-wrap bg-black/60 rounded-[10px] m-1 p-1 w-full items-center gap-1">
                             <label for="" class="font-[500]">Nom de l'entreprise</label>
@@ -203,7 +205,7 @@
                     <button type="button" id="add_experience"
                         class="font-[500]  rounded-[10px] w-20 text-white bg-black lg:text-[15px] text-[12px] p-1">ajouter</button>
                     <button type="submit" id="submit"
-                        class="font-[600]  rounded-[10px] mt-5 text-white lg:text-[18px] text-[12px] p-2 bg-green-800 ">Submit</button>
+                        class="font-[600]  rounded-[10px] mt-5 text-white lg:text-[18px] text-[12px] p-2 bg-green-700 ">Submit</button>
                 </form>
             </div>
         </div>
@@ -234,6 +236,7 @@
 
 
     <script src="scripte.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 </body>
 
 </html>

@@ -40,14 +40,14 @@ function affiche_exp() {
     div.className = "flex flex-wrap bg-black/60 rounded-[10px] m-1 p-1 w-full items-center gap-1"
 
     let input_nom_entreprise = document.createElement("input")
-    input_nom_entreprise.className = "exp bg-white/80 border-1 h-10 border-black w-[100%] rounded-[5px]"
+    input_nom_entreprise.className = "exp bg-white/80 border-2 p-2 h-10 border-black rounded-[5px] w-full"
     input_nom_entreprise.type = "text"
     input_nom_entreprise.placeholder = "le Nom de l'entreprise"
     input_nom_entreprise.setAttribute('required', '')
 
 
     let input_nom_poste = document.createElement("input")
-    input_nom_poste.className = "exp bg-white/80 border-1 h-10 border-black w-[100%] rounded-[5px]"
+    input_nom_poste.className = "exp bg-white/80 bg-white/80 border-2 p-2 h-10 border-black rounded-[5px] w-full"
     input_nom_poste.type = "text"
     input_nom_poste.placeholder = "le Nom de poste"
     input_nom_poste.setAttribute('required', '')
@@ -55,7 +55,7 @@ function affiche_exp() {
 
 
     let input_date_debut = document.createElement("input")
-    input_date_debut.className = "date_debut exp bg-white/80 border-1 h-10 border-black w-[100%] rounded-[5px]"
+    input_date_debut.className = "exp bg-white/80 border-2 p-2 h-10 border-black rounded-[5px] w-full"
     input_date_debut.type = "date"
     input_date_debut.placeholder = "la date de debut"
     input_date_debut.setAttribute('required', '')
@@ -63,7 +63,7 @@ function affiche_exp() {
 
 
     let input_date_fin = document.createElement("input")
-    input_date_fin.className = "date_fin exp bg-white/80 border-1 h-10 border-black w-[100%] rounded-[5px]"
+    input_date_fin.className = "exp bg-white/80 border-2 p-2 h-10 border-black rounded-[5px] w-full"
     input_date_fin.type = "date"
     input_date_fin.placeholder = "la date de fin"
     input_date_fin.setAttribute('required', '')
@@ -71,18 +71,21 @@ function affiche_exp() {
 
 
     const button = document.createElement("button")
-    button.className = "font-[500] w-full rounded-[10px] text-red-500 text-[12px] p-1 h-8 border-2"
+    button.className = "font-[500] w-full rounded-[10px] bg-red-600 text-white text-[12px] p-1 h-8 border-2"
     button.textContent = "remove"
 
     button.addEventListener("click", () => {
         div.remove()
     })
 
-    div.addEventListener('change', () => {
+    div.addEventListener('input', () => {
         if (input_date_fin.value && input_date_fin.value < input_date_debut.value) {
-            alert("La date de fin ne peut pas être avant la date de début");
+            div.classList.add("bg-red-500")
             input_date_fin.value = '';
         }
+        else
+            div.classList.remove("bg-red-500")
+
     });
 
     div.appendChild(input_nom_entreprise)
@@ -111,7 +114,7 @@ form_cont.addEventListener('submit', (e) => {
 
     //regex numero
     let numero = document.getElementById('numero').value.trim()
-    let regex_numero = /^\+[0-9]{1,3}[0-9]{9,}$/
+    let regex_numero = /^[0-9]{10}$/
 
     let role = document.getElementById('role').value.trim()
     let url = document.getElementById('url').value.trim()
@@ -171,6 +174,17 @@ form_cont.addEventListener('submit', (e) => {
         }
 
         affiche_one_Unassigned_Staff()
+    }
+    else {
+        Toastify({
+            text: "enter votre donner correcte",
+            duration: 3000,
+            gravity: "top", // `top` or `bottom`
+            position: "center", // `left`, `center` or `right`
+            style: {
+                background: "red",
+            }
+        }).showToast();
     }
 })
 
@@ -425,31 +439,15 @@ function add_conference(id) {
                 list_staf = list_staf.filter(el => el.id !== id)
                 localStorage.setItem("list_staf_local", JSON.stringify(list_staf))
                 affiche_tous_Unassigned_Staff()
+                affiche_Salle_conference()
+                zone_restreinte_conference()
 
             }
         })
     }
 }
 
-let cont_Salle_Reception = document.getElementById("cont_Salle_Reception")
-function add_reception(id) {
-    if (cont_Salle_Reception.children.length < 12) {
-        list_Receptionnistes.forEach(el => {
-            if (el.id === id) {
-                employent_dans_reception.push(el)
-                localStorage.setItem("reception", JSON.stringify(employent_dans_reception))
-                affiche_reception()
-                list_staf = list_staf.filter(el => el.id !== id)
-                localStorage.setItem("list_staf_local", JSON.stringify(list_staf))
-                affiche_tous_Unassigned_Staff()
 
-            }
-        })
-
-    }
-    // console.log(cont_Salle_Reception.children.length);
-
-}
 
 let cont_Salle_serveurs = document.getElementById("cont_Salle_serveurs")
 function add_serveur(id) {
@@ -463,6 +461,7 @@ function add_serveur(id) {
                 list_staf = list_staf.filter(el => el.id !== id)
                 localStorage.setItem("list_staf_local", JSON.stringify(list_staf))
                 affiche_tous_Unassigned_Staff()
+                affiche_Salle_serveurs()
             }
         })
     }
@@ -480,6 +479,7 @@ function add_securite(id) {
                 list_staf = list_staf.filter(el => el.id !== id)
                 localStorage.setItem("list_staf_local", JSON.stringify(list_staf))
                 affiche_tous_Unassigned_Staff()
+                affiche_Salle_securite()
             }
         })
     }
@@ -499,6 +499,7 @@ function add_perssone(id) {
                 list_staf = list_staf.filter(el => el.id !== id)
                 localStorage.setItem("list_staf_local", JSON.stringify(list_staf))
                 affiche_tous_Unassigned_Staff()
+                affiche_Salle_personnel()
             }
         })
     }
@@ -518,6 +519,7 @@ function add_archive(id) {
                 list_staf = list_staf.filter(el => el.id !== id)
                 localStorage.setItem("list_staf_local", JSON.stringify(list_staf))
                 affiche_tous_Unassigned_Staff()
+                affiche_Salle_archive()
             }
             // console.log(el.experiences);
         })
@@ -526,7 +528,7 @@ function add_archive(id) {
 }
 
 const section_info = document.getElementById('section_info')
-function affiche_info(el,zone) {
+function affiche_info(el, zone) {
     section_info.classList.remove("hidden")
     section_info.innerHTML = `
     <div class="relative w-95 items-center flex flex-col lg:p-4 p-3 gap-2 lg:w-160 bg-gray-400 rounded-[10px] font-[400]">
@@ -570,54 +572,34 @@ function affiche_info(el,zone) {
 }
 
 function retour_conference_Staff(el) {
-
-    // console.log(el);
     list_staf.push(el)
     localStorage.setItem("list_staf_local", JSON.stringify(list_staf))
     affiche_tous_Unassigned_Staff()
     supprime_conference(el.id)
-    // console.log("true");
-    // console.log(list_staf);
 }
 
 function supprime_conference(id) {
     employent_dans_conference = employent_dans_conference.filter(el => el.id !== id)
     localStorage.setItem("conference", JSON.stringify(employent_dans_conference))
-    // cont_Salle_conference.innerHTML = ''
-    // employent_dans_conference.forEach(el => {
-    //     cont_Salle_conference.innerHTML += `
-    //             <div class="relative rounded-[5px] flex bg-gray-400  p-1  gap-1 w-35 ">
-    //     <img id="${el.id}" onclick='affiche_info(${JSON.stringify(el)})' src="${el.photo}" alt="photo"
-    //         class="w-5 lg:w-10 lg:h-10 relative h-5 bg-blue-500 rounded-full">
-    //     <div class="flex flex-col items-start text-white text-[9px] font-[600]">
-    //         <p>${el.name}</p>
-    //         <p>${el.role}</p>
-    //     </div>
-    //     <div class="flex items-start">
-    //         <button onclick='retour_conference_Staff(${JSON.stringify(el)})' class="rounded-[4px] w-3 text-[8px] bg-red-800 text-white ">X</button>
-    //     </div>
-    // </div>
-    //         `
-    // })
     affiche_conference()
+    zone_restreinte_conference()
+
 }
 
 
 function retour_reception_Staff(el) {
-
-    // console.log(el);
     list_staf.push(el)
     localStorage.setItem("list_staf_local", JSON.stringify(list_staf))
     affiche_tous_Unassigned_Staff()
     supprime_reception(el.id)
-    // console.log("true");
-    // console.log(list_staf);
+    
 }
 
 function supprime_reception(id) {
     employent_dans_reception = employent_dans_reception.filter(el => el.id !== id)
     localStorage.setItem("reception", JSON.stringify(employent_dans_reception))
     affiche_reception()
+
 }
 
 
@@ -636,6 +618,8 @@ function supprime_serveur(id) {
     employent_dans_serveur = employent_dans_serveur.filter(el => el.id !== id)
     localStorage.setItem("serveur", JSON.stringify(employent_dans_serveur))
     affiche_serveur()
+    zone_restreinte_serveurs()
+
 }
 
 function retour_securite_Staff(el) {
@@ -653,6 +637,7 @@ function supprime_securite(id) {
     employent_dans_securite = employent_dans_securite.filter(el => el.id !== id)
     localStorage.setItem("securite", JSON.stringify(employent_dans_securite))
     affiche_securite()
+    zone_restreinte_securite()
 }
 
 function retour_perssone_Staff(el) {
@@ -687,6 +672,7 @@ function supprime_archive(id) {
     employent_dans_archive = employent_dans_archive.filter(el => el.id !== id)
     localStorage.setItem("archive", JSON.stringify(employent_dans_archive))
     affiche_archive()
+    zone_restreinte_archive()
 }
 
 function affiche_conference() {
@@ -793,6 +779,8 @@ function affiche_archive() {
         </div>
             `
     })
+    zone_restreinte_archive()
+
 }
 
 affiche_conference()
@@ -802,15 +790,56 @@ affiche_securite()
 affiche_perssone()
 affiche_archive()
 
-const zone_conference=document.getElementById('zone_conference')
-function zone(){
-    
-    if (cont_Salle_conference.children.length==0) {
+function zone_restreinte_conference() {
+    const zone_conference = document.getElementById('zone_conference')
+
+    if (cont_Salle_conference.children.length == 0) {
         console.log("true");
-    zone_conference.classList.add("bg-blue-800/40")
-}
-else
-    zone_conference.classList.remove("bg-blue-800/40")
+        zone_conference.classList.add("bg-red-500/50")
+    }
+    else
+        zone_conference.classList.remove("bg-blue-800/40")
 
 }
-// zone()
+
+function zone_restreinte_serveurs() {
+    const zone_serveurs = document.getElementById('zone_serveurs')
+
+    if (cont_Salle_serveurs.children.length == 0) {
+        console.log("true");
+        zone_serveurs.classList.add("bg-red-500/50")
+    }
+    else
+        zone_serveurs.classList.remove("bg-blue-800/40")
+
+}
+
+function zone_restreinte_securite() {
+    const zone_securite = document.getElementById('zone_securite')
+
+    if (cont_Salle_scurite.children.length == 0) {
+        console.log("true");
+        zone_securite.classList.add("bg-red-500/50")
+    }
+    else
+        zone_securite.classList.remove("bg-blue-800/40")
+
+}
+
+function zone_restreinte_archive() {
+    const zone_archive = document.getElementById('zone_archive')
+
+    if (cont_Salle_archives.children.length == 0) {
+        console.log("true");
+        zone_archive.classList.add("bg-red-500/50")
+    }
+    else
+        zone_archive.classList.remove("bg-blue-800/40")
+
+}
+zone_restreinte_conference()
+zone_restreinte_serveurs()
+zone_restreinte_securite()
+zone_restreinte_archive()
+
+
