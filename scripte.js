@@ -1,11 +1,11 @@
-const form = document.querySelector('.form')
+const section_form = document.querySelector('.section_form')
 const form_cont = document.querySelector('#form')
 const close = document.getElementById("close")
 add_new_worker.addEventListener('click', () => {
-    form.classList.remove('hidden')
+    section_form.classList.remove('hidden')
 })
 close.addEventListener("click", () => {
-    form.classList.add("hidden")
+    section_form.classList.add("hidden")
 })
 
 
@@ -144,6 +144,7 @@ form_cont.addEventListener('submit', (e) => {
     // }
 
     if (regex_name.test(name) && regex_email.test(email) && regex_numero.test(numero)) {
+        form_cont.reset();
         staf = {
             id: ++i,
             name: name,
@@ -172,7 +173,6 @@ form_cont.addEventListener('submit', (e) => {
 
             `
         }
-
         affiche_one_Unassigned_Staff()
     }
     else {
@@ -416,15 +416,6 @@ let employent_dans_serveur = JSON.parse(localStorage.getItem("serveur")) || []
 let employent_dans_securite = JSON.parse(localStorage.getItem("securite")) || []
 let employent_dans_perssone = JSON.parse(localStorage.getItem("perssone")) || []
 let employent_dans_archive = JSON.parse(localStorage.getItem("archive")) || []
-// let employent_dans_conference = []
-// let employent_dans_reception = []
-// let employent_dans_serveur = []
-// let employent_dans_securite = []
-// let employent_dans_perssone = []
-// let employent_dans_archive = []
-
-// console.log(employent_dans_conference);
-
 
 
 let cont_Salle_conference = document.getElementById("cont_Salle_conference")
@@ -441,7 +432,6 @@ function add_conference(id) {
                 affiche_tous_Unassigned_Staff()
                 affiche_Salle_conference()
                 zone_restreinte_conference()
-
             }
         })
     }
@@ -462,6 +452,7 @@ function add_serveur(id) {
                 localStorage.setItem("list_staf_local", JSON.stringify(list_staf))
                 affiche_tous_Unassigned_Staff()
                 affiche_Salle_serveurs()
+                zone_restreinte_serveurs()
             }
         })
     }
@@ -480,6 +471,7 @@ function add_securite(id) {
                 localStorage.setItem("list_staf_local", JSON.stringify(list_staf))
                 affiche_tous_Unassigned_Staff()
                 affiche_Salle_securite()
+                zone_restreinte_securite()
             }
         })
     }
@@ -520,6 +512,7 @@ function add_archive(id) {
                 localStorage.setItem("list_staf_local", JSON.stringify(list_staf))
                 affiche_tous_Unassigned_Staff()
                 affiche_Salle_archive()
+                zone_restreinte_archive()
             }
             // console.log(el.experiences);
         })
@@ -592,7 +585,7 @@ function retour_reception_Staff(el) {
     localStorage.setItem("list_staf_local", JSON.stringify(list_staf))
     affiche_tous_Unassigned_Staff()
     supprime_reception(el.id)
-    
+
 }
 
 function supprime_reception(id) {
@@ -793,12 +786,12 @@ affiche_archive()
 function zone_restreinte_conference() {
     const zone_conference = document.getElementById('zone_conference')
 
-    if (cont_Salle_conference.children.length == 0) {
+    if (cont_Salle_conference.children.length === 0) {
         console.log("true");
         zone_conference.classList.add("bg-red-500/50")
     }
     else
-        zone_conference.classList.remove("bg-blue-800/40")
+        zone_conference.classList.remove("bg-red-500/50")
 
 }
 
@@ -810,7 +803,7 @@ function zone_restreinte_serveurs() {
         zone_serveurs.classList.add("bg-red-500/50")
     }
     else
-        zone_serveurs.classList.remove("bg-blue-800/40")
+        zone_serveurs.classList.remove("bg-red-500/50")
 
 }
 
@@ -822,7 +815,7 @@ function zone_restreinte_securite() {
         zone_securite.classList.add("bg-red-500/50")
     }
     else
-        zone_securite.classList.remove("bg-blue-800/40")
+        zone_securite.classList.remove("bg-red-500/50")
 
 }
 
@@ -834,7 +827,7 @@ function zone_restreinte_archive() {
         zone_archive.classList.add("bg-red-500/50")
     }
     else
-        zone_archive.classList.remove("bg-blue-800/40")
+        zone_archive.classList.remove("bg-red-500/50")
 
 }
 zone_restreinte_conference()
