@@ -74,17 +74,29 @@ function affiche_exp() {
     button.className = "font-[500] w-full rounded-[10px] bg-red-600 text-white text-[12px] p-1 h-8 border-2"
     button.textContent = "remove"
 
-    button.addEventListener("click", () => {
+    button.addEventListener("click", (e) => {
+        // e.preventDefault()
         div.remove()
     })
 
     div.addEventListener('input', () => {
         if (input_date_fin.value && input_date_fin.value < input_date_debut.value) {
+            exps_inputs=''
             div.classList.add("bg-red-500")
             input_date_fin.value = '';
+             Toastify({
+                text: "verifie la date",
+                duration: 3000,
+                gravity: "top", // `top` or `bottom`
+                position: "center", // `left`, `center` or `right`
+                style: {
+                    background: "red",
+                }
+            }).showToast();
         }
-        else
-            div.classList.remove("bg-red-500")
+        else {
+            div.classList.remove("bg-red-500")           
+        }
 
     });
 
@@ -124,27 +136,15 @@ form_cont.addEventListener('submit', (e) => {
     let exps_inputs = document.querySelectorAll('.exp')
     // console.log(exps_inputs);
 
-    exps_inputs.forEach(e => {
-        exps.push(e.value.trim())
-    })
-
+    
     // console.log(exps);
-
+    
     i = Number(localStorage.getItem("id"))
-    // let dates_debut = document.querySelectorAll(".date_debut")
-    // let dates_fin = document.querySelectorAll(".date_fin")
-    // let date_valid = true
-    // for (let index = 0; index < dates_debut.length; index++) {
-    //     if (dates_debut[index].value > dates_fin[index].value) {
-    //         console.log(dates_debut);
-    //         date_valid = false
-    //         exps = []
-    //         return
-    //     }
-    // }
-
-    if (regex_name.test(name) && regex_email.test(email) && regex_numero.test(numero)) {
-        form_cont.reset();
+    
+    if (regex_name.test(name) && regex_email.test(email) && regex_numero.test(numero) ) {
+        exps_inputs.forEach(e => {
+            exps.push(e.value.trim())
+        })
         staf = {
             id: ++i,
             name: name,
@@ -154,6 +154,13 @@ form_cont.addEventListener('submit', (e) => {
             numero: numero,
             experiences: exps,
         }
+        console.log(exps);
+        exps=[]
+        console.log(exps);
+        
+        // exps_inputs=''
+        form_cont.reset();
+        // experience.innerHTML=''
         localStorage.setItem("id", i)
         list_staf.push(staf)
         localStorage.setItem("list_staf_local", JSON.stringify(list_staf))
@@ -787,7 +794,7 @@ function zone_restreinte_conference() {
     const zone_conference = document.getElementById('zone_conference')
 
     if (cont_Salle_conference.children.length === 0) {
-        console.log("true");
+        // console.log("true");
         zone_conference.classList.add("bg-red-500/50")
     }
     else
@@ -799,7 +806,7 @@ function zone_restreinte_serveurs() {
     const zone_serveurs = document.getElementById('zone_serveurs')
 
     if (cont_Salle_serveurs.children.length == 0) {
-        console.log("true");
+        // console.log("true");
         zone_serveurs.classList.add("bg-red-500/50")
     }
     else
@@ -811,7 +818,7 @@ function zone_restreinte_securite() {
     const zone_securite = document.getElementById('zone_securite')
 
     if (cont_Salle_scurite.children.length == 0) {
-        console.log("true");
+        // console.log("true");
         zone_securite.classList.add("bg-red-500/50")
     }
     else
@@ -823,7 +830,7 @@ function zone_restreinte_archive() {
     const zone_archive = document.getElementById('zone_archive')
 
     if (cont_Salle_archives.children.length == 0) {
-        console.log("true");
+        // console.log("true");
         zone_archive.classList.add("bg-red-500/50")
     }
     else
