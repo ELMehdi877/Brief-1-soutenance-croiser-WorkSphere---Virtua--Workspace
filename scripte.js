@@ -444,7 +444,24 @@ function add_conference(id) {
     }
 }
 
+let cont_Salle_Reception = document.getElementById("cont_Salle_Reception")
+function add_reception(id) {
+    if (cont_Salle_Reception.children.length < 12) {
 
+        list_Receptionnistes.forEach(el => {
+            if (el.id === id) {
+                employent_dans_reception.push(el)
+                localStorage.setItem("reception", JSON.stringify(employent_dans_serveur))
+                affiche_reception()
+                list_staf = list_staf.filter(el => el.id !== id)
+                localStorage.setItem("list_staf_local", JSON.stringify(list_staf))
+                affiche_tous_Unassigned_Staff()
+                affiche_Salle_Reception()
+            }
+        })
+    }
+
+}
 
 let cont_Salle_serveurs = document.getElementById("cont_Salle_serveurs")
 function add_serveur(id) {
@@ -463,7 +480,7 @@ function add_serveur(id) {
             }
         })
     }
-
+    
 }
 
 let cont_Salle_scurite = document.getElementById("cont_Salle_scurite")
