@@ -158,7 +158,7 @@ form_cont.addEventListener('submit', (e) => {
 
             <div class="flex p-2 items-center bg-blue-300 rounded-[10px]">
                     <div  class="flex gap-5 items-center">
-                        <img onclick='affiche_info(${JSON.stringify(staf)})' src="${url}" width="18%" alt="Photo">
+                        <img onclick='affiche_info(${JSON.stringify(staf)},"Unassigned Staff")' src="${url}" width="18%" alt="Photo">
                         <div>
                             <p class="">${name}</p>
                             <p class="font-[400]">${role}</p>
@@ -198,7 +198,7 @@ function affiche_tous_Unassigned_Staff() {
         Unassigned_Staff.innerHTML += `
             <div class="flex p-2 items-center bg-blue-300 rounded-[10px]">
                     <div class="flex gap-5 items-center">
-                        <img src="${el.photo}" onclick='affiche_info(${JSON.stringify(el)})' width="18%" alt="Photo">
+                        <img src="${el.photo}" onclick='affiche_info(${JSON.stringify(el)} , "Unassigned Staff")' width="18%" alt="Photo">
                         <div>
                             <p class="">${el.name}</p>
                             <p class="font-[400]">${el.role}</p>
@@ -526,23 +526,23 @@ function add_archive(id) {
 }
 
 const section_info = document.getElementById('section_info')
-function affiche_info(el) {
+function affiche_info(el,zone) {
     section_info.classList.remove("hidden")
     section_info.innerHTML = `
-    <div class="relative w-95 flex flex-col p-5 gap-2 lg:w-160 bg-gray-400 rounded-[10px] font-[400]">
-        <h2 class="font-[700]">${el.name}</h2>
-        <div class="flex gap-4 items-start">
-            <img src="${el.photo}" alt="photo" class="w-[40%] lg:w-[20%]">
-            <div class="flex flex-col gap-2 h-50 ml-5 lg:h-65 overflow-y-scroll [scrollbar-width:none]">
+    <div class="relative w-95 items-center flex flex-col lg:p-4 p-3 gap-2 lg:w-160 bg-gray-400 rounded-[10px] font-[400]">
+        <h2 class="font-[700] text-[20px]">${el.name}</h2>
+        <div class="flex lg:flex-row flex-col items-center lg:gap-4 gap-2 lg:items-start">
+            <img src="${el.photo}" alt="photo" class="w-[35%] rounded-[10px] lg:w-[20%]">
+            <div class="flex lg:items-start flex-col gap-2 h-50 lg:ml-5 lg:h-65 overflow-y-scroll [scrollbar-width:none]">
                 <h3 class="font-[700]">${el.role}</h3>
                 <p>${el.email}</p>
                 <p>${el.numero}</p>
                 <h3 class="font-[700]">Expériences</h3>
-                <ul id="list_experience" class="list-disc  lg:ml-10">
+                <ul id="list_experience" class="list-disc ml-10 lg:ml-10">
                 </ul>
             </div>
         </div>
-        <p>localisation actuelle : reception</p>
+        <p class="font-[500]">localisation actuelle : <span class="font-[700]  text-[18px]">${zone}</span></p>
         <button id="close_info" class="rounded-[5px] w-8 bg-red-800 text-white absolute lg:left-145 left-80">X</button>
     </div> 
     
@@ -694,7 +694,7 @@ function affiche_conference() {
     employent_dans_conference.forEach(el => {
         cont_Salle_conference.innerHTML += `
         <div class="relative rounded-[5px] flex bg-gray-400  p-[4px]">
-            <div onclick='affiche_info(${JSON.stringify(el)})' class="flex relative flex-col items-center text-white lg:text-[9px] text-[3px] font-[700]">
+            <div onclick='affiche_info(${JSON.stringify(el)} ,"salle conference")' class="flex relative flex-col items-center text-white lg:text-[9px] text-[3px] font-[700]">
                 <img id="${el.id}"  src="${el.photo}" alt="photo" class="w-4 lg:w-10 lg:h-10 relative h-4 bg-blue-500 rounded-full">
                 <p class="absolute bg-black lg:red-500 lg:w-12 lg:top-10 w-6 px-[1px] py-[1px] top-4 rounded-full">${el.name}</p> 
             </div>
@@ -711,7 +711,7 @@ function affiche_reception() {
     employent_dans_reception.forEach(el => {
         cont_Salle_Reception.innerHTML += `
         <div class="relative rounded-[5px] flex bg-gray-400  p-[4px]">
-            <div onclick='affiche_info(${JSON.stringify(el)})' class="flex relative flex-col items-center text-white lg:text-[9px] text-[3px] font-[700]">
+            <div onclick='affiche_info(${JSON.stringify(el)} , "salle Reception")' class="flex relative flex-col items-center text-white lg:text-[9px] text-[3px] font-[700]">
                 <img id="${el.id}"  src="${el.photo}" alt="photo" class="w-4 lg:w-10 lg:h-10 relative h-4 bg-blue-500 rounded-full">
                 <p class="absolute bg-black lg:red-500 lg:w-12 lg:top-10 w-6 px-[1px] py-[1px] top-4 rounded-full">${el.name}</p> 
             </div>
@@ -729,7 +729,7 @@ function affiche_serveur() {
     employent_dans_serveur.forEach(el => {
         cont_Salle_serveurs.innerHTML += `
         <div class="relative rounded-[5px] flex bg-gray-400  p-[4px]">
-            <div onclick='affiche_info(${JSON.stringify(el)})' class="flex relative flex-col items-center text-white lg:text-[9px] text-[3px] font-[700]">
+            <div onclick='affiche_info(${JSON.stringify(el)} , "salle serveur")' class="flex relative flex-col items-center text-white lg:text-[9px] text-[3px] font-[700]">
                 <img id="${el.id}"  src="${el.photo}" alt="photo" class="w-4 lg:w-10 lg:h-10 relative h-4 bg-blue-500 rounded-full">
                 <p class="absolute bg-black lg:red-500 lg:w-12 lg:top-10 w-6 px-[1px] py-[1px] top-4 rounded-full">${el.name}</p> 
             </div>
@@ -747,7 +747,7 @@ function affiche_securite() {
     employent_dans_securite.forEach(el => {
         cont_Salle_scurite.innerHTML += `
         <div class="relative rounded-[5px] flex bg-gray-400  p-[4px]">
-            <div onclick='affiche_info(${JSON.stringify(el)})' class="flex relative flex-col items-center text-white lg:text-[9px] text-[3px] font-[700]">
+            <div onclick='affiche_info(${JSON.stringify(el)}, "salle securite")' class="flex relative flex-col items-center text-white lg:text-[9px] text-[3px] font-[700]">
                 <img id="${el.id}"  src="${el.photo}" alt="photo" class="w-4 lg:w-10 lg:h-10 relative h-4 bg-blue-500 rounded-full">
                 <p class="absolute bg-black lg:red-500 lg:w-12 lg:top-10 w-6 px-[1px] py-[1px] top-4 rounded-full">${el.name}</p> 
             </div>
@@ -765,12 +765,12 @@ function affiche_perssone() {
     employent_dans_perssone.forEach(el => {
         cont_Salle_personnel.innerHTML += `
         <div class="relative rounded-[5px] flex bg-gray-400  p-[4px]">
-            <div onclick='affiche_info(${JSON.stringify(el)})' class="flex relative flex-col items-center text-white lg:text-[9px] text-[3px] font-[700]">
+            <div onclick='affiche_info(${JSON.stringify(el)} , "salle personel")' class="flex relative flex-col items-center text-white lg:text-[9px] text-[3px] font-[700]">
                 <img id="${el.id}"  src="${el.photo}" alt="photo" class="w-4 lg:w-10 lg:h-10 relative h-4 bg-blue-500 rounded-full">
                 <p class="absolute bg-black lg:red-500 lg:w-12 lg:top-10 w-6 px-[1px] py-[1px] top-4 rounded-full">${el.name}</p> 
             </div>
             <div class="flex items-start">
-                <button onclick='retour_perssone_Staff(${JSON.stringify(el)})' class="absolute lg:bottom-10 right-[0px] bottom-5 rounded-full lg:w-3 lg:text-[8px] text-[5px] bg-red-800 text-white w-2">X</button>
+                <button onclick='retour_perssone_Staff(${JSON.stringify(el)},"perssone")' class="absolute lg:bottom-10 right-[0px] bottom-5 rounded-full lg:w-3 lg:text-[8px] text-[5px] bg-red-800 text-white w-2">X</button>
             </div>
         </div>
             `
@@ -783,7 +783,7 @@ function affiche_archive() {
     employent_dans_archive.forEach(el => {
         cont_Salle_archives.innerHTML += `
         <div class="relative rounded-[5px] flex bg-gray-400  p-[4px]">
-            <div onclick='affiche_info(${JSON.stringify(el)})' class="flex relative flex-col items-center text-white lg:text-[9px] text-[3px] font-[700]">
+            <div onclick='affiche_info(${JSON.stringify(el)},"salle archive")' class="flex relative flex-col items-center text-white lg:text-[9px] text-[3px] font-[700]">
                 <img id="${el.id}"  src="${el.photo}" alt="photo" class="w-4 lg:w-10 lg:h-10 relative h-4 bg-blue-500 rounded-full">
                 <p class="absolute bg-black lg:red-500 lg:w-12 lg:top-10 w-6 px-[1px] py-[1px] top-4 rounded-full">${el.name}</p> 
             </div>
@@ -802,3 +802,15 @@ affiche_securite()
 affiche_perssone()
 affiche_archive()
 
+const zone_conference=document.getElementById('zone_conference')
+function zone(){
+    
+    if (cont_Salle_conference.children.length==0) {
+        console.log("true");
+    zone_conference.classList.add("bg-blue-800/40")
+}
+else
+    zone_conference.classList.remove("bg-blue-800/40")
+
+}
+// zone()
