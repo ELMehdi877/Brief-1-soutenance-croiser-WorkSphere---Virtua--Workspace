@@ -30,20 +30,12 @@ const add_experience = document.getElementById('add_experience')
 add_experience.addEventListener('click', (e) => {
 
     e.preventDefault()
+    affiche_exp()
 
-    // experience.innerHTML+=`
-    // <div class="flex flex-wrap bg-black/60 rounded-[10px] m-1 p-1 w-full items-center gap-1">
-    //     <label for="" class="font-[500]">Nom de l'entreprise</label>
-    //     <input type="text" class="exp bg-white/80 border-1 h-10 border-black w-[100%] rounded-[5px]">
-    //     <label for="" class="font-[500]">Nom de poste</label>
-    //     <input type="text" class="exp bg-white/80 border-1 h-10 border-black w-[100%] rounded-[5px]">
-    //     <label for="" class="font-[500]">Date de debut</label>
-    //     <input type="date" class="date_debut exp bg-white/80 border-1 h-10 border-black w-[100%] rounded-[5px]">
-    //     <label for="" class="font-[500]">Date de fin</label>
-    //     <input type="date" class="date_fin exp bg-white/80 border-1 h-10 border-black w-[100%] rounded-[5px]">
-    //     <button type="button" class="font-[500] w-full rounded-[10px] text-red-500 text-[12px] p-1 h-8 border-2">remove</button>
-    // </div> 
-    // `
+
+})
+
+function affiche_exp() {
     const div = document.createElement("div")
     div.className = "flex flex-wrap bg-black/60 rounded-[10px] m-1 p-1 w-full items-center gap-1"
 
@@ -51,23 +43,31 @@ add_experience.addEventListener('click', (e) => {
     input_nom_entreprise.className = "exp bg-white/80 border-1 h-10 border-black w-[100%] rounded-[5px]"
     input_nom_entreprise.type = "text"
     input_nom_entreprise.placeholder = "le Nom de l'entreprise"
+    input_nom_entreprise.setAttribute('required', '')
+
 
     let input_nom_poste = document.createElement("input")
     input_nom_poste.className = "exp bg-white/80 border-1 h-10 border-black w-[100%] rounded-[5px]"
     input_nom_poste.type = "text"
     input_nom_poste.placeholder = "le Nom de poste"
+    input_nom_poste.setAttribute('required', '')
+
 
 
     let input_date_debut = document.createElement("input")
     input_date_debut.className = "date_debut exp bg-white/80 border-1 h-10 border-black w-[100%] rounded-[5px]"
     input_date_debut.type = "date"
     input_date_debut.placeholder = "la date de debut"
+    input_date_debut.setAttribute('required', '')
+
 
 
     let input_date_fin = document.createElement("input")
     input_date_fin.className = "date_fin exp bg-white/80 border-1 h-10 border-black w-[100%] rounded-[5px]"
     input_date_fin.type = "date"
     input_date_fin.placeholder = "la date de fin"
+    input_date_fin.setAttribute('required', '')
+
 
 
     const button = document.createElement("button")
@@ -78,14 +78,22 @@ add_experience.addEventListener('click', (e) => {
         div.remove()
     })
 
+    div.addEventListener('change', () => {
+        if (input_date_fin.value && input_date_fin.value < input_date_debut.value) {
+            alert("La date de fin ne peut pas être avant la date de début");
+            input_date_fin.value = '';
+        }
+    });
+
     div.appendChild(input_nom_entreprise)
     div.appendChild(input_nom_poste)
     div.appendChild(input_date_debut)
     div.appendChild(input_date_fin)
     div.appendChild(button)
     experience.appendChild(div)
+}
 
-})
+affiche_exp()
 
 
 let Unassigned_Staff = document.querySelector("#Unassigned_Staff")
@@ -120,19 +128,19 @@ form_cont.addEventListener('submit', (e) => {
     // console.log(exps);
 
     i = Number(localStorage.getItem("id"))
-    let dates_debut = document.querySelectorAll(".date_debut")
-    let dates_fin = document.querySelectorAll(".date_fin")
-    let date_valid=true
-    for (let index = 0; index < dates_debut.length; index++) {
-        if (dates_debut[index].value>dates_fin[index].value) {
-            console.log(dates_debut);
-            date_valid=false
-            exps=[]
-            return
-        }
-    }
-    
-    if (regex_name.test(name) && regex_email.test(email) && regex_numero.test(numero) && date_valid===true ) {
+    // let dates_debut = document.querySelectorAll(".date_debut")
+    // let dates_fin = document.querySelectorAll(".date_fin")
+    // let date_valid = true
+    // for (let index = 0; index < dates_debut.length; index++) {
+    //     if (dates_debut[index].value > dates_fin[index].value) {
+    //         console.log(dates_debut);
+    //         date_valid = false
+    //         exps = []
+    //         return
+    //     }
+    // }
+
+    if (regex_name.test(name) && regex_email.test(email) && regex_numero.test(numero)) {
         staf = {
             id: ++i,
             name: name,
@@ -522,20 +530,20 @@ function affiche_info(el) {
     section_info.classList.remove("hidden")
     section_info.innerHTML = `
     <div class="relative w-95 flex flex-col p-5 gap-2 lg:w-160 bg-gray-400 rounded-[10px] font-[400]">
-    <h2 class="font-[700]">${el.name}</h2>
-    <div class="flex gap-4 items-start">
-    <img src="${el.photo}" alt="photo" class="w-[40%] lg:w-[20%]">
-    <div class="flex flex-col gap-2">
-    <h3 class="font-[700]">${el.role}</h3>
-    <p>${el.email}</p>
-    <p>${el.numero}</p>
-    <h3 class="font-[700]">Expériences</h3>
-    <ul id="list_experience" class="list-disc ml-10">
-    </ul>
-    <p>localisation actuelle : reception</p>
-    </div>
-    </div>
-    <button id="close_info" class="rounded-[5px] w-8 bg-red-800 text-white absolute lg:left-145 left-80">X</button>
+        <h2 class="font-[700]">${el.name}</h2>
+        <div class="flex gap-4 items-start">
+            <img src="${el.photo}" alt="photo" class="w-[40%] lg:w-[20%]">
+            <div class="flex flex-col gap-2 h-50 ml-5 lg:h-65 overflow-y-scroll [scrollbar-width:none]">
+                <h3 class="font-[700]">${el.role}</h3>
+                <p>${el.email}</p>
+                <p>${el.numero}</p>
+                <h3 class="font-[700]">Expériences</h3>
+                <ul id="list_experience" class="list-disc  lg:ml-10">
+                </ul>
+            </div>
+        </div>
+        <p>localisation actuelle : reception</p>
+        <button id="close_info" class="rounded-[5px] w-8 bg-red-800 text-white absolute lg:left-145 left-80">X</button>
     </div> 
     
     `
