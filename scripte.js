@@ -24,9 +24,16 @@ let staf = {
     numero: '',
     experiences: [],
 }
+let exp_employent = {
+    entreprise: '',
+    role_ent: '',
+    date_debut: '',
+    date_fin: '',
+}
 
 const experience = document.getElementById('experience')
 const add_experience = document.getElementById('add_experience')
+
 add_experience.addEventListener('click', (e) => {
 
     e.preventDefault()
@@ -34,20 +41,55 @@ add_experience.addEventListener('click', (e) => {
 
 
 })
+let cont_test_exps = []
+let id_exp = 0
+// function affiche_exp() {
+//     experience.innerHTML = `<div id="${id_exp}" class="flex flex-wrap border-2 border-black rounded-[10px] m-1 p-2 w-full items-center gap-1">
+//                             <input required type="text" class="exp p-2 mb-2 h-10 border-b-3 border rounded-[5px] w-full" placeholder="le Nom de l'entreprise">
+//                             <input required type="text" class="exp p-2 mb-2 h-10 border-b-3 border rounded-[5px] w-full" placeholder="le Nom de l'entreprise">
+//                             <input required type="date" class="exp p-2 mb-2 h-10 border-b-3 border rounded-[5px] w-full" placeholder="la date de debut">
+//                             <input required type="date" class="exp p-2 mb-2 h-10 border-b-3 border rounded-[5px] w-full" placeholder="la date de fin">
+//                             <button onclick="supprime_exp(${id_exp})" class="font-[500] w-full rounded-[10px] bg-red-600 text-white text-[12px] p-1 h-8 border-2 hover:bg-red-400">remove</button>
+//                         </div>`
+//     experience.addEventListener('input', () => {
+//         if (input.value && input_date_fin.value < input_date_debut.value) {
+//             exps_inputs = ''
+//             div.classList.add("bg-red-500")
+//             input_date_fin.value = '';
+//             Toastify({
+//                 text: "verifie la date",
+//                 duration: 3000,
+//                 gravity: "top", // `top` or `bottom`
+//                 position: "center", // `left`, `center` or `right`
+//                 style: {
+//                     background: "red",
+//                 }
+//             }).showToast();
+//         }
+//         else {
+//             div.classList.remove("bg-red-500")
+//         }
+
+//     });
+
+
+// }
 
 function affiche_exp() {
-    const div = document.createElement("div")
-    div.className = "flex flex-wrap bg-black/60 rounded-[10px] m-1 p-1 w-full items-center gap-1"
 
     let input_nom_entreprise = document.createElement("input")
-    input_nom_entreprise.className = "exp bg-white/80 border-2 p-2 h-10 border-black rounded-[5px] w-full"
+    const div = document.createElement("div")
+    div.className = "flex flex-wrap border-2 border-black rounded-[10px] m-1 p-2 w-full items-center gap-1"
+    // div.style.background = "linear-gradient(45deg, rgba(0,0,0,0.6), rgba(0,0,0,0))";
+
+    input_nom_entreprise.className = "exp p-2 mb-2 h-10 border-b-3 border rounded-[5px] w-full"
     input_nom_entreprise.type = "text"
     input_nom_entreprise.placeholder = "le Nom de l'entreprise"
     input_nom_entreprise.setAttribute('required', '')
 
 
     let input_nom_poste = document.createElement("input")
-    input_nom_poste.className = "exp bg-white/80 bg-white/80 border-2 p-2 h-10 border-black rounded-[5px] w-full"
+    input_nom_poste.className = "exp p-2 mb-2 h-10 border-b-3 border rounded-[5px] w-full"
     input_nom_poste.type = "text"
     input_nom_poste.placeholder = "le Nom de poste"
     input_nom_poste.setAttribute('required', '')
@@ -55,7 +97,7 @@ function affiche_exp() {
 
 
     let input_date_debut = document.createElement("input")
-    input_date_debut.className = "exp bg-white/80 border-2 p-2 h-10 border-black rounded-[5px] w-full"
+    input_date_debut.className = "exp p-2 mb-2 h-10 border-b-3 border rounded-[5px] w-full"
     input_date_debut.type = "date"
     input_date_debut.placeholder = "la date de debut"
     input_date_debut.setAttribute('required', '')
@@ -63,7 +105,7 @@ function affiche_exp() {
 
 
     let input_date_fin = document.createElement("input")
-    input_date_fin.className = "exp bg-white/80 border-2 p-2 h-10 border-black rounded-[5px] w-full"
+    input_date_fin.className = "exp p-2 mb-2 h-10 border-b-3 border rounded-[5px] w-full"
     input_date_fin.type = "date"
     input_date_fin.placeholder = "la date de fin"
     input_date_fin.setAttribute('required', '')
@@ -71,20 +113,16 @@ function affiche_exp() {
 
 
     const button = document.createElement("button")
-    button.className = "font-[500] w-full rounded-[10px] bg-red-600 text-white text-[12px] p-1 h-8 border-2"
+    button.className = "font-[500] w-full rounded-[10px] bg-red-600 text-white text-[12px] p-1 h-8 border-2 hover:bg-red-400"
     button.textContent = "remove"
-
-    button.addEventListener("click", (e) => {
-        // e.preventDefault()
-        div.remove()
-    })
+    // button.setAttribute('onclick', 'console.log("true")')
 
     div.addEventListener('input', () => {
         if (input_date_fin.value && input_date_fin.value < input_date_debut.value) {
-            exps_inputs=''
-            div.classList.add("bg-red-500")
+            exps_inputs = ''
+            div.classList.add("bg-red-500/80")
             input_date_fin.value = '';
-             Toastify({
+            Toastify({
                 text: "verifie la date",
                 duration: 3000,
                 gravity: "top", // `top` or `bottom`
@@ -95,10 +133,36 @@ function affiche_exp() {
             }).showToast();
         }
         else {
-            div.classList.remove("bg-red-500")           
+            div.classList.remove("bg-red-500/80")
+            if (input_nom_entreprise.value !== "" && input_nom_poste.value !== "" && input_date_debut.value !== "" && input_date_fin.value !== "") {
+                id_exp++
+                exp_employent = {
+                    entreprise: input_nom_entreprise.value.trim(),
+                    role_ent: input_nom_poste.value.trim(),
+                    date_debut: input_date_debut.value.trim(),
+                    date_fin: input_date_fin.value.trim(),
+                }
+                cont_test_exps.push(exp_employent)
+            }
         }
 
     });
+    console.log(exp_employent);
+    console.log(cont_test_exps);
+
+
+    button.addEventListener("click", (e) => {
+        // e.preventDefault()
+        div.remove()
+        cont_test_exps = cont_test_exps.filter(el =>
+            el.entreprise !== input_nom_entreprise.value.trim() ||
+            el.role_ent !== input_nom_poste.value.trim() ||
+            el.date_debut !== input_date_debut.value.trim() ||
+            el.date_fin !== input_date_fin.value.trim()
+        )
+        console.log(cont_test_exps);
+
+    })
 
     div.appendChild(input_nom_entreprise)
     div.appendChild(input_nom_poste)
@@ -136,12 +200,12 @@ form_cont.addEventListener('submit', (e) => {
     let exps_inputs = document.querySelectorAll('.exp')
     // console.log(exps_inputs);
 
-    
+
     // console.log(exps);
-    
+
     i = Number(localStorage.getItem("id"))
-    
-    if (regex_name.test(name) && regex_email.test(email) && regex_numero.test(numero) ) {
+
+    if (regex_name.test(name) && regex_email.test(email) && regex_numero.test(numero)) {
         exps_inputs.forEach(e => {
             exps.push(e.value.trim())
         })
@@ -155,12 +219,12 @@ form_cont.addEventListener('submit', (e) => {
             experiences: exps,
         }
         console.log(exps);
-        exps=[]
+        exps = []
         console.log(exps);
-        
+
         // exps_inputs=''
         form_cont.reset();
-        // experience.innerHTML=''
+        url === ""
         localStorage.setItem("id", i)
         list_staf.push(staf)
         localStorage.setItem("list_staf_local", JSON.stringify(list_staf))
@@ -175,11 +239,21 @@ form_cont.addEventListener('submit', (e) => {
                             <p class="font-[400]">${role}</p>
                         </div>
                     </div>
-                    <button onclick="suprime_empl(${i})" class="font-[500]  rounded-[10px] text-red-500 text-[12px] p-1 border-2">remove</button>
+                    <button  onclick="suprime_empl(${i})" class="font-[500]  rounded-[10px] text-red-500 text-[12px] p-1 border-2">remove</button>
                 </div>
 
             `
         }
+        Toastify({
+            text: "un nouveau employent : " + name + " / " + role,
+            duration: 3000,
+            gravity: "top", // `top` or `bottom`
+            position: "center", // `left`, `center` or `right`
+            style: {
+                background: "green",
+                borderRadius: "10px",
+            }
+        }).showToast();
         affiche_one_Unassigned_Staff()
     }
     else {
@@ -217,7 +291,7 @@ function affiche_tous_Unassigned_Staff() {
     list_staf.forEach(el => {
 
         Unassigned_Staff.innerHTML += `
-            <div class="flex p-2 items-center bg-blue-300 rounded-[10px]">
+            <div class="flex p-2 duration-150 hover:scale-105 items-center bg-blue-300 rounded-[10px]">
                     <div class="flex gap-5 items-center">
                         <img src="${el.photo}" onclick='affiche_info(${JSON.stringify(el)} , "Unassigned Staff")' width="18%" alt="Photo">
                         <div>
@@ -225,7 +299,7 @@ function affiche_tous_Unassigned_Staff() {
                             <p class="font-[400]">${el.role}</p>
                         </div>
                     </div>
-                    <button onclick="suprime_empl(${el.id})" class=" font-[500]  rounded-[10px] text-red-500 text-[12px] p-1 border-2">remove</button>
+                    <button onclick="suprime_empl(${el.id})" class=" font-[500]  rounded-[10px] text-red-500 text-[12px] p-1 border-2 hover:bg-red-500 hover:text-white">remove</button>
                 </div>
             `
     })
@@ -247,7 +321,7 @@ function affiche_Salle_conference() {
     list_conference.forEach(el => {
 
         Worker.innerHTML += `
-            <div class="flex p-2 items-center bg-blue-300 rounded-[10px]">
+            <div class="duration-150 hover:scale-105 flex p-2 items-center bg-blue-300 rounded-[10px]">
                     <div class="flex gap-5 items-center">
                         <img src="${el.photo}" width="18%" alt="Photo">
                         <div>
@@ -255,7 +329,7 @@ function affiche_Salle_conference() {
                             <p class="font-[400]">${el.role}</p>
                         </div>
                     </div>
-                    <button onclick="add_conference(${el.id})" class=" font-[500]  rounded-[10px] bg-green-700 text-white text-[12px] p-2 ">add</button>
+                    <button onclick="add_conference(${el.id})" class=" font-[500]  rounded-[10px] bg-green-700 text-white text-[12px] p-2 hover:bg-green-500 ">add</button>
                 </div>
             `
     })
@@ -270,7 +344,7 @@ function affiche_Salle_Reception() {
     list_Receptionnistes.forEach(el => {
 
         Worker.innerHTML += `
-            <div class="flex p-2 items-center bg-blue-300 rounded-[10px]">
+            <div class="duration-150 hover:scale-105 flex p-2 items-center bg-blue-300 rounded-[10px]">
                     <div class="flex gap-5 items-center">
                         <img src="${el.photo}" width="18%" alt="Photo">
                         <div>
@@ -278,7 +352,7 @@ function affiche_Salle_Reception() {
                             <p class="font-[400]">${el.role}</p>
                         </div>
                     </div>
-                    <button onclick="add_reception(${el.id})" class=" font-[500]  rounded-[10px] bg-green-700 text-white text-[12px] p-2 ">add</button>
+                    <button onclick="add_reception(${el.id})" class=" font-[500]  rounded-[10px] bg-green-700 text-white text-[12px] p-2 hover:bg-green-500 ">add</button>
                 </div>
             `
     })
@@ -293,7 +367,7 @@ function affiche_Salle_serveurs() {
     list_serveurs.forEach(el => {
 
         Worker.innerHTML += `
-            <div class="flex p-2 items-center bg-blue-300 rounded-[10px]">
+            <div class="duration-150 hover:scale-105 flex p-2 items-center bg-blue-300 rounded-[10px]">
                     <div class="flex gap-5 items-center">
                         <img src="${el.photo}" width="18%" alt="Photo">
                         <div>
@@ -301,7 +375,7 @@ function affiche_Salle_serveurs() {
                             <p class="font-[400]">${el.role}</p>
                         </div>
                     </div>
-                    <button onclick="add_serveur(${el.id})" class=" font-[500]  rounded-[10px] bg-green-700 text-white text-[12px] p-2 ">add</button>
+                    <button onclick="add_serveur(${el.id})" class=" font-[500]  rounded-[10px] bg-green-700 text-white text-[12px] p-2 hover:bg-green-500 ">add</button>
                 </div>
             `
     })
@@ -316,7 +390,7 @@ function affiche_Salle_securite() {
     list_securite.forEach(el => {
 
         Worker.innerHTML += `
-            <div class="flex p-2 items-center bg-blue-300 rounded-[10px]">
+            <div class="duration-150 hover:scale-105 flex p-2 items-center bg-blue-300 rounded-[10px]">
                     <div class="flex gap-5 items-center">
                         <img src="${el.photo}" width="18%" alt="Photo">
                         <div>
@@ -324,7 +398,7 @@ function affiche_Salle_securite() {
                             <p class="font-[400]">${el.role}</p>
                         </div>
                     </div>
-                    <button onclick="add_securite(${el.id})" class=" font-[500]  rounded-[10px] bg-green-700 text-white text-[12px] p-2 ">add</button>
+                    <button onclick="add_securite(${el.id})" class=" font-[500]  rounded-[10px] bg-green-700 text-white text-[12px] p-2 hover:bg-green-500 ">add</button>
                 </div>
             `
     })
@@ -339,7 +413,7 @@ function affiche_Salle_personnel() {
     list_personnel.forEach(el => {
 
         Worker.innerHTML += `
-            <div class="flex p-2 items-center bg-blue-300 rounded-[10px]">
+            <div class="duration-150 hover:scale-105 flex p-2 items-center bg-blue-300 rounded-[10px]">
                     <div class="flex gap-5 items-center">
                         <img src="${el.photo}" width="18%" alt="Photo">
                         <div>
@@ -347,7 +421,7 @@ function affiche_Salle_personnel() {
                             <p class="font-[400]">${el.role}</p>
                         </div>
                     </div>
-                    <button onclick="add_perssone(${el.id})" class=" font-[500]  rounded-[10px] bg-green-700 text-white text-[12px] p-2 ">add</button>
+                    <button onclick="add_perssone(${el.id})" class=" font-[500]  rounded-[10px] bg-green-700 text-white text-[12px] p-2 hover:bg-green-500 ">add</button>
                 </div>
             `
     })
@@ -362,7 +436,7 @@ function affiche_Salle_archive() {
     list_archive.forEach(el => {
 
         Worker.innerHTML += `
-            <div class="flex p-2 items-center bg-blue-300 rounded-[10px]">
+            <div class="duration-150 hover:scale-105 flex p-2 items-center bg-blue-300 rounded-[10px]">
                     <div class="flex gap-5 items-center">
                         <img src="${el.photo}" width="18%" alt="Photo">
                         <div>
@@ -370,7 +444,7 @@ function affiche_Salle_archive() {
                             <p class="font-[400]">${el.role}</p>
                         </div>
                     </div>
-                    <button onclick="add_archive(${el.id})" class=" font-[500]  rounded-[10px] bg-green-700 text-white text-[12px] p-2 ">add</button>
+                    <button onclick="add_archive(${el.id})" class=" font-[500]  rounded-[10px] bg-green-700 text-white text-[12px] p-2 hover:bg-green-500 ">add</button>
                 </div>
             `
     })
@@ -480,7 +554,7 @@ function add_serveur(id) {
             }
         })
     }
-    
+
 }
 
 let cont_Salle_scurite = document.getElementById("cont_Salle_scurite")
@@ -696,13 +770,13 @@ function affiche_conference() {
     cont_Salle_conference.innerHTML = ""
     employent_dans_conference.forEach(el => {
         cont_Salle_conference.innerHTML += `
-        <div class="relative rounded-[5px] flex bg-gray-400  p-[4px]">
+        <div class="hover:scale-105 duration-150 relative rounded-[5px] flex bg-gray-400  p-[4px]">
             <div onclick='affiche_info(${JSON.stringify(el)} ,"salle conference")' class="flex relative flex-col items-center text-white lg:text-[9px] text-[3px] font-[700]">
                 <img id="${el.id}"  src="${el.photo}" alt="photo" class="w-4 lg:w-10 lg:h-10 relative h-4 bg-blue-500 rounded-full">
                 <p class="absolute bg-black lg:red-500 lg:w-12 lg:top-10 w-6 px-[1px] py-[1px] top-4 rounded-full">${el.name}</p> 
             </div>
             <div class="flex items-start">
-                <button onclick='retour_conference_Staff(${JSON.stringify(el)})' class="absolute lg:bottom-10 right-[0px] bottom-5 rounded-full lg:w-3 lg:text-[8px] text-[5px] bg-red-800 text-white w-2">X</button>
+                <button onclick='retour_conference_Staff(${JSON.stringify(el)})' class="absolute lg:bottom-10 right-[0px] bottom-5 rounded-full lg:w-3 lg:text-[8px] text-[5px] bg-red-600 text-white w-2 hover:bg-red-400">X</button>
              </div>
         </div>
             `
@@ -713,13 +787,13 @@ function affiche_reception() {
     cont_Salle_Reception.innerHTML = ""
     employent_dans_reception.forEach(el => {
         cont_Salle_Reception.innerHTML += `
-        <div class="relative rounded-[5px] flex bg-gray-400  p-[4px]">
+        <div class="hover:scale-105 duration-150 relative rounded-[5px] flex bg-gray-400  p-[4px]">
             <div onclick='affiche_info(${JSON.stringify(el)} , "salle Reception")' class="flex relative flex-col items-center text-white lg:text-[9px] text-[3px] font-[700]">
                 <img id="${el.id}"  src="${el.photo}" alt="photo" class="w-4 lg:w-10 lg:h-10 relative h-4 bg-blue-500 rounded-full">
                 <p class="absolute bg-black lg:red-500 lg:w-12 lg:top-10 w-6 px-[1px] py-[1px] top-4 rounded-full">${el.name}</p> 
             </div>
             <div class="flex items-start">
-                <button onclick='retour_reception_Staff(${JSON.stringify(el)})' class="absolute lg:bottom-10 right-[0px] bottom-5 rounded-full lg:w-3 lg:text-[8px] text-[5px] bg-red-800 text-white w-2">X</button>
+                <button onclick='retour_reception_Staff(${JSON.stringify(el)})' class="absolute lg:bottom-10 right-[0px] bottom-5 rounded-full lg:w-3 lg:text-[8px] text-[5px] bg-red-600 text-white w-2 hover:bg-red-400">X</button>
             </div>
         </div>
             `
@@ -731,13 +805,13 @@ function affiche_serveur() {
     cont_Salle_serveurs.innerHTML = ""
     employent_dans_serveur.forEach(el => {
         cont_Salle_serveurs.innerHTML += `
-        <div class="relative rounded-[5px] flex bg-gray-400  p-[4px]">
+        <div class="hover:scale-105 duration-150 relative rounded-[5px] flex bg-gray-400  p-[4px]">
             <div onclick='affiche_info(${JSON.stringify(el)} , "salle serveur")' class="flex relative flex-col items-center text-white lg:text-[9px] text-[3px] font-[700]">
                 <img id="${el.id}"  src="${el.photo}" alt="photo" class="w-4 lg:w-10 lg:h-10 relative h-4 bg-blue-500 rounded-full">
                 <p class="absolute bg-black lg:red-500 lg:w-12 lg:top-10 w-6 px-[1px] py-[1px] top-4 rounded-full">${el.name}</p> 
             </div>
             <div class="flex items-start">
-                <button onclick='retour_serveur_Staff(${JSON.stringify(el)})' class="absolute lg:bottom-10 right-[0px] bottom-5 rounded-full lg:w-3 lg:text-[8px] text-[5px] bg-red-800 text-white w-2">X</button>
+                <button onclick='retour_serveur_Staff(${JSON.stringify(el)})' class="absolute lg:bottom-10 right-[0px] bottom-5 rounded-full lg:w-3 lg:text-[8px] text-[5px] bg-red-600 text-white w-2 hover:bg-red-400">X</button>
             </div>
         </div>
             `
@@ -749,13 +823,13 @@ function affiche_securite() {
     cont_Salle_scurite.innerHTML = ""
     employent_dans_securite.forEach(el => {
         cont_Salle_scurite.innerHTML += `
-        <div class="relative rounded-[5px] flex bg-gray-400  p-[4px]">
+        <div class="hover:scale-105 duration-150 relative rounded-[5px] flex bg-gray-400  p-[4px]">
             <div onclick='affiche_info(${JSON.stringify(el)}, "salle securite")' class="flex relative flex-col items-center text-white lg:text-[9px] text-[3px] font-[700]">
                 <img id="${el.id}"  src="${el.photo}" alt="photo" class="w-4 lg:w-10 lg:h-10 relative h-4 bg-blue-500 rounded-full">
                 <p class="absolute bg-black lg:red-500 lg:w-12 lg:top-10 w-6 px-[1px] py-[1px] top-4 rounded-full">${el.name}</p> 
             </div>
             <div class="flex items-start">
-                <button onclick='retour_securite_Staff(${JSON.stringify(el)})' class="absolute lg:bottom-10 right-[0px] bottom-5 rounded-full lg:w-3 lg:text-[8px] text-[5px] bg-red-800 text-white w-2">X</button>
+                <button onclick='retour_securite_Staff(${JSON.stringify(el)})' class="absolute lg:bottom-10 right-[0px] bottom-5 rounded-full lg:w-3 lg:text-[8px] text-[5px] bg-red-600 text-white w-2 hover:bg-red-400">X</button>
             </div>
         </div>
             `
@@ -767,13 +841,13 @@ function affiche_perssone() {
     cont_Salle_personnel.innerHTML = ""
     employent_dans_perssone.forEach(el => {
         cont_Salle_personnel.innerHTML += `
-        <div class="relative rounded-[5px] flex bg-gray-400  p-[4px]">
+        <div class="hover:scale-105 duration-150 relative rounded-[5px] flex bg-gray-400  p-[4px]">
             <div onclick='affiche_info(${JSON.stringify(el)} , "salle personel")' class="flex relative flex-col items-center text-white lg:text-[9px] text-[3px] font-[700]">
                 <img id="${el.id}"  src="${el.photo}" alt="photo" class="w-4 lg:w-10 lg:h-10 relative h-4 bg-blue-500 rounded-full">
                 <p class="absolute bg-black lg:red-500 lg:w-12 lg:top-10 w-6 px-[1px] py-[1px] top-4 rounded-full">${el.name}</p> 
             </div>
             <div class="flex items-start">
-                <button onclick='retour_perssone_Staff(${JSON.stringify(el)},"perssone")' class="absolute lg:bottom-10 right-[0px] bottom-5 rounded-full lg:w-3 lg:text-[8px] text-[5px] bg-red-800 text-white w-2">X</button>
+                <button onclick='retour_perssone_Staff(${JSON.stringify(el)},"perssone")' class="absolute lg:bottom-10 right-[0px] bottom-5 rounded-full lg:w-3 lg:text-[8px] text-[5px] bg-red-600 text-white w-2 hover:bg-red-400">X</button>
             </div>
         </div>
             `
@@ -785,13 +859,13 @@ function affiche_archive() {
     cont_Salle_archives.innerHTML = ""
     employent_dans_archive.forEach(el => {
         cont_Salle_archives.innerHTML += `
-        <div class="relative rounded-[5px] flex bg-gray-400  p-[4px]">
+        <div class="hover:scale-105 duration-150 relative rounded-[5px] flex bg-gray-400  p-[4px]">
             <div onclick='affiche_info(${JSON.stringify(el)},"salle archive")' class="flex relative flex-col items-center text-white lg:text-[9px] text-[3px] font-[700]">
                 <img id="${el.id}"  src="${el.photo}" alt="photo" class="w-4 lg:w-10 lg:h-10 relative h-4 bg-blue-500 rounded-full">
                 <p class="absolute bg-black lg:red-500 lg:w-12 lg:top-10 w-6 px-[1px] py-[1px] top-4 rounded-full">${el.name}</p> 
             </div>
             <div class="flex items-start">
-                <button onclick='retour_archive_Staff(${JSON.stringify(el)})' class="absolute lg:bottom-10 right-[0px] bottom-5 rounded-full lg:w-3 lg:text-[8px] text-[5px] bg-red-800 text-white w-2">X</button>
+                <button onclick='retour_archive_Staff(${JSON.stringify(el)})' class="absolute lg:bottom-10 right-[0px] bottom-5 rounded-full lg:w-3 lg:text-[8px] text-[5px] bg-red-600 text-white w-2 hover:bg-red-400">X</button>
             </div>
         </div>
             `
@@ -812,10 +886,10 @@ function zone_restreinte_conference() {
 
     if (cont_Salle_conference.children.length === 0) {
         // console.log("true");
-        zone_conference.classList.add("bg-red-500/50")
+        zone_conference.classList.add("bg-red-500/70", "animate-pulse")
     }
     else
-        zone_conference.classList.remove("bg-red-500/50")
+        zone_conference.classList.remove("bg-red-500/70", "animate-pulse")
 
 }
 
@@ -824,10 +898,10 @@ function zone_restreinte_serveurs() {
 
     if (cont_Salle_serveurs.children.length == 0) {
         // console.log("true");
-        zone_serveurs.classList.add("bg-red-500/50")
+        zone_serveurs.classList.add("bg-red-500/70", "animate-pulse")
     }
     else
-        zone_serveurs.classList.remove("bg-red-500/50")
+        zone_serveurs.classList.remove("bg-red-500/70", "animate-pulse")
 
 }
 
@@ -836,10 +910,10 @@ function zone_restreinte_securite() {
 
     if (cont_Salle_scurite.children.length == 0) {
         // console.log("true");
-        zone_securite.classList.add("bg-red-500/50")
+        zone_securite.classList.add("bg-red-500/70", "animate-pulse")
     }
     else
-        zone_securite.classList.remove("bg-red-500/50")
+        zone_securite.classList.remove("bg-red-500/70", "animate-pulse")
 
 }
 
@@ -848,10 +922,10 @@ function zone_restreinte_archive() {
 
     if (cont_Salle_archives.children.length == 0) {
         // console.log("true");
-        zone_archive.classList.add("bg-red-500/50")
+        zone_archive.classList.add("bg-red-500/70", "animate-pulse")
     }
     else
-        zone_archive.classList.remove("bg-red-500/50")
+        zone_archive.classList.remove("bg-red-500/70", "animate-pulse")
 
 }
 zone_restreinte_conference()

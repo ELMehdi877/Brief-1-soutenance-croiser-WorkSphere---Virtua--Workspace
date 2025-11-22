@@ -11,12 +11,13 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <link rel="stylesheet" href="style.css">
+    
 
     <!-- <link
         href="https://fonts.googleapis.com/css2?family=Belgrano&family=Leckerli+One&family=Lexend:wght@100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Volkhov:ital,wght@0,400;0,700;1,400;1,700&display=swap"
         rel="stylesheet"> -->
 </head>
-
 <body class="flex lg:items-start lg:flex-row flex-col items-center lg:gap-1 gap-2 bg-gray-800">
 
     <section id="open_worker"
@@ -36,7 +37,7 @@
     <section
         class="font-[700] order-last lg:order-first bg-gray-300 rounded-[10px] flex flex-col gap-2 p-4 lg:w-[27%] w-[100%]">
         <h2>Unassigned Staff</h2>
-        <button id="add_new_worker" class="font-[400] bg-blue-500 text-white p-2 rounded-[10px]">Add New Worker</button>
+        <button id="add_new_worker" class="font-[400] bg-blue-600  duration-150 hover:bg-blue-400 text-white p-2 rounded-[10px]">Add New Worker</button>
         <div id="Unassigned_Staff"
             class="bg-white p-3 gap-2 lg:h-150 h-80 overflow-y-scroll [scrollbar-width:none] flex flex-col rounded-[10px]">
             <!-- <div class="flex p-2 items-center bg-blue-300 rounded-[10px]">
@@ -94,7 +95,7 @@
                     <!-- <img src="" alt="photo" class="w-5 lg:w-10 lg:h-10 relative h-5 bg-blue-500 rounded-full"> -->
                 </div>
                 <button onclick="affiche_Salle_conference()" id="Salle_conference"
-                    class="w-3 lg:w-6 lg:h-6 relative h-3 bg-blue-800 text-white rounded-full font-[700] text-[9px] lg:text-[18px] ">+</button>
+                    class="w-3 lg:w-6 lg:h-6 relative h-3 bg-green-700 text-white rounded-full font-[700] text-[9px] lg:text-[18px] duration-150 hover:bg-green-400 ">+</button>
             </div>
         </div>
         <div class="flex justify-center items-center border-3 row-span-3 col-span-4">space</div>
@@ -105,7 +106,7 @@
                     <!-- <img src="" alt="photo" class="w-5 lg:w-10 lg:h-10 relative h-5 bg-blue-500 rounded-full"> -->
                 </div>
                 <button id="Salle_serveurs" onclick="affiche_Salle_serveurs()"
-                    class="w-3 lg:w-6 lg:h-6 relative h-3 bg-blue-800 text-white rounded-full text-[9px] font-[700] lg:text-[18px] ">+</button>
+                    class="w-3 lg:w-6 lg:h-6 relative h-3 bg-green-700 text-white rounded-full text-[9px] font-[700] lg:text-[18px] duration-150 hover:bg-green-400 ">+</button>
 
             </div>
         </div>
@@ -116,7 +117,7 @@
                     <!-- <img src="" alt="photo" class="w-5 lg:w-10 lg:h-10 relative h-5 bg-blue-500 rounded-full"> -->
                 </div>
                 <button id="Salle_scurite" onclick="affiche_Salle_securite()"
-                    class="w-3 lg:w-6 lg:h-6 relative h-3 bg-blue-800 text-white rounded-full text-[9px] font-[700] lg:text-[18px] ">+</button>
+                    class="w-3 lg:w-6 lg:h-6 relative h-3 bg-green-700 text-white rounded-full text-[9px] font-[700] lg:text-[18px] duration-150 hover:bg-green-400 ">+</button>
             </div>
         </div>
         <div class="flex justify-center items-center border-3 row-span-2 col-span-10 p-1">
@@ -126,7 +127,7 @@
                     <!-- <img src="" alt="photo" class="w-5 lg:w-10 lg:h-10 relative h-5 bg-blue-500 rounded-full"> -->
                 </div>
                 <button id="Salle_Reception" onclick="affiche_Salle_Reception()"
-                    class="w-3 lg:w-6 lg:h-6 relative h-3 bg-blue-800 text-white rounded-full text-[9px] font-[700] lg:text-[18px] ">+</button>
+                    class="w-3 lg:w-6 lg:h-6 relative h-3 bg-green-700 text-white rounded-full text-[9px] font-[700] lg:text-[18px] duration-150 hover:bg-green-400 ">+</button>
 
             </div>
         </div>
@@ -138,7 +139,7 @@
                     <!-- <img src="" alt="photo" class="w-5 lg:w-10 lg:h-10 relative h-5 bg-blue-500 rounded-full"> -->
                 </div>
                 <button id="Salle_personnel" onclick="affiche_Salle_personnel()"
-                    class="w-3 lg:w-6 lg:h-6 relative h-3 bg-blue-800 text-white rounded-full text-[9px] font-[700] lg:text-[18px] ">+</button>
+                    class="w-3 lg:w-6 lg:h-6 relative h-3 bg-green-700 text-white rounded-full text-[9px] font-[700] lg:text-[18px] duration-150 hover:bg-green-400 ">+</button>
 
             </div>
         </div>
@@ -149,28 +150,28 @@
                     <!-- <img src="" alt="photo" class="w-5 lg:w-10 lg:h-10 relative h-5 bg-blue-500 rounded-full"> -->
                 </div>
                 <button id="Salle_archives" onclick="affiche_Salle_archive()"
-                    class="w-3 lg:w-6 lg:h-6 relative h-3 bg-blue-800 text-white rounded-full text-[9px] font-[700] lg:text-[18px] ">+</button>
+                    class="w-3 lg:w-6 lg:h-6 relative h-3 bg-green-700 text-white rounded-full text-[9px] font-[700] lg:text-[18px] duration-150 hover:bg-green-400 ">+</button>
 
             </div>
         </div>
     </section>
 
-    <section class="section_form hidden absolute w-full h-screen flex justify-center items-center backdrop-blur bg-black/30">
-        <div class="bg-white relative items-center flex flex-col rounded-[10px] py-2 px-10 lg:w-[35%] w-90">
+    <section class="section_form   absolute w-full h-screen flex justify-center items-center backdrop-blur bg-black/50">
+        <div style="background: linear-gradient(45deg,rgba(56, 109, 132, 0.7),rgba(85, 146, 127, 0.500),rgba(56, 109, 132, 0.7));" class="relative items-center flex flex-col rounded-[10px] py-5 px-10 lg:w-[35%] w-90">
             <div class="flex relative">
-                <h2 class="font-[700] text-[25px]  text-gray-800 underline">Add New Worker</h2>
+                <h2 class="font-[700] text-[25px]  text-gray-300 underline">Add New Worker</h2>
                 <!-- <button id="close" class="font-[700] lg:left-[50%] relative left-[20%] text-[25px] ">X</button> -->
                 <button id="close"
                     class="rounded-[5px] w-8 bg-red-500 text-white absolute lg:left-80 mt-2 left-58">X</button>
             </div>
             <div class=" w-[100%] lg:h-160 h-150 overflow-y-scroll [scrollbar-width:none]">
-                <form id="form" class="flex flex-col  text-black  gap-1 w-[100%] ">
+                <form id="form" class="flex flex-col  text-white  gap-1 w-[100%] ">
                     <label for="name" class="font-[500]">name</label>
                     <input name="name" type="text" required id="name"
-                        class="bg-white  p-2 mb-2 h-10 border-b-2 border">
+                        class="p-2 mb-2 h-10 border-b-3 border rounded-[5px]">
                     <label class="font-[500]">Rôle</label>
                     <select required id="role"
-                        class="bg-white/80 border-2 p-2 mb-2 h-10 border-black rounded-[5px]">
+                        class="p-2 mb-2 text-white focus:outline-none h-10 border-b-3 border rounded-[5px]">
                         <option value="Réceptionnistes">Réceptionnistes</option>
                         <option value="Techniciens IT">Techniciens IT</option>
                         <option value="Sécurité">sécurité</option>
@@ -180,21 +181,28 @@
                     </select>
                     <label for="URL" class="font-[500]">Photo (URL)</label>
                     <input name="URL" type="url" id="url"
-                        class="bg-white/80 border-2 p-2 mb-2 h-10 border-black rounded-[5px]">
+                        class="p-2 mb-2 h-10 border-b-3 border rounded-[5px]">
                     <img id="photo" src="" class="bg-gray-400 lg:w-30 lg:h-30 w-20 h-20 ml-[35%] rounded-full"></img>
                     <label for="email" class="font-[500]">email</label>
                     <input name="email" id="email" required type="email"
-                        class="bg-white/80 border-2 p-2 mb-2 h-10 border-black rounded-[5px]">
+                        class="p-2 mb-2 h-10 border-b-3 border rounded-[5px]">
                     <label for="numero" class="font-[500]">numero</label>
                     <input name="numero" type="text" id="numero" required id="numero"
-                        class="bg-white/80 border-2 p-2 mb-2 h-10 border-black rounded-[5px]">
+                        class="p-2 mb-2 h-10 border-b-3 border rounded-[5px]">
                     <label class="font-[500]">Expériences professionnelles</label>
                     <div id="experience" class="flex flex-col items-center gap-1">
+                        <!-- <div class="flex flex-wrap border-2 border-black rounded-[10px] m-1 p-2 w-full items-center gap-1">
+                            <input required type="text" class="exp p-2 mb-2 h-10 border-b-3 border rounded-[5px] w-full" placeholder="le Nom de l'entreprise">
+                            <input required type="text" class="exp p-2 mb-2 h-10 border-b-3 border rounded-[5px] w-full" placeholder="le Nom de l'entreprise">
+                            <input required type="date" class="exp p-2 mb-2 h-10 border-b-3 border rounded-[5px] w-full" placeholder="la date de debut">
+                            <input required type="date" class="exp p-2 mb-2 h-10 border-b-3 border rounded-[5px] w-full" placeholder="la date de fin">
+                            <button class="font-[500] w-full rounded-[10px] bg-red-600 text-white text-[12px] p-1 h-8 border-2 hover:bg-red-400">remove</button>
+                        </div> -->
                     </div>
                     <button type="button" id="add_experience"
-                        class="font-[500]  rounded-[10px] w-20 text-white bg-black lg:text-[15px] text-[12px] p-1">ajouter</button>
+                        class="font-[500]  rounded-[10px] w-20 text-white bg-black/60 hover:bg-black/20 lg:text-[15px] text-[12px] p-1">ajouter</button>
                     <button type="submit" id="submit"
-                        class="font-[600]  rounded-[10px] mt-5 text-white lg:text-[18px] text-[12px] p-2 bg-green-600 ">Submit</button>
+                        class="font-[600]  bg-linear-[45deg,#2abb8d,#188fc2,#2abb8d]  rounded-[10px] mt-5 text-white lg:text-[18px] text-[12px] p-2 ">Submit</button>
                 </form>
             </div>
         </div>
