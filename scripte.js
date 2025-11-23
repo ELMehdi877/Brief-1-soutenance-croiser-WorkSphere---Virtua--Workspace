@@ -46,16 +46,16 @@ function affiche_exp() {
 
     let input_nom_entreprise = document.createElement("input")
     const div = document.createElement("div")
-    div.className = "flex flex-wrap border-2 border-black rounded-[10px] m-1 p-2 w-full items-center gap-1"
+    div.className = "exp flex flex-wrap border-2 border-black rounded-[10px] m-1 p-2 w-full items-center gap-1"
 
-    input_nom_entreprise.className = "exp p-2 mb-2 h-10 border-b-3 border rounded-[5px] w-full"
+    input_nom_entreprise.className = "nom_entreprise p-2 mb-2 h-10 border-b-3 border rounded-[5px] w-full"
     input_nom_entreprise.type = "text"
     input_nom_entreprise.placeholder = "le Nom de l'entreprise"
     input_nom_entreprise.setAttribute('required', '')
 
 
     let input_nom_poste = document.createElement("input")
-    input_nom_poste.className = "exp p-2 mb-2 h-10 border-b-3 border rounded-[5px] w-full"
+    input_nom_poste.className = "nom_poste p-2 mb-2 h-10 border-b-3 border rounded-[5px] w-full"
     input_nom_poste.type = "text"
     input_nom_poste.placeholder = "le Nom de poste"
     input_nom_poste.setAttribute('required', '')
@@ -63,7 +63,7 @@ function affiche_exp() {
 
 
     let input_date_debut = document.createElement("input")
-    input_date_debut.className = "exp p-2 mb-2 h-10 border-b-3 border rounded-[5px] w-full"
+    input_date_debut.className = "date_start p-2 mb-2 h-10 border-b-3 border rounded-[5px] w-full"
     input_date_debut.type = "date"
     input_date_debut.placeholder = "la date de debut"
     input_date_debut.setAttribute('required', '')
@@ -71,7 +71,7 @@ function affiche_exp() {
 
 
     let input_date_fin = document.createElement("input")
-    input_date_fin.className = "exp p-2 mb-2 h-10 border-b-3 border rounded-[5px] w-full"
+    input_date_fin.className = "date_end p-2 mb-2 h-10 border-b-3 border rounded-[5px] w-full"
     input_date_fin.type = "date"
     input_date_fin.placeholder = "la date de fin"
     input_date_fin.setAttribute('required', '')
@@ -84,14 +84,14 @@ function affiche_exp() {
 
     div.addEventListener('change', () => {
         if (input_date_fin.value && input_date_fin.value < input_date_debut.value) {
-            exps_inputs = ''
+
             div.classList.add("bg-red-500/80")
             input_date_fin.value = '';
             Toastify({
                 text: "verifie la date",
                 duration: 3000,
-                gravity: "top", 
-                position: "center", 
+                gravity: "top",
+                position: "center",
                 style: {
                     background: "red",
                 }
@@ -100,15 +100,6 @@ function affiche_exp() {
 
         else {
             div.classList.remove("bg-red-500/80")
-            if (input_nom_entreprise.value !== "" && input_nom_poste.value !== "" && input_date_debut.value !== "" && input_date_fin.value !== "") {
-                exp_employent = {
-                    entreprise: input_nom_entreprise.value.trim(),
-                    role_ent: input_nom_poste.value.trim(),
-                    date_debut: input_date_debut.value.trim(),
-                    date_fin: input_date_fin.value.trim(),
-                }
-                container_exps.push(exp_employent)
-            }
         }
 
     });
@@ -116,13 +107,6 @@ function affiche_exp() {
     button.addEventListener("click", (e) => {
         e.preventDefault()
         div.remove()
-        container_exps = container_exps.filter(el =>
-            el.entreprise !== input_nom_entreprise.value.trim() ||
-            el.role_ent !== input_nom_poste.value.trim() ||
-            el.date_debut !== input_date_debut.value.trim() ||
-            el.date_fin !== input_date_fin.value.trim()
-        )
-
     })
 
     div.appendChild(input_nom_entreprise)
@@ -162,10 +146,28 @@ form_cont.addEventListener('submit', (e) => {
         url = "https://www.shutterstock.com/shutterstock/photos/1131880403/display_1500/stock-vector-user-profile-avatar-1131880403.jpg"
     }
 
-    i = Number(localStorage.getItem("id"))
+    i = Number(localStorage.getItem("id")) || 0
 
     if (regex_name.test(name) && regex_email.test(email) && regex_numero.test(numero)) {
-    
+        let exp = document.querySelectorAll('.exp')
+        exp.forEach(el => {
+            let nom_entreprise = el.querySelector('.nom_entreprise').value
+            let nom_poste = el.querySelector('.nom_poste').value
+            let date_start = el.querySelector('.date_start').value
+            let date_end = el.querySelector('.date_end').value
+            exp_employent = {
+                entreprise: nom_entreprise,
+                role_ent: nom_poste,
+                date_debut: date_start,
+                date_fin: date_end,
+            }
+            container_exps.push(exp_employent)
+            console.log(exp_employent);
+            console.log(container_exps);
+
+        })
+
+
         staf = {
             id: ++i,
             name: name,
@@ -176,7 +178,8 @@ form_cont.addEventListener('submit', (e) => {
             experiences: container_exps,
         }
 
-        document.getElementById('url').value=''
+        // document.getElementById('url').value = ''
+        container_exps = []
         form_cont.reset();
         localStorage.setItem("id", i)
         list_staf.push(staf)
@@ -197,18 +200,18 @@ form_cont.addEventListener('submit', (e) => {
             `
         }
         affiche_one_Unassigned_Staff()
-        photo.src=""
+        photo.src = ""
         Toastify({
             text: "un nouveau employent : " + name + " / " + role,
             duration: 3000,
-            gravity: "top", 
-            position: "center", 
+            gravity: "top",
+            position: "center",
             style: {
                 background: "green",
                 borderRadius: "10px",
             }
         }).showToast();
-        
+
     }
     else {
         Toastify({
@@ -467,7 +470,6 @@ function add_conference(id) {
                 localStorage.setItem("list_staf_local", JSON.stringify(list_staf))
                 affiche_tous_Unassigned_Staff()
                 affiche_Salle_conference()
-                zone_restreinte_conference()
             }
         })
     }
@@ -480,12 +482,14 @@ function add_reception(id) {
         list_Receptionnistes.forEach(el => {
             if (el.id === id) {
                 employent_dans_reception.push(el)
-                localStorage.setItem("reception", JSON.stringify(employent_dans_serveur))
+                localStorage.setItem("reception", JSON.stringify(employent_dans_reception))
                 affiche_reception()
                 list_staf = list_staf.filter(el => el.id !== id)
                 localStorage.setItem("list_staf_local", JSON.stringify(list_staf))
                 affiche_tous_Unassigned_Staff()
                 affiche_Salle_Reception()
+                zone_restreinte_reception()
+
             }
         })
     }
@@ -634,7 +638,6 @@ function supprime_conference(id) {
     employent_dans_conference = employent_dans_conference.filter(el => el.id !== id)
     localStorage.setItem("conference", JSON.stringify(employent_dans_conference))
     affiche_conference()
-    zone_restreinte_conference()
 
 }
 
@@ -651,6 +654,8 @@ function supprime_reception(id) {
     employent_dans_reception = employent_dans_reception.filter(el => el.id !== id)
     localStorage.setItem("reception", JSON.stringify(employent_dans_reception))
     affiche_reception()
+    zone_restreinte_reception()
+
 
 }
 
@@ -836,14 +841,14 @@ affiche_securite()
 affiche_perssone()
 affiche_archive()
 
-function zone_restreinte_conference() {
-    const zone_conference = document.getElementById('zone_conference')
+function zone_restreinte_reception() {
+    const zone_reception = document.getElementById('zone_reception')
 
-    if (cont_Salle_conference.children.length === 0) {
-        zone_conference.classList.add("bg-red-500/70", "animate-pulse")
+    if (cont_Salle_Reception.children.length === 0) {
+        zone_reception.classList.add("bg-red-500/70", "animate-pulse")
     }
     else
-        zone_conference.classList.remove("bg-red-500/70", "animate-pulse")
+        zone_reception.classList.remove("bg-red-500/70", "animate-pulse")
 
 }
 
@@ -879,7 +884,7 @@ function zone_restreinte_archive() {
         zone_archive.classList.remove("bg-red-500/70", "animate-pulse")
 
 }
-zone_restreinte_conference()
+zone_restreinte_reception()
 zone_restreinte_serveurs()
 zone_restreinte_securite()
 zone_restreinte_archive()
