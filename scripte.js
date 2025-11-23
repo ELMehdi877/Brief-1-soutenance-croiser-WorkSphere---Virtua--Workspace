@@ -578,7 +578,7 @@ function affiche_info(el, zone) {
     section_info.classList.remove("hidden")
     section_info.innerHTML = `
     <div style="background: linear-gradient(45deg,rgba(0, 0, 0, 0.87),rgba(87, 87, 87, 0.81),rgba(0, 0, 0, 0.87));" class="relative w-95 items-center flex flex-col lg:p-4 p-3 gap-2 lg:w-160 text-white rounded-[10px] font-[400]">
-        <h2 class="font-[700] lg:text-[50px] text-[20px]">${el.name}</h2>
+        <h2 class="font-[800] text-gray-300 lg:text-[50px] text-[20px]">${el.name}</h2>
         <div class="flex flex-col items-center lg:gap-4 gap-2 ">
         <div class="flex justify-center items-center gap-10">
         <img src="${el.photo}" alt="photo" class="w-[35%] rounded-[15px] ">
@@ -724,7 +724,7 @@ function affiche_conference() {
     employent_dans_conference.forEach(el => {
         cont_Salle_conference.innerHTML += `
         <div class="hover:scale-105 duration-150 relative rounded-[5px] flex bg-gray-400  p-[4px]">
-            <div onclick='affiche_info(${JSON.stringify(el)} ,"salle conference")' class="flex relative flex-col items-center text-white lg:text-[9px] text-[3px] font-[700]">
+            <div onclick='affiche_info(${JSON.stringify(el)} ,"Salle Conference")' class="flex relative flex-col items-center text-white lg:text-[9px] text-[3px] font-[700]">
                 <img id="${el.id}"  src="${el.photo}" alt="photo" class="w-4 lg:w-10 lg:h-10 relative h-4 bg-blue-500 rounded-full">
                 <p class="absolute bg-black lg:red-500 lg:w-12 lg:top-10 w-6 px-[1px] py-[1px] top-4 rounded-full">${el.name}</p> 
             </div>
@@ -743,7 +743,7 @@ function affiche_reception() {
     employent_dans_reception.forEach(el => {
         cont_Salle_Reception.innerHTML += `
         <div class="hover:scale-105 duration-150 relative rounded-[5px] flex bg-gray-400  p-[4px]">
-            <div onclick='affiche_info(${JSON.stringify(el)} , "salle Reception")' class="flex relative flex-col items-center text-white lg:text-[9px] text-[3px] font-[700]">
+            <div onclick='affiche_info(${JSON.stringify(el)} , "Salle Reception")' class="flex relative flex-col items-center text-white lg:text-[9px] text-[3px] font-[700]">
                 <img id="${el.id}"  src="${el.photo}" alt="photo" class="w-4 lg:w-10 lg:h-10 relative h-4 bg-blue-500 rounded-full">
                 <p class="absolute bg-black lg:red-500 lg:w-12 lg:top-10 w-6 px-[1px] py-[1px] top-4 rounded-full">${el.name}</p> 
             </div>
@@ -761,7 +761,7 @@ function affiche_serveur() {
     employent_dans_serveur.forEach(el => {
         cont_Salle_serveurs.innerHTML += `
         <div class="hover:scale-105 duration-150 relative rounded-[5px] flex bg-gray-400  p-[4px]">
-            <div onclick='affiche_info(${JSON.stringify(el)} , "salle serveur")' class="flex relative flex-col items-center text-white lg:text-[9px] text-[3px] font-[700]">
+            <div onclick='affiche_info(${JSON.stringify(el)} , "Salle Serveur")' class="flex relative flex-col items-center text-white lg:text-[9px] text-[3px] font-[700]">
                 <img id="${el.id}"  src="${el.photo}" alt="photo" class="w-4 lg:w-10 lg:h-10 relative h-4 bg-blue-500 rounded-full">
                 <p class="absolute bg-black lg:red-500 lg:w-12 lg:top-10 w-6 px-[1px] py-[1px] top-4 rounded-full">${el.name}</p> 
             </div>
@@ -779,7 +779,7 @@ function affiche_securite() {
     employent_dans_securite.forEach(el => {
         cont_Salle_scurite.innerHTML += `
         <div class="hover:scale-105 duration-150 relative rounded-[5px] flex bg-gray-400  p-[4px]">
-            <div onclick='affiche_info(${JSON.stringify(el)}, "salle securite")' class="flex relative flex-col items-center text-white lg:text-[9px] text-[3px] font-[700]">
+            <div onclick='affiche_info(${JSON.stringify(el)}, "Salle Securite")' class="flex relative flex-col items-center text-white lg:text-[9px] text-[3px] font-[700]">
                 <img id="${el.id}"  src="${el.photo}" alt="photo" class="w-4 lg:w-10 lg:h-10 relative h-4 bg-blue-500 rounded-full">
                 <p class="absolute bg-black lg:red-500 lg:w-12 lg:top-10 w-6 px-[1px] py-[1px] top-4 rounded-full">${el.name}</p> 
             </div>
@@ -797,7 +797,7 @@ function affiche_perssone() {
     employent_dans_perssone.forEach(el => {
         cont_Salle_personnel.innerHTML += `
         <div class="hover:scale-105 duration-150 relative rounded-[5px] flex bg-gray-400  p-[4px]">
-            <div onclick='affiche_info(${JSON.stringify(el)} , "salle personel")' class="flex relative flex-col items-center text-white lg:text-[9px] text-[3px] font-[700]">
+            <div onclick='affiche_info(${JSON.stringify(el)} , "Salle Personel")' class="flex relative flex-col items-center text-white lg:text-[9px] text-[3px] font-[700]">
                 <img id="${el.id}"  src="${el.photo}" alt="photo" class="w-4 lg:w-10 lg:h-10 relative h-4 bg-blue-500 rounded-full">
                 <p class="absolute bg-black lg:red-500 lg:w-12 lg:top-10 w-6 px-[1px] py-[1px] top-4 rounded-full">${el.name}</p> 
             </div>
@@ -815,7 +815,7 @@ function affiche_archive() {
     employent_dans_archive.forEach(el => {
         cont_Salle_archives.innerHTML += `
         <div class="hover:scale-105 duration-150 relative rounded-[5px] flex bg-gray-400  p-[4px]">
-            <div onclick='affiche_info(${JSON.stringify(el)},"salle archive")' class="flex relative flex-col items-center text-white lg:text-[9px] text-[3px] font-[700]">
+            <div onclick='affiche_info(${JSON.stringify(el)},"Salle Archive")' class="flex relative flex-col items-center text-white lg:text-[9px] text-[3px] font-[700]">
                 <img id="${el.id}"  src="${el.photo}" alt="photo" class="w-4 lg:w-10 lg:h-10 relative h-4 bg-blue-500 rounded-full">
                 <p class="absolute bg-black lg:red-500 lg:w-12 lg:top-10 w-6 px-[1px] py-[1px] top-4 rounded-full">${el.name}</p> 
             </div>
