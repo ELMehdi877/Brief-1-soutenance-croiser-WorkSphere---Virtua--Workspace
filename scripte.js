@@ -601,7 +601,7 @@ function affiche_info(el, zone) {
             </div>
         </div>
         <p class="font-[500]">localisation actuelle : <span class="font-[700]  text-[18px]">${zone}</span></p>
-        <button id="close_info" class="rounded-[5px] w-8 bg-red-700 text-white absolute lg:left-145 left-80 hover:bg-red-400">X</button>
+        <button id="close_info" class="rounded-[5px] w-8 bg-red-700 text-white absolute lg:left-145 left-75 hover:bg-red-400">X</button>
     </div> 
     
     `
