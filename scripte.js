@@ -41,25 +41,12 @@ add_experience.addEventListener('click', (e) => {
 
 })
 let container_exps = []
-// function affiche_exp() {
-//     id_exp++
-//     experience.innerHTML += `<div id="${id_exp}" class="flex flex-wrap border-2 border-black rounded-[10px] m-1 p-2 w-full items-center gap-1">
-//                             <input required type="text" class="exp_entroprise p-2 mb-2 h-10 border-b-3 border rounded-[5px] w-full" placeholder="le Nom de l'entreprise">
-//                             <input required type="text" class="exp_post p-2 mb-2 h-10 border-b-3 border rounded-[5px] w-full" placeholder="le Nom de l'entreprise">
-//                             <input required type="date" class="input_date_debut p-2 mb-2 h-10 border-b-3 border rounded-[5px] w-full" placeholder="la date de debut">
-//                             <input required type="date" class="input_date_fin p-2 mb-2 h-10 border-b-3 border rounded-[5px] w-full" placeholder="la date de fin">
-//                             <button onclick="supprime_exp(${id_exp})" class="font-[500] w-full rounded-[10px] bg-red-600 text-white text-[12px] p-1 h-8 border-2 hover:bg-red-400">remove</button>
-//                         </div>`
-
-
-// }
 
 function affiche_exp() {
 
     let input_nom_entreprise = document.createElement("input")
     const div = document.createElement("div")
     div.className = "flex flex-wrap border-2 border-black rounded-[10px] m-1 p-2 w-full items-center gap-1"
-    // div.style.background = "linear-gradient(45deg, rgba(0,0,0,0.6), rgba(0,0,0,0))";
 
     input_nom_entreprise.className = "exp p-2 mb-2 h-10 border-b-3 border rounded-[5px] w-full"
     input_nom_entreprise.type = "text"
@@ -103,8 +90,8 @@ function affiche_exp() {
             Toastify({
                 text: "verifie la date",
                 duration: 3000,
-                gravity: "top", // `top` or `bottom`
-                position: "center", // `left`, `center` or `right`
+                gravity: "top", 
+                position: "center", 
                 style: {
                     background: "red",
                 }
@@ -178,9 +165,7 @@ form_cont.addEventListener('submit', (e) => {
     i = Number(localStorage.getItem("id"))
 
     if (regex_name.test(name) && regex_email.test(email) && regex_numero.test(numero)) {
-        // exps_inputs.forEach(e => {
-        //     exps.push(e.value.trim())
-        // })
+    
         staf = {
             id: ++i,
             name: name,
@@ -192,7 +177,6 @@ form_cont.addEventListener('submit', (e) => {
         }
 
         document.getElementById('url').value=''
-        // exps_inputs=''
         form_cont.reset();
         localStorage.setItem("id", i)
         list_staf.push(staf)
@@ -217,8 +201,8 @@ form_cont.addEventListener('submit', (e) => {
         Toastify({
             text: "un nouveau employent : " + name + " / " + role,
             duration: 3000,
-            gravity: "top", // `top` or `bottom`
-            position: "center", // `left`, `center` or `right`
+            gravity: "top", 
+            position: "center", 
             style: {
                 background: "green",
                 borderRadius: "10px",
@@ -230,8 +214,8 @@ form_cont.addEventListener('submit', (e) => {
         Toastify({
             text: "enter votre donner correcte",
             duration: 3000,
-            gravity: "top", // `top` or `bottom`
-            position: "center", // `left`, `center` or `right`
+            gravity: "top",
+            position: "center",
             style: {
                 background: "red",
             }
@@ -239,73 +223,6 @@ form_cont.addEventListener('submit', (e) => {
     }
 })
 
-// form_cont.addEventListener('change', (e) => {
-//     const target = e.target;
-
-//     // --- Validation nom ---
-//     if (target.id === 'name') {
-//         let regex_name = /^[a-zA-Z\s]+$/;
-//         if (!regex_name.test(target.value.trim())) {
-//             target.classList.add('border-red-500'); // erreur
-//         } else {
-//             target.classList.remove('border-red-500');
-//         }
-//     }
-
-//     // --- Validation email ---
-//     if (target.id === 'email') {
-//         let regex_email = /^[a-zA-Z_.\d]+@[a-zA-Z]{1,7}\.(com|fr)$/;
-//         if (!regex_email.test(target.value.trim())) {
-//             target.classList.add('border-red-500');
-//         } else {
-//             target.classList.remove('border-red-500');
-//         }
-//     }
-
-//     // --- Validation numero ---
-//     if (target.id === 'numero') {
-//         let regex_numero = /^[0-9]{10}$/;
-//         if (!regex_numero.test(target.value.trim())) {
-//             target.classList.add('border-red-500');
-//         } else {
-//             target.classList.remove('border-red-500');
-//         }
-//     }
-
-//     // --- Validation role ---
-//     if (target.id === 'role') {
-//         if (target.value.trim() === '') {
-//             target.classList.add('border-red-500');
-//         } else {
-//             target.classList.remove('border-red-500');
-//         }
-//     }
-
-//     // --- Validation url (optionnelle) ---
-//     if (target.id === 'url') {
-//         if (target.value.trim() === '') {
-//             target.classList.remove('border-red-500'); // vide accepté
-//         } else {
-//             // petit check URL
-//             try {
-//                 new URL(target.value.trim());
-//                 target.classList.remove('border-red-500');
-//             } catch {
-//                 target.classList.add('border-red-500');
-//             }
-//         }
-//     }
-
-//     // --- Validation expériences ---
-//     const exps_inputs = document.querySelectorAll('.exp');
-//     exps_inputs.forEach(input => {
-//         if (input.value.trim() === '') {
-//             input.classList.add('border-red-500');
-//         } else {
-//             input.classList.remove('border-red-500');
-//         }
-//     });
-// });
 
 
 let photo = document.getElementById("photo")
@@ -397,7 +314,6 @@ function affiche_Salle_Reception() {
             `
     })
 }
-// affiche_Salle_conference()
 
 function affiche_Salle_serveurs() {
     type_role.textContent = "Salle des serveurs"
@@ -659,7 +575,6 @@ function add_archive(id) {
 const section_info = document.getElementById('section_info')
 function affiche_info(el, zone) {
 
-    // list_experience.appendChild(div)
     section_info.classList.remove("hidden")
     section_info.innerHTML = `
     <div style="background: linear-gradient(45deg,rgba(0, 0, 0, 0.87),rgba(87, 87, 87, 0.81),rgba(0, 0, 0, 0.87));" class="relative w-95 items-center flex flex-col lg:p-4 p-3 gap-2 lg:w-160 text-white rounded-[10px] font-[400]">
