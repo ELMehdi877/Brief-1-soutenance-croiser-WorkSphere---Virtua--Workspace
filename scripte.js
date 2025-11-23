@@ -584,9 +584,9 @@ function affiche_info(el, zone) {
     <div style="background: linear-gradient(45deg,rgba(0, 0, 0, 0.87),rgba(87, 87, 87, 0.81),rgba(0, 0, 0, 0.87));" class="relative w-95 items-center flex flex-col lg:p-4 p-3 gap-2 lg:w-160 text-white rounded-[10px] font-[400]">
         <h2 class="font-[800] text-gray-300 lg:text-[50px] text-[20px]">${el.name}</h2>
         <div class="flex flex-col items-center lg:gap-4 gap-2 ">
-        <div class="flex justify-center items-center gap-10">
+        <div class="flex justify-center items-center gap-5 lg:gap-7">
         <img src="${el.photo}" alt="photo" class="w-[35%] rounded-[15px] ">
-        <div class="flex flex-col text-[15px] lg:text-[18px] justify-center gap-2">
+        <div class="flex w-[65%] flex-col text-[15px] lg:text-[18px] justify-center bg-red-500 gap-2">
         <h3><span class="font-[700]">Role :</span> ${el.role}</h3>
         <p><span class="font-[700]">email :</span> ${el.email}</p>
         <p><span class="font-[700]">numero :</span> ${el.numero}</p>
