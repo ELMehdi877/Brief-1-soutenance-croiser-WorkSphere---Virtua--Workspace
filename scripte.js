@@ -94,6 +94,7 @@ function affiche_exp() {
                 position: "center",
                 style: {
                     background: "red",
+                    borderRadius: "10px",
                 }
             }).showToast();
         }
@@ -195,7 +196,7 @@ form_cont.addEventListener('submit', (e) => {
                             <p class="font-[400]">${role}</p>
                         </div>
                     </div>
-                    <button onclick="suprime_empl(${i})" class=" font-[500]  rounded-[10px] text-red-500 text-[12px] p-1 border-2 hover:bg-red-500 hover:text-white">remove</button>
+                    <button onclick="suprime_empl(${i},'${name}')" class=" font-[500]  rounded-[10px] text-red-500 text-[12px] p-1 border-2 hover:bg-red-500 hover:text-white">remove</button>
                 </div>
             `
         }
@@ -221,6 +222,7 @@ form_cont.addEventListener('submit', (e) => {
             position: "center",
             style: {
                 background: "red",
+                borderRadius: "10px",
             }
         }).showToast();
     }
@@ -239,10 +241,22 @@ url.addEventListener("input", () => {
 
 })
 
-function suprime_empl(id) {
+function suprime_empl(id, name) {
     list_staf = list_staf.filter(el => el.id !== id)
     localStorage.setItem("list_staf_local", JSON.stringify(list_staf))
     affiche_tous_Unassigned_Staff()
+    console.log(name);
+
+    Toastify({
+        text: "vous avez suprimer : " + name,
+        duration: 3000,
+        gravity: "top",
+        position: "center",
+        style: {
+            background: "red",
+            borderRadius: "10px",
+        }
+    }).showToast();
 }
 
 function affiche_tous_Unassigned_Staff() {
@@ -258,7 +272,7 @@ function affiche_tous_Unassigned_Staff() {
                             <p class="font-[400]">${el.role}</p>
                         </div>
                     </div>
-                    <button onclick="suprime_empl(${el.id})" class=" font-[500]  rounded-[10px] text-red-500 text-[12px] p-1 border-2 hover:bg-red-500 hover:text-white">remove</button>
+                    <button onclick="suprime_empl((${el.id}),'${el.name}')" class=" font-[500]  rounded-[10px] text-red-500 text-[12px] p-1 border-2 hover:bg-red-500 hover:text-white">remove</button>
                 </div>
             `
     })
@@ -457,6 +471,18 @@ let employent_dans_securite = JSON.parse(localStorage.getItem("securite")) || []
 let employent_dans_perssone = JSON.parse(localStorage.getItem("perssone")) || []
 let employent_dans_archive = JSON.parse(localStorage.getItem("archive")) || []
 
+function toast_add_worker(name , zone) {
+    Toastify({
+        text: "ajouter "+name+" au "+zone,
+        duration: 3000,
+        gravity: "top",
+        position: "center",
+        style: {
+            background: "Downy",
+            borderRadius: "10px",
+        }
+    }).showToast();
+}
 
 let cont_Salle_conference = document.getElementById("cont_Salle_conference")
 function add_conference(id) {
@@ -470,6 +496,7 @@ function add_conference(id) {
                 localStorage.setItem("list_staf_local", JSON.stringify(list_staf))
                 affiche_tous_Unassigned_Staff()
                 affiche_Salle_conference()
+                toast_add_worker(el.name , 'Salle Conference')
             }
         })
     }
@@ -489,6 +516,7 @@ function add_reception(id) {
                 affiche_tous_Unassigned_Staff()
                 affiche_Salle_Reception()
                 zone_restreinte_reception()
+                toast_add_worker(el.name , 'Salle Reception')
 
             }
         })
@@ -510,6 +538,7 @@ function add_serveur(id) {
                 affiche_tous_Unassigned_Staff()
                 affiche_Salle_serveurs()
                 zone_restreinte_serveurs()
+                toast_add_worker(el.name , 'Salle Serveur')
             }
         })
     }
@@ -529,6 +558,7 @@ function add_securite(id) {
                 affiche_tous_Unassigned_Staff()
                 affiche_Salle_securite()
                 zone_restreinte_securite()
+                toast_add_worker(el.name , 'Salle Securite')
             }
         })
     }
@@ -549,6 +579,7 @@ function add_perssone(id) {
                 localStorage.setItem("list_staf_local", JSON.stringify(list_staf))
                 affiche_tous_Unassigned_Staff()
                 affiche_Salle_personnel()
+                toast_add_worker(el.name , 'Salle Personel')
             }
         })
     }
@@ -570,6 +601,7 @@ function add_archive(id) {
                 affiche_tous_Unassigned_Staff()
                 affiche_Salle_archive()
                 zone_restreinte_archive()
+                toast_add_worker(el.name , 'Salle Archive')
             }
         })
     }
