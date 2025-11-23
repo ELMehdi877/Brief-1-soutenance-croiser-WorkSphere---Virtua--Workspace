@@ -10,8 +10,7 @@ close.addEventListener("click", () => {
 
 
 
-// console.log(list_staf);
-// console.log(staf);
+
 
 let list_staf = JSON.parse(localStorage.getItem("list_staf_local")) || []
 let i = 0
@@ -41,36 +40,16 @@ add_experience.addEventListener('click', (e) => {
 
 
 })
-let cont_test_exps = []
-let id_exp = 0
+let container_exps = []
 // function affiche_exp() {
-//     experience.innerHTML = `<div id="${id_exp}" class="flex flex-wrap border-2 border-black rounded-[10px] m-1 p-2 w-full items-center gap-1">
-//                             <input required type="text" class="exp p-2 mb-2 h-10 border-b-3 border rounded-[5px] w-full" placeholder="le Nom de l'entreprise">
-//                             <input required type="text" class="exp p-2 mb-2 h-10 border-b-3 border rounded-[5px] w-full" placeholder="le Nom de l'entreprise">
-//                             <input required type="date" class="exp p-2 mb-2 h-10 border-b-3 border rounded-[5px] w-full" placeholder="la date de debut">
-//                             <input required type="date" class="exp p-2 mb-2 h-10 border-b-3 border rounded-[5px] w-full" placeholder="la date de fin">
+//     id_exp++
+//     experience.innerHTML += `<div id="${id_exp}" class="flex flex-wrap border-2 border-black rounded-[10px] m-1 p-2 w-full items-center gap-1">
+//                             <input required type="text" class="exp_entroprise p-2 mb-2 h-10 border-b-3 border rounded-[5px] w-full" placeholder="le Nom de l'entreprise">
+//                             <input required type="text" class="exp_post p-2 mb-2 h-10 border-b-3 border rounded-[5px] w-full" placeholder="le Nom de l'entreprise">
+//                             <input required type="date" class="input_date_debut p-2 mb-2 h-10 border-b-3 border rounded-[5px] w-full" placeholder="la date de debut">
+//                             <input required type="date" class="input_date_fin p-2 mb-2 h-10 border-b-3 border rounded-[5px] w-full" placeholder="la date de fin">
 //                             <button onclick="supprime_exp(${id_exp})" class="font-[500] w-full rounded-[10px] bg-red-600 text-white text-[12px] p-1 h-8 border-2 hover:bg-red-400">remove</button>
 //                         </div>`
-//     experience.addEventListener('input', () => {
-//         if (input.value && input_date_fin.value < input_date_debut.value) {
-//             exps_inputs = ''
-//             div.classList.add("bg-red-500")
-//             input_date_fin.value = '';
-//             Toastify({
-//                 text: "verifie la date",
-//                 duration: 3000,
-//                 gravity: "top", // `top` or `bottom`
-//                 position: "center", // `left`, `center` or `right`
-//                 style: {
-//                     background: "red",
-//                 }
-//             }).showToast();
-//         }
-//         else {
-//             div.classList.remove("bg-red-500")
-//         }
-
-//     });
 
 
 // }
@@ -115,9 +94,8 @@ function affiche_exp() {
     const button = document.createElement("button")
     button.className = "font-[500] w-full rounded-[10px] bg-red-600 text-white text-[12px] p-1 h-8 border-2 hover:bg-red-400"
     button.textContent = "remove"
-    // button.setAttribute('onclick', 'console.log("true")')
 
-    div.addEventListener('input', () => {
+    div.addEventListener('change', () => {
         if (input_date_fin.value && input_date_fin.value < input_date_debut.value) {
             exps_inputs = ''
             div.classList.add("bg-red-500/80")
@@ -132,35 +110,31 @@ function affiche_exp() {
                 }
             }).showToast();
         }
+
         else {
             div.classList.remove("bg-red-500/80")
             if (input_nom_entreprise.value !== "" && input_nom_poste.value !== "" && input_date_debut.value !== "" && input_date_fin.value !== "") {
-                id_exp++
                 exp_employent = {
                     entreprise: input_nom_entreprise.value.trim(),
                     role_ent: input_nom_poste.value.trim(),
                     date_debut: input_date_debut.value.trim(),
                     date_fin: input_date_fin.value.trim(),
                 }
-                cont_test_exps.push(exp_employent)
+                container_exps.push(exp_employent)
             }
         }
 
     });
-    console.log(exp_employent);
-    console.log(cont_test_exps);
-
 
     button.addEventListener("click", (e) => {
-        // e.preventDefault()
+        e.preventDefault()
         div.remove()
-        cont_test_exps = cont_test_exps.filter(el =>
+        container_exps = container_exps.filter(el =>
             el.entreprise !== input_nom_entreprise.value.trim() ||
             el.role_ent !== input_nom_poste.value.trim() ||
             el.date_debut !== input_date_debut.value.trim() ||
             el.date_fin !== input_date_fin.value.trim()
         )
-        console.log(cont_test_exps);
 
     })
 
@@ -180,6 +154,9 @@ let exps = []
 form_cont.addEventListener('submit', (e) => {
     e.preventDefault()
 
+    console.log(container_exps);
+
+
     //regex name
     let name = document.getElementById('name').value.trim()
     let regex_name = /^[a-zA-Z\s]+$/
@@ -197,18 +174,13 @@ form_cont.addEventListener('submit', (e) => {
     if (url === "") {
         url = "https://www.shutterstock.com/shutterstock/photos/1131880403/display_1500/stock-vector-user-profile-avatar-1131880403.jpg"
     }
-    let exps_inputs = document.querySelectorAll('.exp')
-    // console.log(exps_inputs);
-
-
-    // console.log(exps);
 
     i = Number(localStorage.getItem("id"))
 
     if (regex_name.test(name) && regex_email.test(email) && regex_numero.test(numero)) {
-        exps_inputs.forEach(e => {
-            exps.push(e.value.trim())
-        })
+        // exps_inputs.forEach(e => {
+        //     exps.push(e.value.trim())
+        // })
         staf = {
             id: ++i,
             name: name,
@@ -216,34 +188,32 @@ form_cont.addEventListener('submit', (e) => {
             photo: url,
             email: email,
             numero: numero,
-            experiences: exps,
+            experiences: container_exps,
         }
-        console.log(exps);
-        exps = []
-        console.log(exps);
+
 
         // exps_inputs=''
         form_cont.reset();
-        url === ""
         localStorage.setItem("id", i)
         list_staf.push(staf)
         localStorage.setItem("list_staf_local", JSON.stringify(list_staf))
         function affiche_one_Unassigned_Staff() {
-            Unassigned_Staff.innerHTML += `
 
-            <div class="flex p-2 items-center bg-blue-300 rounded-[10px]">
-                    <div  class="flex gap-5 items-center">
+            Unassigned_Staff.innerHTML += `
+            <div style="background: linear-gradient(45deg,rgba(10, 72, 37, 0.60),rgba(65, 100, 100, 0.60),rgba(10, 72, 37, 0.60));" class="flex p-2 duration-150 hover:scale-105 items-center text-white font-[800] border-2 border-green-500 rounded-[10px]">
+                    <div class="flex gap-5 items-center">
                         <img onclick='affiche_info(${JSON.stringify(staf)},"Unassigned Staff")' src="${url}" width="18%" alt="Photo">
                         <div>
                             <p class="">${name}</p>
                             <p class="font-[400]">${role}</p>
                         </div>
                     </div>
-                    <button  onclick="suprime_empl(${i})" class="font-[500]  rounded-[10px] text-red-500 text-[12px] p-1 border-2">remove</button>
+                    <button onclick="suprime_empl(${i})" class=" font-[500]  rounded-[10px] text-red-500 text-[12px] p-1 border-2 hover:bg-red-500 hover:text-white">remove</button>
                 </div>
-
             `
         }
+        affiche_one_Unassigned_Staff()
+        
         Toastify({
             text: "un nouveau employent : " + name + " / " + role,
             duration: 3000,
@@ -254,7 +224,7 @@ form_cont.addEventListener('submit', (e) => {
                 borderRadius: "10px",
             }
         }).showToast();
-        affiche_one_Unassigned_Staff()
+        
     }
     else {
         Toastify({
@@ -268,6 +238,75 @@ form_cont.addEventListener('submit', (e) => {
         }).showToast();
     }
 })
+
+// form_cont.addEventListener('change', (e) => {
+//     const target = e.target;
+
+//     // --- Validation nom ---
+//     if (target.id === 'name') {
+//         let regex_name = /^[a-zA-Z\s]+$/;
+//         if (!regex_name.test(target.value.trim())) {
+//             target.classList.add('border-red-500'); // erreur
+//         } else {
+//             target.classList.remove('border-red-500');
+//         }
+//     }
+
+//     // --- Validation email ---
+//     if (target.id === 'email') {
+//         let regex_email = /^[a-zA-Z_.\d]+@[a-zA-Z]{1,7}\.(com|fr)$/;
+//         if (!regex_email.test(target.value.trim())) {
+//             target.classList.add('border-red-500');
+//         } else {
+//             target.classList.remove('border-red-500');
+//         }
+//     }
+
+//     // --- Validation numero ---
+//     if (target.id === 'numero') {
+//         let regex_numero = /^[0-9]{10}$/;
+//         if (!regex_numero.test(target.value.trim())) {
+//             target.classList.add('border-red-500');
+//         } else {
+//             target.classList.remove('border-red-500');
+//         }
+//     }
+
+//     // --- Validation role ---
+//     if (target.id === 'role') {
+//         if (target.value.trim() === '') {
+//             target.classList.add('border-red-500');
+//         } else {
+//             target.classList.remove('border-red-500');
+//         }
+//     }
+
+//     // --- Validation url (optionnelle) ---
+//     if (target.id === 'url') {
+//         if (target.value.trim() === '') {
+//             target.classList.remove('border-red-500'); // vide accepté
+//         } else {
+//             // petit check URL
+//             try {
+//                 new URL(target.value.trim());
+//                 target.classList.remove('border-red-500');
+//             } catch {
+//                 target.classList.add('border-red-500');
+//             }
+//         }
+//     }
+
+//     // --- Validation expériences ---
+//     const exps_inputs = document.querySelectorAll('.exp');
+//     exps_inputs.forEach(input => {
+//         if (input.value.trim() === '') {
+//             input.classList.add('border-red-500');
+//         } else {
+//             input.classList.remove('border-red-500');
+//         }
+//     });
+// });
+
 
 let photo = document.getElementById("photo")
 let url = document.getElementById("url")
@@ -291,7 +330,7 @@ function affiche_tous_Unassigned_Staff() {
     list_staf.forEach(el => {
 
         Unassigned_Staff.innerHTML += `
-            <div class="flex p-2 duration-150 hover:scale-105 items-center bg-blue-300 rounded-[10px]">
+            <div style="background: linear-gradient(45deg,rgba(10, 72, 37, 0.60),rgba(65, 100, 100, 0.60),rgba(10, 72, 37, 0.60));" class="flex p-2 duration-150 hover:scale-105 items-center text-white font-[800] border-2 border-green-500 rounded-[10px]">
                     <div class="flex gap-5 items-center">
                         <img src="${el.photo}" onclick='affiche_info(${JSON.stringify(el)} , "Unassigned Staff")' width="18%" alt="Photo">
                         <div>
@@ -321,7 +360,7 @@ function affiche_Salle_conference() {
     list_conference.forEach(el => {
 
         Worker.innerHTML += `
-            <div class="duration-150 hover:scale-105 flex p-2 items-center bg-blue-300 rounded-[10px]">
+            <div style="background: linear-gradient(45deg,rgba(10, 72, 37, 0.6),rgba(65, 100, 100, 0.7),rgba(10, 72, 37, 0.60));" class="duration-150 text-white hover:scale-105 flex p-2 items-center rounded-[10px]">
                     <div class="flex gap-5 items-center">
                         <img src="${el.photo}" width="18%" alt="Photo">
                         <div>
@@ -329,8 +368,9 @@ function affiche_Salle_conference() {
                             <p class="font-[400]">${el.role}</p>
                         </div>
                     </div>
-                    <button onclick="add_conference(${el.id})" class=" font-[500]  rounded-[10px] bg-green-700 text-white text-[12px] p-2 hover:bg-green-500 ">add</button>
+                    <button onclick="add_conference(${el.id})"  class=" font-[500]  rounded-[10px] bg-green-700  text-[12px] p-2 hover:bg-green-500 ">add</button>
                 </div>
+                
             `
     })
 }
@@ -344,7 +384,7 @@ function affiche_Salle_Reception() {
     list_Receptionnistes.forEach(el => {
 
         Worker.innerHTML += `
-            <div class="duration-150 hover:scale-105 flex p-2 items-center bg-blue-300 rounded-[10px]">
+            <div style="background: linear-gradient(45deg,rgba(10, 72, 37, 0.6),rgba(65, 100, 100, 0.7),rgba(10, 72, 37, 0.60));" class="duration-150 text-white hover:scale-105 flex p-2 items-center rounded-[10px]">
                     <div class="flex gap-5 items-center">
                         <img src="${el.photo}" width="18%" alt="Photo">
                         <div>
@@ -367,7 +407,7 @@ function affiche_Salle_serveurs() {
     list_serveurs.forEach(el => {
 
         Worker.innerHTML += `
-            <div class="duration-150 hover:scale-105 flex p-2 items-center bg-blue-300 rounded-[10px]">
+            <div style="background: linear-gradient(45deg,rgba(10, 72, 37, 0.6),rgba(65, 100, 100, 0.7),rgba(10, 72, 37, 0.60));" class="duration-150 text-white hover:scale-105 flex p-2 items-center rounded-[10px]">
                     <div class="flex gap-5 items-center">
                         <img src="${el.photo}" width="18%" alt="Photo">
                         <div>
@@ -390,7 +430,7 @@ function affiche_Salle_securite() {
     list_securite.forEach(el => {
 
         Worker.innerHTML += `
-            <div class="duration-150 hover:scale-105 flex p-2 items-center bg-blue-300 rounded-[10px]">
+            <div style="background: linear-gradient(45deg,rgba(10, 72, 37, 0.6),rgba(65, 100, 100, 0.7),rgba(10, 72, 37, 0.60));" class="duration-150 text-white hover:scale-105 flex p-2 items-center rounded-[10px]">
                     <div class="flex gap-5 items-center">
                         <img src="${el.photo}" width="18%" alt="Photo">
                         <div>
@@ -413,7 +453,7 @@ function affiche_Salle_personnel() {
     list_personnel.forEach(el => {
 
         Worker.innerHTML += `
-            <div class="duration-150 hover:scale-105 flex p-2 items-center bg-blue-300 rounded-[10px]">
+            <div style="background: linear-gradient(45deg,rgba(10, 72, 37, 0.6),rgba(65, 100, 100, 0.7),rgba(10, 72, 37, 0.60));" class="duration-150 text-white hover:scale-105 flex p-2 items-center rounded-[10px]">
                     <div class="flex gap-5 items-center">
                         <img src="${el.photo}" width="18%" alt="Photo">
                         <div>
@@ -436,7 +476,7 @@ function affiche_Salle_archive() {
     list_archive.forEach(el => {
 
         Worker.innerHTML += `
-            <div class="duration-150 hover:scale-105 flex p-2 items-center bg-blue-300 rounded-[10px]">
+            <div style="background: linear-gradient(45deg,rgba(10, 72, 37, 0.6),rgba(65, 100, 100, 0.7),rgba(10, 72, 37, 0.60));" class="duration-150 text-white hover:scale-105 flex p-2 items-center rounded-[10px]">
                     <div class="flex gap-5 items-center">
                         <img src="${el.photo}" width="18%" alt="Photo">
                         <div>
@@ -506,7 +546,6 @@ function add_conference(id) {
             if (el.id === id) {
                 employent_dans_conference.push(el)
                 localStorage.setItem("conference", JSON.stringify(employent_dans_conference))
-                // console.log(employent_dans_conference);
                 affiche_conference()
                 list_staf = list_staf.filter(el => el.id !== id)
                 localStorage.setItem("list_staf_local", JSON.stringify(list_staf))
@@ -612,7 +651,6 @@ function add_archive(id) {
                 affiche_Salle_archive()
                 zone_restreinte_archive()
             }
-            // console.log(el.experiences);
         })
     }
 
@@ -620,26 +658,44 @@ function add_archive(id) {
 
 const section_info = document.getElementById('section_info')
 function affiche_info(el, zone) {
+
+    // list_experience.appendChild(div)
     section_info.classList.remove("hidden")
     section_info.innerHTML = `
-    <div class="relative w-95 items-center flex flex-col lg:p-4 p-3 gap-2 lg:w-160 bg-gray-400 rounded-[10px] font-[400]">
-        <h2 class="font-[700] text-[20px]">${el.name}</h2>
-        <div class="flex lg:flex-row flex-col items-center lg:gap-4 gap-2 lg:items-start">
-            <img src="${el.photo}" alt="photo" class="w-[35%] rounded-[10px] lg:w-[20%]">
+    <div style="background: linear-gradient(45deg,rgba(0, 0, 0, 0.87),rgba(87, 87, 87, 0.81),rgba(0, 0, 0, 0.87));" class="relative w-95 items-center flex flex-col lg:p-4 p-3 gap-2 lg:w-160 text-white rounded-[10px] font-[400]">
+        <h2 class="font-[700] lg:text-[50px] text-[20px]">${el.name}</h2>
+        <div class="flex flex-col items-center lg:gap-4 gap-2 ">
+        <div class="flex justify-center items-center gap-10">
+        <img src="${el.photo}" alt="photo" class="w-[35%] rounded-[15px] ">
+        <div class="flex flex-col text-[15px] lg:text-[18px] justify-center gap-2">
+        <h3><span class="font-[700]">Role :</span> ${el.role}</h3>
+        <p><span class="font-[700]">email :</span> ${el.email}</p>
+        <p><span class="font-[700]">numero :</span> ${el.numero}</p>
+        </div>
+        </div>
+        <h3 class="font-[700]">Expériences</h3>
             <div class="flex lg:items-start flex-col gap-2 h-50 lg:ml-5 lg:h-65 overflow-y-scroll [scrollbar-width:none]">
-                <h3 class="font-[700]">${el.role}</h3>
-                <p>${el.email}</p>
-                <p>${el.numero}</p>
-                <h3 class="font-[700]">Expériences</h3>
-                <ul id="list_experience" class="list-disc ml-10 lg:ml-10">
-                </ul>
+                <div id="list_experience" class="font-[400] lg:text-[16px] text-[12px]">
+                
+                </div>
+                
             </div>
         </div>
         <p class="font-[500]">localisation actuelle : <span class="font-[700]  text-[18px]">${zone}</span></p>
-        <button id="close_info" class="rounded-[5px] w-8 bg-red-800 text-white absolute lg:left-145 left-80">X</button>
+        <button id="close_info" class="rounded-[5px] w-8 bg-red-700 text-white absolute lg:left-145 left-80 hover:bg-red-400">X</button>
     </div> 
     
     `
+    let list_experience = document.getElementById("list_experience")
+
+    el.experiences.forEach(exp => {
+
+        list_experience.innerHTML += ` 
+            <p class="flex gap-2 w-full"><span class="p-2 border-1 rounded-[10px] border-b-3 w-[25%] text-center flex flex-wrap justify-center items-center">entreprise : ${exp.entreprise}</span><span class="p-2 border-1 rounded-[10px] border-b-3 w-[25%] text-center flex flex-wrap justify-center items-center ">poste : ${exp.role_ent}</span><span class="p-2 border-1 rounded-[10px] border-b-3 w-[25%] text-center flex flex-wrap justify-center items-center">date debut : ${exp.date_debut}</span><span class="p-2 border-1 rounded-[10px] border-b-3 w-[25%] text-center flex flex-wrap justify-center items-center">date de fin :  ${exp.date_fin}</span></p>
+
+        `
+
+    })
 
 
     let close_info = document.getElementById("close_info")
@@ -647,19 +703,9 @@ function affiche_info(el, zone) {
         section_info.classList.add("hidden")
     })
 
-    // console.log('true');
-    // console.log(exps);
-    // // console.log(exps);
 
 
-    let list_experience = document.getElementById("list_experience")
-    el.experiences.forEach(item => {
-        let li = document.createElement('li')
-        li.textContent = item
-        // console.log(li);
-        list_experience.appendChild(li)
 
-    })
 }
 
 function retour_conference_Staff(el) {
@@ -696,13 +742,11 @@ function supprime_reception(id) {
 
 function retour_serveur_Staff(el) {
 
-    // console.log(el);
     list_staf.push(el)
     localStorage.setItem("list_staf_local", JSON.stringify(list_staf))
     affiche_tous_Unassigned_Staff()
     supprime_serveur(el.id)
-    // console.log("true");
-    // console.log(list_staf);
+
 }
 
 function supprime_serveur(id) {
@@ -715,13 +759,11 @@ function supprime_serveur(id) {
 
 function retour_securite_Staff(el) {
 
-    // console.log(el);
     list_staf.push(el)
     localStorage.setItem("list_staf_local", JSON.stringify(list_staf))
     affiche_tous_Unassigned_Staff()
     supprime_securite(el.id)
-    // console.log("true");
-    // console.log(list_staf);
+
 }
 
 function supprime_securite(id) {
@@ -733,13 +775,11 @@ function supprime_securite(id) {
 
 function retour_perssone_Staff(el) {
 
-    // console.log(el);
     list_staf.push(el)
     localStorage.setItem("list_staf_local", JSON.stringify(list_staf))
     affiche_tous_Unassigned_Staff()
     supprime_perssone(el.id)
-    // console.log("true");
-    // console.log(list_staf);
+
 }
 
 function supprime_perssone(id) {
@@ -750,13 +790,11 @@ function supprime_perssone(id) {
 
 function retour_archive_Staff(el) {
 
-    // console.log(el);
     list_staf.push(el)
     localStorage.setItem("list_staf_local", JSON.stringify(list_staf))
     affiche_tous_Unassigned_Staff()
     supprime_archive(el.id)
-    // console.log("true");
-    // console.log(list_staf);
+
 }
 
 function supprime_archive(id) {
@@ -779,6 +817,8 @@ function affiche_conference() {
                 <button onclick='retour_conference_Staff(${JSON.stringify(el)})' class="absolute lg:bottom-10 right-[0px] bottom-5 rounded-full lg:w-3 lg:text-[8px] text-[5px] bg-red-600 text-white w-2 hover:bg-red-400">X</button>
              </div>
         </div>
+
+
             `
     })
 }
@@ -885,7 +925,6 @@ function zone_restreinte_conference() {
     const zone_conference = document.getElementById('zone_conference')
 
     if (cont_Salle_conference.children.length === 0) {
-        // console.log("true");
         zone_conference.classList.add("bg-red-500/70", "animate-pulse")
     }
     else
@@ -897,7 +936,6 @@ function zone_restreinte_serveurs() {
     const zone_serveurs = document.getElementById('zone_serveurs')
 
     if (cont_Salle_serveurs.children.length == 0) {
-        // console.log("true");
         zone_serveurs.classList.add("bg-red-500/70", "animate-pulse")
     }
     else
@@ -909,7 +947,6 @@ function zone_restreinte_securite() {
     const zone_securite = document.getElementById('zone_securite')
 
     if (cont_Salle_scurite.children.length == 0) {
-        // console.log("true");
         zone_securite.classList.add("bg-red-500/70", "animate-pulse")
     }
     else
@@ -921,7 +958,6 @@ function zone_restreinte_archive() {
     const zone_archive = document.getElementById('zone_archive')
 
     if (cont_Salle_archives.children.length == 0) {
-        // console.log("true");
         zone_archive.classList.add("bg-red-500/70", "animate-pulse")
     }
     else

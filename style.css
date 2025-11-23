@@ -8,3 +8,11 @@
     background-color: #ffffff23;
     color: rgb(255, 255, 255);
 }
+
+#add_new_worker:hover{
+    background: linear-gradient(45deg,rgba(10, 108, 52, 0.735),rgba(128, 207, 207, 0.744),rgba(10, 108, 52, 0.74));
+}
+
+#add_new_worker{
+    background: linear-gradient(45deg,rgb(128, 207, 207),rgb(17, 190, 92),rgb(128, 207, 207));
+}

@@ -12,35 +12,40 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
     <link rel="stylesheet" href="style.css">
-    
+
 
     <!-- <link
         href="https://fonts.googleapis.com/css2?family=Belgrano&family=Leckerli+One&family=Lexend:wght@100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Volkhov:ital,wght@0,400;0,700;1,400;1,700&display=swap"
         rel="stylesheet"> -->
 </head>
-<body class="flex lg:items-start lg:flex-row flex-col items-center lg:gap-1 gap-2 bg-gray-800">
 
-    <section id="open_worker"
-        class="hidden absolute bg-red-400/50 z-1  w-full h-screen flex justify-center items-center">
-        <div
-            class="font-[700] bg-gray-300 relative rounded-[10px] flex flex-col items-center gap-2 p-2 lg:w-[27%] w-[100%]">
-            <h1 id="type_role" class="font-[700] text-[25px]  text-gray-800 underline">Reception</h1>
-            <button id="close_list"
-                class="rounded-[5px] w-8 bg-red-800 text-white absolute lg:left-90 mt-2 left-85">X</button>
-            <div id="Worker"
-                class="bg-white p-2 gap-2 flex w-full h-120 overflow-y-scroll [scrollbar-width:none] flex-col rounded-[10px] ">
+<body class="bg-black/20 relative">
+    <header style="background: linear-gradient(45deg,#0dffb2,#224e61,#0dffb2);" class="lg:h-20 h-10 text-gray-200 rounded-[10px] m-1 bg-blue-500 flex flex-col items-center justify-center ">
+            <h1  class="font-[900] lg:text-[30px] text-[18px] bg-linear-[45deg,#00b3ff,#00ff80,#00b3ff,#0dffb2] [background-clip:text] text-transparent animate-pulse duration-4000">WorkSphere</h1>
+            <p class="text-gray-300 lg:text-[16px] text-[9px] ">Gestion Intelligente du Personnel</p>
+    </header>
+    <main class="flex lg:items-end lg:flex-row flex-col p-1 lg:gap-1 gap-2">
+        <section id="open_worker"
+            class=" absolute hidden backdrop-blur bg-black/50 z-1  w-full h-screen flex justify-center items-center">
+            <div
+                class="font-[700] bg-gray-600 relative rounded-[10px] flex flex-col items-center gap-2 p-2 lg:w-[27%] w-[100%]">
+                <h2 id="type_role" class="font-[700] text-[25px]  text-gray-300 underline">Reception</h2>
+                <button id="close_list"
+                    class="rounded-[5px] w-8 bg-red-600 hover:bg-red-400 text-white absolute lg:left-90 mt-2 left-85">X</button>
+                <div id="Worker"
+                    class="bg-white/50 p-2 gap-2 flex w-full h-120 overflow-y-scroll [scrollbar-width:none] flex-col rounded-[10px] ">
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
 
 
-    <section
-        class="font-[700] order-last lg:order-first bg-gray-300 rounded-[10px] flex flex-col gap-2 p-4 lg:w-[27%] w-[100%]">
-        <h2>Unassigned Staff</h2>
-        <button id="add_new_worker" class="font-[400] bg-blue-600  duration-150 hover:bg-blue-400 text-white p-2 rounded-[10px]">Add New Worker</button>
-        <div id="Unassigned_Staff"
-            class="bg-white p-3 gap-2 lg:h-150 h-80 overflow-y-scroll [scrollbar-width:none] flex flex-col rounded-[10px]">
-            <!-- <div class="flex p-2 items-center bg-blue-300 rounded-[10px]">
+        <section
+            class="font-[700] order-2 lg:h-160 h-97 lg:text-[18px] text-[16px] lg:order-1 bg-gray-500 rounded-[10px] flex flex-col gap-2 lg:p-4 p-2 lg:w-[27%] w-[100%]">
+            <h2 class="text-gray-300">Unassigned Staff</h2>
+            <button id="add_new_worker" class="font-[600] text-white p-2 rounded-[10px]">Add New Worker</button>
+            <div id="Unassigned_Staff"
+                class="bg-white/20 p-3 gap-2 lg:h-150 h-80 overflow-y-scroll [scrollbar-width:none] flex flex-col rounded-[10px]">
+                <!-- <div class="flex p-2 items-center bg-blue-300 rounded-[10px]">
                 <div class="flex gap-5 items-center">
                     <img src="image/mehdi.png" width="18%" alt="Photo">
                     <div>
@@ -50,7 +55,7 @@
                 </div>
                 <button class="font-[500]  rounded-[10px] text-red-500 text-[12px] p-1 border-2">remove</button>
             </div> -->
-            <!-- <div class="flex p-2 items-center bg-blue-300 rounded-[10px]">
+                <!-- <div class="flex p-2 items-center bg-blue-300 rounded-[10px]">
                 <div class="flex gap-5 items-center">
                     <img src="image/mehdi.png" width="18%" alt="Photo">
                     <div>
@@ -80,154 +85,141 @@
                 </div>
                 <button class="font-[500]  rounded-[10px] text-red-500 text-[12px] p-1 border-2">remove</button>
             </div> -->
-        </div>
+            </div>
 
 
-    </section>
+        </section>
 
-    <section
-        class="grid lg:h-160 lg:w-[74%] h-55 w-[100%] text-center  lg:rotate-[0deg] lg:p-2 p-[2px] grid-cols-26 grid-rows-3 bg-[url(image/bg-desktop.jpg)] bg-no-repeat lg:gap-2  bg-cover  bg-center text-[6px] lg:text-[12px]">
-        <div id="zone_conference"
-            class="flex justify-center flex-wrap items-center border-3 row-span-1 col-span-10 p-1 lg:p-2">
-            <p class="fixed ">Salle de conférence</p>
-            <div class=" flex flex-wrap justify-center gap-1 items-center ">
-                <div id="cont_Salle_conference" class="flex flex-wrap justify-center gap-1 items-center ">
-                    <!-- <img src="" alt="photo" class="w-5 lg:w-10 lg:h-10 relative h-5 bg-blue-500 rounded-full"> -->
+        <section
+            class="grid lg:h-160 lg:w-[74%] h-55 w-[100%] text-center order-1 lg-order-1 lg:rotate-[0deg] lg:p-2 p-[2px] grid-cols-26 grid-rows-3 bg-[url(image/bg-desktop.jpg)] bg-no-repeat lg:gap-2  bg-cover  bg-center text-[6px] lg:text-[12px]">
+            <div id="zone_conference"
+                class="flex justify-center flex-wrap items-center  row-span-1 col-span-10 p-1 lg:p-2">
+                <p class="absolute ">Salle de conférence</p>
+                <div class=" flex flex-wrap justify-center gap-1 items-center ">
+                    <div id="cont_Salle_conference" class="flex flex-wrap justify-center gap-1 items-center ">
+                        <!-- <img src="" alt="photo" class="w-5 lg:w-10 lg:h-10 relative h-5 bg-blue-500 rounded-full"> -->
+                    </div>
+                    <button onclick="affiche_Salle_conference()" id="Salle_conference"
+                        class="w-3 lg:w-6 lg:h-6 relative h-3 bg-green-700 text-white rounded-full font-[700] text-[9px] lg:text-[18px] duration-150 hover:bg-green-400 ">+</button>
                 </div>
-                <button onclick="affiche_Salle_conference()" id="Salle_conference"
-                    class="w-3 lg:w-6 lg:h-6 relative h-3 bg-green-700 text-white rounded-full font-[700] text-[9px] lg:text-[18px] duration-150 hover:bg-green-400 ">+</button>
             </div>
-        </div>
-        <div class="flex justify-center items-center border-3 row-span-3 col-span-4">space</div>
-        <div id="zone_serveurs" class="flex justify-center items-center border-3 row-span-1 col-span-6 p-1">
-            <p class="fixed">Salle des serveurs</p>
-            <div class=" flex flex-wrap justify-center gap-1 items-center ">
-                <div id="cont_Salle_serveurs" class="flex flex-wrap justify-center gap-1 items-center ">
-                    <!-- <img src="" alt="photo" class="w-5 lg:w-10 lg:h-10 relative h-5 bg-blue-500 rounded-full"> -->
-                </div>
-                <button id="Salle_serveurs" onclick="affiche_Salle_serveurs()"
-                    class="w-3 lg:w-6 lg:h-6 relative h-3 bg-green-700 text-white rounded-full text-[9px] font-[700] lg:text-[18px] duration-150 hover:bg-green-400 ">+</button>
+            <div class="flex justify-center items-center row-span-3 col-span-4"></div>
+            <div id="zone_serveurs" class="flex justify-center items-center row-span-1 col-span-6 p-1">
+                <p class="absolute">Salle des serveurs</p>
+                <div class=" flex flex-wrap justify-center gap-1 items-center ">
+                    <div id="cont_Salle_serveurs" class="flex flex-wrap justify-center gap-1 items-center ">
+                        <!-- <img src="" alt="photo" class="w-5 lg:w-10 lg:h-10 relative h-5 bg-blue-500 rounded-full"> -->
+                    </div>
+                    <button id="Salle_serveurs" onclick="affiche_Salle_serveurs()"
+                        class="w-3 lg:w-6 lg:h-6 relative h-3 bg-green-700 text-white rounded-full text-[9px] font-[700] lg:text-[18px] duration-150 hover:bg-green-400 ">+</button>
 
-            </div>
-        </div>
-        <div id="zone_securite" class="flex justify-center items-center border-3 row-span-1 col-span-6 p-1">
-            <p class="fixed">Salle de sécurité</p>
-            <div class=" flex flex-wrap justify-center gap-1 items-center ">
-                <div id="cont_Salle_scurite" class="flex flex-wrap justify-center gap-1 items-center ">
-                    <!-- <img src="" alt="photo" class="w-5 lg:w-10 lg:h-10 relative h-5 bg-blue-500 rounded-full"> -->
                 </div>
-                <button id="Salle_scurite" onclick="affiche_Salle_securite()"
-                    class="w-3 lg:w-6 lg:h-6 relative h-3 bg-green-700 text-white rounded-full text-[9px] font-[700] lg:text-[18px] duration-150 hover:bg-green-400 ">+</button>
             </div>
-        </div>
-        <div class="flex justify-center items-center border-3 row-span-2 col-span-10 p-1">
-            <p class="fixed">Réception</p>
-            <div class=" flex flex-wrap justify-center gap-1 items-center ">
-                <div id="cont_Salle_Reception" class="flex flex-wrap justify-center gap-1 items-center ">
-                    <!-- <img src="" alt="photo" class="w-5 lg:w-10 lg:h-10 relative h-5 bg-blue-500 rounded-full"> -->
+            <div id="zone_securite" class="flex justify-center items-center row-span-1 col-span-6 p-1">
+                <p class="absolute">Salle de sécurité</p>
+                <div class=" flex flex-wrap justify-center gap-1 items-center ">
+                    <div id="cont_Salle_scurite" class="flex flex-wrap justify-center gap-1 items-center ">
+                        <!-- <img src="" alt="photo" class="w-5 lg:w-10 lg:h-10 relative h-5 bg-blue-500 rounded-full"> -->
+                    </div>
+                    <button id="Salle_scurite" onclick="affiche_Salle_securite()"
+                        class="w-3 lg:w-6 lg:h-6 relative h-3 bg-green-700 text-white rounded-full text-[9px] font-[700] lg:text-[18px] duration-150 hover:bg-green-400 ">+</button>
                 </div>
-                <button id="Salle_Reception" onclick="affiche_Salle_Reception()"
-                    class="w-3 lg:w-6 lg:h-6 relative h-3 bg-green-700 text-white rounded-full text-[9px] font-[700] lg:text-[18px] duration-150 hover:bg-green-400 ">+</button>
-
             </div>
-        </div>
-        <div class="flex justify-center items-center border-3 row-span-1 col-span-12">space</div>
-        <div class="flex  justify-center items-center border-3 row-span-1 col-span-6 p-1">
-            <p class="fixed">Salle du personnel</p>
-            <div class=" flex flex-wrap justify-center gap-1 items-center ">
-                <div id="cont_Salle_personnel" class="flex flex-wrap justify-center gap-1 items-center ">
-                    <!-- <img src="" alt="photo" class="w-5 lg:w-10 lg:h-10 relative h-5 bg-blue-500 rounded-full"> -->
+            <div class="flex justify-center items-center row-span-2 col-span-10 p-1">
+                <p class="absolute">Réception</p>
+                <div class=" flex flex-wrap justify-center gap-1 items-center ">
+                    <div id="cont_Salle_Reception" class="flex flex-wrap justify-center gap-1 items-center ">
+                        <!-- <img src="" alt="photo" class="w-5 lg:w-10 lg:h-10 relative h-5 bg-blue-500 rounded-full"> -->
+                    </div>
+                    <button id="Salle_Reception" onclick="affiche_Salle_Reception()"
+                        class="w-3 lg:w-6 lg:h-6 relative h-3 bg-green-700 text-white rounded-full text-[9px] font-[700] lg:text-[18px] duration-150 hover:bg-green-400 ">+</button>
+
                 </div>
-                <button id="Salle_personnel" onclick="affiche_Salle_personnel()"
-                    class="w-3 lg:w-6 lg:h-6 relative h-3 bg-green-700 text-white rounded-full text-[9px] font-[700] lg:text-[18px] duration-150 hover:bg-green-400 ">+</button>
-
             </div>
-        </div>
-        <div id="zone_archive" class="flex justify-center items-center border-3 row-span-1 col-span-6 p-1">
-            <p class="fixed">Salle d’archives</p>
-            <div class=" flex flex-wrap justify-center gap-1 items-center ">
-                <div id="cont_Salle_archives" class="flex flex-wrap justify-center gap-1 items-center ">
-                    <!-- <img src="" alt="photo" class="w-5 lg:w-10 lg:h-10 relative h-5 bg-blue-500 rounded-full"> -->
+            <div class="flex justify-center items-center row-span-1 col-span-12"></div>
+            <div class="flex  justify-center items-center row-span-1 col-span-6 p-1">
+                <p class="absolute">Salle du personnel</p>
+                <div class=" flex flex-wrap justify-center gap-1 items-center ">
+                    <div id="cont_Salle_personnel" class="flex flex-wrap justify-center gap-1 items-center ">
+                        <!-- <img src="" alt="photo" class="w-5 lg:w-10 lg:h-10 relative h-5 bg-blue-500 rounded-full"> -->
+                    </div>
+                    <button id="Salle_personnel" onclick="affiche_Salle_personnel()"
+                        class="w-3 lg:w-6 lg:h-6 relative h-3 bg-green-700 text-white rounded-full text-[9px] font-[700] lg:text-[18px] duration-150 hover:bg-green-400 ">+</button>
+
                 </div>
-                <button id="Salle_archives" onclick="affiche_Salle_archive()"
-                    class="w-3 lg:w-6 lg:h-6 relative h-3 bg-green-700 text-white rounded-full text-[9px] font-[700] lg:text-[18px] duration-150 hover:bg-green-400 ">+</button>
-
             </div>
-        </div>
-    </section>
+            <div id="zone_archive" class="flex justify-center items-center row-span-1 col-span-6 p-1">
+                <p class="absolute">Salle d’archives</p>
+                <div class=" flex flex-wrap justify-center gap-1 items-center ">
+                    <div id="cont_Salle_archives" class="flex flex-wrap justify-center gap-1 items-center ">
+                        <!-- <img src="" alt="photo" class="w-5 lg:w-10 lg:h-10 relative h-5 bg-blue-500 rounded-full"> -->
+                    </div>
+                    <button id="Salle_archives" onclick="affiche_Salle_archive()"
+                        class="w-3 lg:w-6 lg:h-6 relative h-3 bg-green-700 text-white rounded-full text-[9px] font-[700] lg:text-[18px] duration-150 hover:bg-green-400 ">+</button>
 
-    <section class="section_form   absolute w-full h-screen flex justify-center items-center backdrop-blur bg-black/50">
-        <div style="background: linear-gradient(45deg,rgba(56, 109, 132, 0.7),rgba(85, 146, 127, 0.500),rgba(56, 109, 132, 0.7));" class="relative items-center flex flex-col rounded-[10px] py-5 px-10 lg:w-[35%] w-90">
-            <div class="flex relative">
-                <h2 class="font-[700] text-[25px]  text-gray-300 underline">Add New Worker</h2>
-                <!-- <button id="close" class="font-[700] lg:left-[50%] relative left-[20%] text-[25px] ">X</button> -->
-                <button id="close"
-                    class="rounded-[5px] w-8 bg-red-500 text-white absolute lg:left-80 mt-2 left-58">X</button>
+                </div>
             </div>
-            <div class=" w-[100%] lg:h-160 h-150 overflow-y-scroll [scrollbar-width:none]">
-                <form id="form" class="flex flex-col  text-white  gap-1 w-[100%] ">
-                    <label for="name" class="font-[500]">name</label>
-                    <input name="name" type="text" required id="name"
-                        class="p-2 mb-2 h-10 border-b-3 border rounded-[5px]">
-                    <label class="font-[500]">Rôle</label>
-                    <select required id="role"
-                        class="p-2 mb-2 text-white focus:outline-none h-10 border-b-3 border rounded-[5px]">
-                        <option value="Réceptionnistes">Réceptionnistes</option>
-                        <option value="Techniciens IT">Techniciens IT</option>
-                        <option value="Sécurité">sécurité</option>
-                        <option value="Manager">Manager</option>
-                        <option value="Nettoyage">Nettoyage</option>
-                        <option value="Autres rôles">Autres rôles</option>
-                    </select>
-                    <label for="URL" class="font-[500]">Photo (URL)</label>
-                    <input name="URL" type="url" id="url"
-                        class="p-2 mb-2 h-10 border-b-3 border rounded-[5px]">
-                    <img id="photo" src="" class="bg-gray-400 lg:w-30 lg:h-30 w-20 h-20 ml-[35%] rounded-full"></img>
-                    <label for="email" class="font-[500]">email</label>
-                    <input name="email" id="email" required type="email"
-                        class="p-2 mb-2 h-10 border-b-3 border rounded-[5px]">
-                    <label for="numero" class="font-[500]">numero</label>
-                    <input name="numero" type="text" id="numero" required id="numero"
-                        class="p-2 mb-2 h-10 border-b-3 border rounded-[5px]">
-                    <label class="font-[500]">Expériences professionnelles</label>
-                    <div id="experience" class="flex flex-col items-center gap-1">
-                        <!-- <div class="flex flex-wrap border-2 border-black rounded-[10px] m-1 p-2 w-full items-center gap-1">
+        </section>
+
+        <section
+            class="section_form z-10 not-lg:top-0  absolute w-full h-screen flex justify-center items-center backdrop-blur bg-black/50">
+            <div style="background: linear-gradient(45deg,rgba(56, 109, 132, 0.7),rgba(85, 146, 127, 0.500),rgba(56, 109, 132, 0.7));"
+                class="relative items-center flex flex-col rounded-[10px] py-5 px-10 lg:w-[35%] w-90">
+                <div class="flex relative">
+                    <h2 class="font-[700] text-[25px]  text-gray-300 underline">Add New Worker</h2>
+                    <!-- <button id="close" class="font-[700] lg:left-[50%] relative left-[20%] text-[25px] ">X</button> -->
+                    <button id="close"
+                        class="rounded-[5px] w-8 bg-red-600 hover:bg-red-400 text-white absolute lg:left-80 mt-2 left-58">X</button>
+                </div>
+                <div class=" w-[100%] lg:h-160 h-140 overflow-y-scroll [scrollbar-width:none]">
+                    <form id="form" class="flex flex-col  text-white  gap-1 w-[100%] ">
+                        <label for="name" class="font-[500]">name</label>
+                        <input name="name" type="text" required id="name"
+                            class="p-2 mb-2 h-10 border-b-3 border rounded-[5px]">
+                        <label class="font-[500]">Rôle</label>
+                        <select required id="role"
+                            class="p-2 mb-2 text-white focus:outline-none h-10 border-b-3 border rounded-[5px]">
+                            <option value="Réceptionnistes">Réceptionnistes</option>
+                            <option value="Techniciens IT">Techniciens IT</option>
+                            <option value="Sécurité">sécurité</option>
+                            <option value="Manager">Manager</option>
+                            <option value="Nettoyage">Nettoyage</option>
+                            <option value="Autres rôles">Autres rôles</option>
+                        </select>
+                        <label for="URL" class="font-[500]">Photo (URL)</label>
+                        <input name="URL" type="url" id="url" class="p-2 mb-2 h-10 border-b-3 border rounded-[5px]">
+                        <img id="photo" src=""
+                            class="bg-gray-400 lg:w-30 lg:h-30 w-20 h-20 ml-[35%] rounded-full"></img>
+                        <label for="email" class="font-[500]">email</label>
+                        <input name="email" id="email" required type="email"
+                            class="p-2 mb-2 h-10 border-b-3 border rounded-[5px]">
+                        <label for="numero" class="font-[500]">numero</label>
+                        <input name="numero" type="text" id="numero" required id="numero"
+                            class="p-2 mb-2 h-10 border-b-3 border rounded-[5px]">
+                        <label class="font-[500]">Expériences professionnelles</label>
+                        <div id="experience" class="flex flex-col items-center gap-1">
+                            <!-- <div class="flex flex-wrap border-2 border-black rounded-[10px] m-1 p-2 w-full items-center gap-1">
                             <input required type="text" class="exp p-2 mb-2 h-10 border-b-3 border rounded-[5px] w-full" placeholder="le Nom de l'entreprise">
                             <input required type="text" class="exp p-2 mb-2 h-10 border-b-3 border rounded-[5px] w-full" placeholder="le Nom de l'entreprise">
                             <input required type="date" class="exp p-2 mb-2 h-10 border-b-3 border rounded-[5px] w-full" placeholder="la date de debut">
                             <input required type="date" class="exp p-2 mb-2 h-10 border-b-3 border rounded-[5px] w-full" placeholder="la date de fin">
                             <button class="font-[500] w-full rounded-[10px] bg-red-600 text-white text-[12px] p-1 h-8 border-2 hover:bg-red-400">remove</button>
                         </div> -->
-                    </div>
-                    <button type="button" id="add_experience"
-                        class="font-[500]  rounded-[10px] w-20 text-white bg-black/60 hover:bg-black/20 lg:text-[15px] text-[12px] p-1">ajouter</button>
-                    <button type="submit" id="submit"
-                        class="font-[600]  bg-linear-[45deg,#2abb8d,#188fc2,#2abb8d]  rounded-[10px] mt-5 text-white lg:text-[18px] text-[12px] p-2 ">Submit</button>
-                </form>
-            </div>
-        </div>
-    </section>
-
-    <section id="section_info" class="absolute hidden flex justify-center items-center bg-black/50 h-screen w-full">
-        <!-- <div class="relative w-95 flex flex-col p-5 gap-2 lg:w-160 bg-gray-400 rounded-[10px] font-[400]">
-            <h2 class="font-[700]">EL Mehdi lahrach</h2>
-            <div class="flex gap-4 items-start">
-                <img src="image/mehdi.png" alt="photo" class="w-[40%] lg:w-[20%]">
-                <div class="flex flex-col gap-2">
-                    <h3 class="font-[700]">Manager</h3>
-                    <p>mehdi@gmail.com</p>
-                    <p>+212 00000000</p>
-                    <h3 class="font-[700]">Expériences</h3>
-                    <ul class="list-disc ml-10">
-                        <li>exp1</li>
-                        <li>exp1</li>
-                    </ul>
-                    <p>localisation actuelle : reception</p>
+                        </div>
+                        <button type="button" id="add_experience"
+                            class="font-[500]  rounded-[10px] w-20 text-white bg-black/60 hover:bg-black/20 lg:text-[15px] text-[12px] p-1">ajouter</button>
+                        <button type="submit" id="submit"
+                            class="font-[600]  bg-linear-[45deg,#2abb8d,#188fc2,#2abb8d]  rounded-[10px] mt-5 text-white lg:text-[18px] text-[12px] p-2 ">Submit</button>
+                    </form>
                 </div>
             </div>
-            <button id="close_info" class=" rounded-[5px] w-8 bg-red-800 text-white absolute lg:left-145 left-80">X</button>
-        </div>  -->
-    </section>
+        </section>
+
+        <section id="section_info"
+            class="absolute hidden top-0 z-10 flex justify-center items-center backdrop-blur bg-black/50 h-screen w-full">
+
+        </section>
+    </main>
 
 
 
