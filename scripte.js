@@ -191,7 +191,7 @@ form_cont.addEventListener('submit', (e) => {
             experiences: container_exps,
         }
 
-
+        document.getElementById('url').value=''
         // exps_inputs=''
         form_cont.reset();
         localStorage.setItem("id", i)
@@ -213,7 +213,7 @@ form_cont.addEventListener('submit', (e) => {
             `
         }
         affiche_one_Unassigned_Staff()
-        
+        photo.src=""
         Toastify({
             text: "un nouveau employent : " + name + " / " + role,
             duration: 3000,

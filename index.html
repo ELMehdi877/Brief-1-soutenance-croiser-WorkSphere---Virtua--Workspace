@@ -19,14 +19,14 @@
         rel="stylesheet"> -->
 </head>
 
-<body class="bg-black/20 relative">
-    <header style="background: linear-gradient(45deg,#0dffb2,#224e61,#0dffb2);" class="lg:h-20 h-10 text-gray-200 rounded-[10px] m-1 bg-blue-500 flex flex-col items-center justify-center ">
-            <h1  class="font-[900] lg:text-[30px] text-[18px] bg-linear-[45deg,#00b3ff,#00ff80,#00b3ff,#0dffb2] [background-clip:text] text-transparent animate-pulse duration-4000">WorkSphere</h1>
+<body class="bg-black/20 ">
+    <header style="background: linear-gradient(45deg,#227b5f,#224e61,#227b5f);" class="lg:h-20 h-10 text-gray-200 rounded-[10px] m-1 bg-blue-500 flex flex-col items-center justify-center ">
+            <h1  class="font-[900] lg:text-[35px] text-[18px] bg-linear-[45deg,#00b3ff,#00ff80,#00b3ff,#0dffb2] [background-clip:text] text-transparent animate-pulse duration-2000">WorkSphere - Virtual Workspace</h1>
             <p class="text-gray-300 lg:text-[16px] text-[9px] ">Gestion Intelligente du Personnel</p>
     </header>
     <main class="flex lg:items-end lg:flex-row flex-col p-1 lg:gap-1 gap-2">
         <section id="open_worker"
-            class=" absolute hidden backdrop-blur bg-black/50 z-1  w-full h-screen flex justify-center items-center">
+            class=" fixed top-0 right-0 hidden backdrop-blur bg-black/50 z-1  w-full h-screen flex justify-center items-center">
             <div
                 class="font-[700] bg-gray-600 relative rounded-[10px] flex flex-col items-center gap-2 p-2 lg:w-[27%] w-[100%]">
                 <h2 id="type_role" class="font-[700] text-[25px]  text-gray-300 underline">Reception</h2>
@@ -162,7 +162,7 @@
         </section>
 
         <section
-            class="section_form z-10 not-lg:top-0  absolute w-full h-screen flex justify-center items-center backdrop-blur bg-black/50">
+            class="section_form hidden z-10 top-0 right-0 fixed w-full h-screen flex justify-center items-center backdrop-blur bg-black/50">
             <div style="background: linear-gradient(45deg,rgba(56, 109, 132, 0.7),rgba(85, 146, 127, 0.500),rgba(56, 109, 132, 0.7));"
                 class="relative items-center flex flex-col rounded-[10px] py-5 px-10 lg:w-[35%] w-90">
                 <div class="flex relative">
@@ -216,7 +216,7 @@
         </section>
 
         <section id="section_info"
-            class="absolute hidden top-0 z-10 flex justify-center items-center backdrop-blur bg-black/50 h-screen w-full">
+            class="fixed hidden top-0 z-10 right-0 flex justify-center items-center backdrop-blur bg-black/50 h-screen w-full">
 
         </section>
     </main>
