@@ -305,6 +305,7 @@ function affiche_Salle_conference() {
                     <button onclick="add_conference(${el.id})"  class=" font-[500]  rounded-[10px] bg-green-700  text-[12px] p-2 hover:bg-green-500 ">add</button>
                 </div>
                 
+                
             `
     })
 }
