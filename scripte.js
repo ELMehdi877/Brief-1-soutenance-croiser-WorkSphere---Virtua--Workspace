@@ -232,7 +232,7 @@ form_cont.addEventListener('submit', (e) => {
 
 let photo = document.getElementById("photo")
 let url = document.getElementById("url")
-url.addEventListener("input", () => {
+form_cont.addEventListener("change", () => {
     if (url.value.trim() !== "") {
         photo.src = url.value.trim()
     }
