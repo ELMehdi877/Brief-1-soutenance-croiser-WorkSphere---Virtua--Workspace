@@ -192,7 +192,7 @@ form_cont.addEventListener('submit', (e) => {
                     <div class="flex gap-5 items-center">
                         <img onclick='affiche_info(${JSON.stringify(staf)},"Unassigned Staff")' src="${url}" width="18%" alt="Photo">
                         <div>
-                            <p class="">${name}</p>
+                            <p>${name}</p>
                             <p class="font-[400]">${role}</p>
                         </div>
                     </div>
@@ -268,7 +268,7 @@ function affiche_tous_Unassigned_Staff() {
                     <div class="flex gap-5 items-center">
                         <img src="${el.photo}" onclick='affiche_info(${JSON.stringify(el)} , "Unassigned Staff")' width="18%" alt="Photo">
                         <div>
-                            <p class="">${el.name}</p>
+                            <p>${el.name}</p>
                             <p class="font-[400]">${el.role}</p>
                         </div>
                     </div>
