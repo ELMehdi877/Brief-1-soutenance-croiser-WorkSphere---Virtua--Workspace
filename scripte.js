@@ -188,7 +188,7 @@ form_cont.addEventListener('submit', (e) => {
         function affiche_one_Unassigned_Staff() {
 
             Unassigned_Staff.innerHTML += `
-            <div style="background: linear-gradient(45deg,rgba(10, 72, 37, 0.60),rgba(65, 100, 100, 0.60),rgba(10, 72, 37, 0.60));" class="flex p-2 duration-150 hover:scale-105 items-center text-white font-[800] border-2 border-green-500 rounded-[10px]">
+            <div style="background: linear-gradient(45deg,rgba(10, 72, 37, 0.60),rgba(65, 100, 100, 0.60),rgba(10, 72, 37, 0.60));" class="cart_worker flex p-2 duration-150 hover:scale-105 items-center text-white font-[800] border-2 border-green-500 rounded-[10px]">
                     <div class="flex gap-5 items-center">
                         <img onclick='affiche_info(${JSON.stringify(staf)},"Unassigned Staff")' src="${url}" width="18%" alt="Photo">
                         <div>
@@ -264,7 +264,7 @@ function affiche_tous_Unassigned_Staff() {
     list_staf.forEach(el => {
 
         Unassigned_Staff.innerHTML += `
-            <div style="background: linear-gradient(45deg,rgba(10, 72, 37, 0.60),rgba(65, 100, 100, 0.60),rgba(10, 72, 37, 0.60));" class="flex p-2 duration-150 hover:scale-105 items-center text-white font-[800] border-2 border-green-500 rounded-[10px]">
+            <div style="background: linear-gradient(45deg,rgba(10, 72, 37, 0.60),rgba(65, 100, 100, 0.60),rgba(10, 72, 37, 0.60));" class="cart_worker flex p-2 duration-150 hover:scale-105 items-center text-white font-[800] border-2 border-green-500 rounded-[10px]">
                     <div class="flex gap-5 items-center">
                         <img src="${el.photo}" onclick='affiche_info(${JSON.stringify(el)} , "Unassigned Staff")' width="18%" alt="Photo">
                         <div>
