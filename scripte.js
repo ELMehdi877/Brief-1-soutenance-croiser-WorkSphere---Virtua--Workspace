@@ -1,18 +1,43 @@
 const section_form = document.querySelector('.section_form')
 const form_cont = document.querySelector('#form')
 const close = document.getElementById("close")
-add_new_worker.addEventListener('click', () => {
-    section_form.classList.remove('hidden')
-})
-close.addEventListener("click", () => {
-    section_form.classList.add("hidden")
-})
-
-
-
-
-
+const add_new_worker = document.getElementById("add_new_worker")
+const experience = document.getElementById('experience')
+const add_experience = document.getElementById('add_experience')
+let container_exps = []
+let Unassigned_Staff = document.querySelector("#Unassigned_Staff")
+let exps = []
+let photo = document.getElementById("photo")
+let url = document.getElementById("url")
+let list_conference = []
+let list_Receptionnistes = []
+let list_serveurs = []
+let list_securite = []
+let list_personnel = []
+let list_archive = []
+let type_role = document.getElementById("type_role")
+const open_worker = document.getElementById('open_worker')
+const Salle_conference = document.getElementById('Salle_conference')
+const Salle_Reception = document.getElementById('Salle_Reception')
+const Salle_serveurs = document.getElementById('Salle_serveurs')
+const Salle_scurite = document.getElementById('Salle_scurite')
+const Salle_personnel = document.getElementById('Salle_personnel')
+const Salle_archives = document.getElementById('Salle_archives')
+const close_list = document.getElementById("close_list")
+let employent_dans_conference = JSON.parse(localStorage.getItem("conference")) || []
+let employent_dans_reception = JSON.parse(localStorage.getItem("reception")) || []
+let employent_dans_serveur = JSON.parse(localStorage.getItem("serveur")) || []
+let employent_dans_securite = JSON.parse(localStorage.getItem("securite")) || []
+let employent_dans_perssone = JSON.parse(localStorage.getItem("perssone")) || []
+let employent_dans_archive = JSON.parse(localStorage.getItem("archive")) || []
 let list_staf = JSON.parse(localStorage.getItem("list_staf_local")) || []
+let cont_Salle_conference = document.getElementById("cont_Salle_conference")
+let cont_Salle_Reception = document.getElementById("cont_Salle_Reception")
+let cont_Salle_serveurs = document.getElementById("cont_Salle_serveurs")
+let cont_Salle_scurite = document.getElementById("cont_Salle_scurite")
+let cont_Salle_personnel = document.getElementById("cont_Salle_personnel")
+let cont_Salle_archives = document.getElementById("cont_Salle_archives")
+const section_info = document.getElementById('section_info')
 let i = 0
 let staf = {
     id: i,
@@ -30,9 +55,17 @@ let exp_employent = {
     date_fin: '',
 }
 
-const experience = document.getElementById('experience')
-const add_experience = document.getElementById('add_experience')
+//pour affiché la section de formulaire 
+add_new_worker.addEventListener('click', () => {
+    section_form.classList.remove('hidden')
+})
 
+//pour fermé la section de formulaire 
+close.addEventListener("click", () => {
+    section_form.classList.add("hidden")
+})
+
+//pour ajouter ou suprimer une zone d'experience et afficher dans le formulaire
 add_experience.addEventListener('click', (e) => {
 
     e.preventDefault()
@@ -40,8 +73,6 @@ add_experience.addEventListener('click', (e) => {
 
 
 })
-let container_exps = []
-
 function affiche_exp() {
 
     let input_nom_entreprise = document.createElement("input")
@@ -117,12 +148,9 @@ function affiche_exp() {
     div.appendChild(button)
     experience.appendChild(div)
 }
-
 affiche_exp()
 
-
-let Unassigned_Staff = document.querySelector("#Unassigned_Staff")
-let exps = []
+//la verification des donner de l'utilisateur apres click submit et afficher
 form_cont.addEventListener('submit', (e) => {
     e.preventDefault()
 
@@ -179,7 +207,6 @@ form_cont.addEventListener('submit', (e) => {
             experiences: container_exps,
         }
 
-        // document.getElementById('url').value = ''
         container_exps = []
         form_cont.reset();
         localStorage.setItem("id", i)
@@ -228,10 +255,7 @@ form_cont.addEventListener('submit', (e) => {
     }
 })
 
-
-
-let photo = document.getElementById("photo")
-let url = document.getElementById("url")
+//event pour verifie les dates date debut doit < a date fin
 form_cont.addEventListener("change", () => {
     if (url.value.trim() !== "") {
         photo.src = url.value.trim()
@@ -241,6 +265,7 @@ form_cont.addEventListener("change", () => {
 
 })
 
+//fonction pour la supression d'un employent
 function suprime_empl(id, name) {
     list_staf = list_staf.filter(el => el.id !== id)
     localStorage.setItem("list_staf_local", JSON.stringify(list_staf))
@@ -259,6 +284,7 @@ function suprime_empl(id, name) {
     }).showToast();
 }
 
+//fonction affiche tous les employents
 function affiche_tous_Unassigned_Staff() {
     Unassigned_Staff.innerHTML = "";
     list_staf.forEach(el => {
@@ -272,20 +298,14 @@ function affiche_tous_Unassigned_Staff() {
                             <p class="font-[400]">${el.role}</p>
                         </div>
                     </div>
-                    <button onclick="suprime_empl((${el.id}),'${el.name}')" class=" font-[500]  rounded-[10px] text-red-500 text-[12px] p-1 border-2 hover:bg-red-500 hover:text-white">remove</button>
+                    <button onclick="suprime_empl(${el.id},'${el.name}')" class=" font-[500]  rounded-[10px] text-red-500 text-[12px] p-1 border-2 hover:bg-red-500 hover:text-white">remove</button>
                 </div>
             `
     })
 }
 affiche_tous_Unassigned_Staff()
-let list_conference = []
-let list_Receptionnistes = []
-let list_serveurs = []
-let list_securite = []
-let list_personnel = []
-let list_archive = []
-let type_role = document.getElementById("type_role")
 
+//fonction affiche la liste des employent pour la salle conference
 function affiche_Salle_conference() {
     type_role.textContent = "Salle de conférence"
     list_conference = list_staf
@@ -310,7 +330,7 @@ function affiche_Salle_conference() {
     })
 }
 
-
+//fonction affiche la liste des employent pour la salle reception
 function affiche_Salle_Reception() {
     type_role.textContent = "Réception"
     list_Receptionnistes = list_staf.filter(el => el.role === "Réceptionnistes" || el.role === "Manager" || el.role === "Nettoyage")
@@ -333,6 +353,7 @@ function affiche_Salle_Reception() {
     })
 }
 
+//fonction affiche la liste des employent pour la salle serveur
 function affiche_Salle_serveurs() {
     type_role.textContent = "Salle des serveurs"
     list_serveurs = list_staf.filter(el => el.role === "Techniciens IT" || el.role === "Manager" || el.role === "Nettoyage")
@@ -355,7 +376,7 @@ function affiche_Salle_serveurs() {
     })
 }
 
-
+//fonction affiche la liste des employent pour la salle securité
 function affiche_Salle_securite() {
     type_role.textContent = "Salle de sécurité"
     list_securite = list_staf.filter(el => el.role === "Sécurité" || el.role === "Manager" || el.role === "Nettoyage")
@@ -378,7 +399,7 @@ function affiche_Salle_securite() {
     })
 }
 
-
+//fonction affiche la liste des employent pour la salle personnel
 function affiche_Salle_personnel() {
     type_role.textContent = "Salle du personnel"
     list_personnel = list_staf
@@ -401,7 +422,7 @@ function affiche_Salle_personnel() {
     })
 }
 
-
+//fonction affiche la liste des employent pour la salle archive
 function affiche_Salle_archive() {
     type_role.textContent = "Salle d’archives"
     list_archive = list_staf.filter(el => el.role === "Manager")
@@ -425,22 +446,11 @@ function affiche_Salle_archive() {
 }
 
 
-
-
-const open_worker = document.getElementById('open_worker')
-const Salle_conference = document.getElementById('Salle_conference')
-const Salle_Reception = document.getElementById('Salle_Reception')
-const Salle_serveurs = document.getElementById('Salle_serveurs')
-const Salle_scurite = document.getElementById('Salle_scurite')
-const Salle_personnel = document.getElementById('Salle_personnel')
-const Salle_archives = document.getElementById('Salle_archives')
-
-const close_list = document.getElementById("close_list")
-
 Salle_conference.addEventListener('click', () => {
     open_worker.classList.remove('hidden')
 })
 
+//event pour affiché la liste des employents pour chaque salle
 Salle_Reception.addEventListener('click', () => {
     open_worker.classList.remove('hidden')
 })
@@ -460,18 +470,14 @@ Salle_personnel.addEventListener('click', () => {
 Salle_archives.addEventListener('click', () => {
     open_worker.classList.remove('hidden')
 })
+//////////////////////////////////////////////////////
 
+// event pour fermer la liste
 close_list.addEventListener("click", () => {
     open_worker.classList.add("hidden")
 })
 
-let employent_dans_conference = JSON.parse(localStorage.getItem("conference")) || []
-let employent_dans_reception = JSON.parse(localStorage.getItem("reception")) || []
-let employent_dans_serveur = JSON.parse(localStorage.getItem("serveur")) || []
-let employent_dans_securite = JSON.parse(localStorage.getItem("securite")) || []
-let employent_dans_perssone = JSON.parse(localStorage.getItem("perssone")) || []
-let employent_dans_archive = JSON.parse(localStorage.getItem("archive")) || []
-
+//fonction affiche un toast contient le nom et le nom de lazone l'orsque en ajoute un employent a une salle
 function toast_add_worker(name , zone) {
     Toastify({
         text: "ajouter "+name+" au "+zone,
@@ -485,7 +491,7 @@ function toast_add_worker(name , zone) {
     }).showToast();
 }
 
-let cont_Salle_conference = document.getElementById("cont_Salle_conference")
+//chaque fonction responsable pour ajouté un employent dans une salle et suprimer ce employent de la liste Unassigned et de la liste responsable a cette salle
 function add_conference(id) {
     if (cont_Salle_conference.children.length < 8) {
         list_conference.forEach(el => {
@@ -503,7 +509,6 @@ function add_conference(id) {
     }
 }
 
-let cont_Salle_Reception = document.getElementById("cont_Salle_Reception")
 function add_reception(id) {
     if (cont_Salle_Reception.children.length < 12) {
 
@@ -525,7 +530,6 @@ function add_reception(id) {
 
 }
 
-let cont_Salle_serveurs = document.getElementById("cont_Salle_serveurs")
 function add_serveur(id) {
     if (cont_Salle_serveurs.children.length < 4) {
 
@@ -546,7 +550,6 @@ function add_serveur(id) {
 
 }
 
-let cont_Salle_scurite = document.getElementById("cont_Salle_scurite")
 function add_securite(id) {
     if (cont_Salle_scurite.children.length < 4) {
         list_securite.forEach(el => {
@@ -567,7 +570,6 @@ function add_securite(id) {
 
 }
 
-let cont_Salle_personnel = document.getElementById("cont_Salle_personnel")
 function add_perssone(id) {
     if (cont_Salle_personnel.children.length < 4) {
 
@@ -588,7 +590,7 @@ function add_perssone(id) {
 
 }
 
-let cont_Salle_archives = document.getElementById("cont_Salle_archives")
+
 function add_archive(id) {
     if (cont_Salle_archives.children.length < 4) {
 
@@ -608,8 +610,9 @@ function add_archive(id) {
     }
 
 }
+/////////////////////////////////////////////////////////////
 
-const section_info = document.getElementById('section_info')
+//fonction affiche les informations d'un employent
 function affiche_info(el, zone) {
 
     section_info.classList.remove("hidden")
@@ -660,6 +663,7 @@ function affiche_info(el, zone) {
 
 }
 
+//chaque deux fonctions le 2eme suprime l'employent de salle et le 1er retour ce employent a la liste Unassigned et la liste de cette salle
 function retour_conference_Staff(el) {
     list_staf.push(el)
     localStorage.setItem("list_staf_local", JSON.stringify(list_staf))
@@ -673,7 +677,6 @@ function supprime_conference(id) {
     affiche_conference()
 
 }
-
 
 function retour_reception_Staff(el) {
     list_staf.push(el)
@@ -691,7 +694,6 @@ function supprime_reception(id) {
 
 
 }
-
 
 function retour_serveur_Staff(el) {
 
@@ -756,7 +758,9 @@ function supprime_archive(id) {
     affiche_archive()
     zone_restreinte_archive()
 }
+//////////////////////////////////////////////////////
 
+//chaque fonction responsable a l'affichage dans la salle
 function affiche_conference() {
     cont_Salle_conference.innerHTML = ""
     employent_dans_conference.forEach(el => {
@@ -793,7 +797,6 @@ function affiche_reception() {
     })
 }
 
-
 function affiche_serveur() {
     cont_Salle_serveurs.innerHTML = ""
     employent_dans_serveur.forEach(el => {
@@ -810,7 +813,6 @@ function affiche_serveur() {
             `
     })
 }
-
 
 function affiche_securite() {
     cont_Salle_scurite.innerHTML = ""
@@ -829,7 +831,6 @@ function affiche_securite() {
     })
 }
 
-
 function affiche_perssone() {
     cont_Salle_personnel.innerHTML = ""
     employent_dans_perssone.forEach(el => {
@@ -846,7 +847,6 @@ function affiche_perssone() {
             `
     })
 }
-
 
 function affiche_archive() {
     cont_Salle_archives.innerHTML = ""
@@ -873,7 +873,9 @@ affiche_serveur()
 affiche_securite()
 affiche_perssone()
 affiche_archive()
+//////////////////////////////////////////////
 
+//fonctions pour coloré les zones restreinte
 function zone_restreinte_reception() {
     const zone_reception = document.getElementById('zone_reception')
 
@@ -888,7 +890,7 @@ function zone_restreinte_reception() {
 function zone_restreinte_serveurs() {
     const zone_serveurs = document.getElementById('zone_serveurs')
 
-    if (cont_Salle_serveurs.children.length == 0) {
+    if (cont_Salle_serveurs.children.length === 0) {
         zone_serveurs.classList.add("bg-red-500/70", "animate-pulse")
     }
     else
@@ -899,7 +901,7 @@ function zone_restreinte_serveurs() {
 function zone_restreinte_securite() {
     const zone_securite = document.getElementById('zone_securite')
 
-    if (cont_Salle_scurite.children.length == 0) {
+    if (cont_Salle_scurite.children.length === 0) {
         zone_securite.classList.add("bg-red-500/70", "animate-pulse")
     }
     else
@@ -910,7 +912,7 @@ function zone_restreinte_securite() {
 function zone_restreinte_archive() {
     const zone_archive = document.getElementById('zone_archive')
 
-    if (cont_Salle_archives.children.length == 0) {
+    if (cont_Salle_archives.children.length === 0) {
         zone_archive.classList.add("bg-red-500/70", "animate-pulse")
     }
     else
